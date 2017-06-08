@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608115632) do
+ActiveRecord::Schema.define(version: 20170608132613) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "user_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170608115632) do
     t.integer "tenant_id"
     t.integer "user_id"
     t.string "short_title"
+    t.integer "current_assignment"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
