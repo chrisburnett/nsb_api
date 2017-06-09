@@ -41,5 +41,11 @@ FactoryGirl.define do
     resolution { Faker::Lorem.sentence(10) }
     am_pm_visit "am"
   end
+
+  factory :job_comment do
+    user
+    job
+    comment_text { Faker::Lorem.sentence(20) }
+  end
   
 end
