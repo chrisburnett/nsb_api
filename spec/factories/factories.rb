@@ -27,7 +27,7 @@ FactoryGirl.define do
     sor_code { Faker::Code.asin }
     description { Faker::Lorem.sentence(10) }
     notes { Faker::Lorem.sentence(5) }
-    association :user, factory: :admin
+    association :user
     association :tenant
   end
 

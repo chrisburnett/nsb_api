@@ -49,35 +49,36 @@ RSpec.describe 'Jobs API', type: :request do
   end
 
   # # Test suite for POST /jobs
-  # describe 'POST /jobs' do
-  #   # valid payload
-  #   let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
+  describe 'POST /jobs' do
+    # valid payload
+    
+    context 'when the request is valid' do
+      let(:user) { create(:user) }
+      let(:tenant) { create(:tenant) }
+      before { post '/jobs', params: { user_id: user.id, tenant_id: tenant.id, short_title: 'Test', reported_date: "2014-03-03" } }
 
-  #   context 'when the request is valid' do
-  #     before { post '/jobs', params: valid_attributes }
+      it 'creates a job' do
+        expect(json['short_title']).to eq('Test')
+      end
 
-  #     it 'creates a job' do
-  #       expect(json['title']).to eq('Learn Elm')
-  #     end
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
+      end
+    end
 
-  #     it 'returns status code 201' do
-  #       expect(response).to have_http_status(201)
-  #     end
-  #   end
+    context 'when the request is invalid' do
+      before { post '/jobs', params: { title: 'Foobar' } }
 
-  #   context 'when the request is invalid' do
-  #     before { post '/jobs', params: { title: 'Foobar' } }
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
 
-  #     it 'returns status code 422' do
-  #       expect(response).to have_http_status(422)
-  #     end
-
-  #     it 'returns a validation failure message' do
-  #       expect(response.body)
-  #         .to match(/Validation failed: Created by can't be blank/)
-  #     end
-  #   end
-  # end
+      it 'returns a validation failure message' do
+        expect(response.body)
+          .to match(/Validation failed: User must exist, Tenant must exist, Short title can't be blank, Reported date can't be blank/)
+      end
+    end
+  end
 
   # Test suite for PUT /jobs/:id
   # describe 'PUT /jobs/:id' do
