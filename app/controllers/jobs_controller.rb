@@ -35,7 +35,7 @@ class JobsController < ApplicationController
 
   def job_params
     # whitelist params
-    params.permit(:job_id, :user_id, :tenent_id, :short_title, :reported_date, :completed_date, :sor_code, :description, :notes)
+    params.permit(:job_id, :user_id, :tenant_id, :short_title, :reported_date, :completed_date, :sor_code, :description, :notes)
   end
 
   def set_job
