@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     resources :tenants
   end
 
-  post 'auth' => 'auth#authenticate'
+  post 'auth' => 'api/auth#authenticate'
   
 end
