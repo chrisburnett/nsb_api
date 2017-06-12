@@ -11,6 +11,7 @@ FactoryGirl.define do
     name { Faker::Name.name }
     address { Faker::Address.street_address }
     is_admin false
+    username { Faker::Internet.user_name }
     password "test"
 
     factory :admin do
