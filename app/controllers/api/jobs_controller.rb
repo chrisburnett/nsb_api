@@ -8,12 +8,6 @@ class Api::JobsController < ApplicationController
     render json: @jobs.to_json(include: :assignments)
   end
 
-  # POST /jobs
-  def create
-    @job = Job.create!(job_params)
-    json_response(@job, :created)
-  end
-
   # GET /jobs/:id
   def show
     render json: @job.to_json(include: :assignments)
@@ -22,12 +16,6 @@ class Api::JobsController < ApplicationController
   # PUT /jobs/:id
   def update
     @job.update(job_params)
-    head :no_content
-  end
-
-  # DELETE /jobs/:id
-  def destroy
-    @job.destroy
     head :no_content
   end
 

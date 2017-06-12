@@ -1,26 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api, defaults: { format: :json } do
-
     # jobs/assignments
-    resources :jobs do
-      resources :assignments
-      resources :comments
-    end
-
-    # assignments accessible from users
-    resources :users do
+    resources :jobs, only: [:index, :show, :update] do
       resources :assignments
     end
 
     # assignments
-    resources :assignments
-
-    # tenants
-    resources :tenants
+    resources :assignments, only: [:index, :show, :update]
   end
 
   post 'auth' => 'api/auth#authenticate'
+  get 'api/user', to: 'api/users#show'
   
 end
