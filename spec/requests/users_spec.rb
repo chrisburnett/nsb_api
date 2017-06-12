@@ -10,24 +10,22 @@ RSpec.describe 'Users API', type: :request do
   # initialize test data 
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
-
-  # LOGGED IN ADMIN USERS ONLY should be allowed to retrieve full user list
   
-  # Test suite for GET /api/users unauthenticated
-  describe 'GET /api/users' do
+  # Test suite for GET /api/user unauthenticated
+  describe 'GET /api/user' do
     # make HTTP get request before each example
-    before { get '/api/users' }
+    before { get '/api/user' }
 
     it 'returns responds 401 to unauthenticated requests' do
       expect(response).to have_http_status(401)
     end
   end
 
-  # Tests for GET /api/users authenticated
-  describe 'GET /api/users' do
+  # Tests for GET /api/user authenticated
+  describe 'GET /api/user' do
     # make HTTP get request before each example
     let(:user) { create(:user) }
-    before { get '/api/users', headers: authenticated_header(user.id, false) }
+    before { get '/api/user', headers: authenticated_header(user.id, false) }
 
     it 'returns responds 200 to authenticated requests' do
       expect(response).to have_http_status(200)

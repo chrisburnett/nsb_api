@@ -53,37 +53,37 @@ RSpec.describe 'Jobs API', type: :request do
   end
 
   # # Test suite for POST /api/jobs
-  describe 'POST /api/jobs' do
-    # valid payload
+  # describe 'POST /api/jobs' do
+  #   # valid payload
     
-    context 'when the request is valid' do
-      let(:user) { create(:user) }
-      let(:tenant) { create(:tenant) }
-      before { post '/api/jobs', params: { user_id: user.id, tenant_id: tenant.id, short_title: 'Test', reported_date: "2014-03-03" } }
+  #   context 'when the request is valid' do
+  #     let(:user) { create(:user) }
+  #     let(:tenant) { create(:tenant) }
+  #     before { post '/api/jobs', params: { user_id: user.id, tenant_id: tenant.id, short_title: 'Test', reported_date: "2014-03-03" } }
 
-      it 'creates a job' do
-        expect(json['short_title']).to eq('Test')
-        expect(json['user_id']).to eq(user.id)
-      end
+  #     it 'creates a job' do
+  #       expect(json['short_title']).to eq('Test')
+  #       expect(json['user_id']).to eq(user.id)
+  #     end
 
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
-      end
-    end
+  #     it 'returns status code 201' do
+  #       expect(response).to have_http_status(201)
+  #     end
+  #   end
 
-    context 'when the request is invalid' do
-      before { post '/api/jobs', params: { title: 'Foobar' } }
+  #   context 'when the request is invalid' do
+  #     before { post '/api/jobs', params: { title: 'Foobar' } }
 
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
+  #     it 'returns status code 422' do
+  #       expect(response).to have_http_status(422)
+  #     end
 
-      it 'returns a validation failure message' do
-        expect(response.body)
-          .to match(/Validation failed: User must exist, Tenant must exist, Short title can't be blank, Reported date can't be blank/)
-      end
-    end
-  end
+  #     it 'returns a validation failure message' do
+  #       expect(response.body)
+  #         .to match(/Validation failed: User must exist, Tenant must exist, Short title can't be blank, Reported date can't be blank/)
+  #     end
+  #   end
+  # end
 
   # Test suite for PUT /api/jobs/:id
   describe 'PUT /api/jobs/:id' do
@@ -103,11 +103,11 @@ RSpec.describe 'Jobs API', type: :request do
   end
 
   # Test suite for DELETE /api/jobs/:id
-  describe 'DELETE /api/jobs/:id' do
-    before { delete "/api/jobs/#{job_id}" }
+  # describe 'DELETE /api/jobs/:id' do
+  #   before { delete "/api/jobs/#{job_id}" }
 
-    it 'returns status code 204' do
-      expect(response).to have_http_status(204)
-    end
-  end
+  #   it 'returns status code 204' do
+  #     expect(response).to have_http_status(204)
+  #   end
+  # end
 end

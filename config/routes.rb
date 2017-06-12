@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
 
     # assignments
-    resources :assignments, only: [:index, :show, :update]
+    resources :assignments, only: [:index, :show, :update, :create]
   end
 
   post 'auth' => 'api/auth#authenticate'

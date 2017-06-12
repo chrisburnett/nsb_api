@@ -1,20 +1,17 @@
 class Api::UsersController < SecureAPIController
 
-  def index
-    @users = User.all
-    render json: @users.to_json
-  end
-
-  def create
-  end
-
   def show
+    if @current_user then
+      render json: @current_user, status: :ok
+    else
+      fail NotAuthenticatedError
+    end
   end
 
-  def update
-  end
+  # def update
+  # end
 
-  def destroy
-  end
+  # def destroy
+  # end
   
 end
