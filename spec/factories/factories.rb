@@ -29,6 +29,10 @@ FactoryGirl.define do
     notes { Faker::Lorem.sentence(5) }
     association :user
     association :tenant
+
+    after(:create) do |job|
+      create(:assignment, job: job)
+    end
   end
 
   factory :assignment do
