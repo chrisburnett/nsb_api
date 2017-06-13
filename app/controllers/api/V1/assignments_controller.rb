@@ -1,4 +1,4 @@
-class Api::AssignmentsController < ApplicationController
+class Api::V1::AssignmentsController < ApplicationController
 
   before_action :set_assignment, only: [:show, :update, :destroy]
 

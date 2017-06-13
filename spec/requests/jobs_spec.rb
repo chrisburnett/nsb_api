@@ -6,9 +6,9 @@ RSpec.describe 'Jobs API', type: :request do
   let(:job_id) { jobs.first.id }
 
   # Test suite for GET /todos
-  describe 'GET /api/jobs' do
+  describe 'GET /api/v1/jobs' do
     # make HTTP get request before each example
-    before { get '/api/jobs' }
+    before { get '/api/v1/jobs' }
 
     it 'returns jobs' do
       expect(json).not_to be_empty
@@ -21,8 +21,8 @@ RSpec.describe 'Jobs API', type: :request do
   end
 
   # Test suite for GET /api/jobs/:id
-  describe 'GET /api/jobs/:id' do
-    before { get "/api/jobs/#{job_id}" }
+  describe 'GET /api/v1/jobs/:id' do
+    before { get "/api/v1/jobs/#{job_id}" }
 
     context 'when the record exists' do
       it 'returns the job' do
@@ -86,11 +86,11 @@ RSpec.describe 'Jobs API', type: :request do
   # end
 
   # Test suite for PUT /api/jobs/:id
-  describe 'PUT /api/jobs/:id' do
+  describe 'PUT /api/v1/jobs/:id' do
     let(:valid_attributes) { { short_title: 'Sets' } }
 
     context 'when the record exists' do
-      before { put "/api/jobs/#{job_id}", params: valid_attributes }
+      before { put "/api/v1/jobs/#{job_id}", params: valid_attributes }
 
       it 'updates the record' do
         expect(response.body).to be_empty

@@ -1,4 +1,4 @@
-class Api::AuthController < ApplicationController
+class Api::V1::AuthController < ApplicationController
 
     def authenticate
       user = User.find_by_username(params[:username]).try(:authenticate, params[:password])

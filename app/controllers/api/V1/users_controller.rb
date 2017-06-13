@@ -1,4 +1,4 @@
-class Api::UsersController < SecureAPIController
+class Api::V1::UsersController < SecureAPIController
 
   def show
     if @current_user then
