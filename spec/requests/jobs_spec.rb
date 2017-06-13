@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Jobs API', type: :request do
   # initialize test data 
-  let!(:jobs) { create_list(:job, 10) }
+  let!(:jobs) { create_list(:job, 5, assigned: true) }
+  let!(:available_jobs) { create_list(:job, 5, assigned: false) }
   let(:job_id) { jobs.first.id }
 
   # Test suite for GET /todos
@@ -52,6 +53,15 @@ RSpec.describe 'Jobs API', type: :request do
     end
   end
 
+  describe 'GET /api/v1/jobs/?available=true' do
+    before { get "/api/v1/jobs?available=true"}
+
+    it 'returns only available jobs' do
+      puts json
+      expect(json.size).to eq(5)
+    end
+  end
+  
   # # Test suite for POST /api/jobs
   # describe 'POST /api/jobs' do
   #   # valid payload

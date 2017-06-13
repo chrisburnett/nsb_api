@@ -6,4 +6,7 @@ class Job < ApplicationRecord
   validates_presence_of :short_title
   validates_presence_of :reported_date
 
+  scope :available, -> { where(assigned: false) }
+  scope :open, -> { where(completed: false) }
+
 end
