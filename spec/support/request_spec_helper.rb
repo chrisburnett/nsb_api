@@ -4,4 +4,9 @@ module RequestSpecHelper
   def json
     JSON.parse(response.body)
   end
+
+  def authenticated_header(user_id, admin)
+    token = Authentication::AuthToken.encode({ user_id: user_id, admin: admin })
+    { 'Authorization': "Bearer #{token}" }
+  end
 end
