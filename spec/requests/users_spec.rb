@@ -27,5 +27,20 @@ RSpec.describe 'Users API', type: :request do
     end
   end
 
+  describe 'PUT /api/v1/user' do
+    let(:valid_attributes) { { name: "Bob" } }
+
+    context 'when the record exists' do
+      before { put "/api/v1/user/", params: valid_attributes, headers: authenticated_header(user_id, false) }
+
+      it 'updates the record' do
+        expect(response.body).to be_empty
+      end
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
   
 end

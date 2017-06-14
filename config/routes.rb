@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       
       post 'auth' => 'auth#authenticate'
       get 'user', to: 'users#show'
+      put 'user', to: 'users#update'
     end
   end
 end
