@@ -7,7 +7,7 @@ class Api::V1::JobsController < ApplicationController
     if params[:available] == 'true' then
       render json: Job.available.to_json(include: :assignments)
     else
-      render json: Job.all.to_json
+      render json: Job.all.to_json(include: :assignments)
     end
   end
 
@@ -25,8 +25,8 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    # whitelist params
-    params.permit(:job_id, :user_id, :tenant_id, :short_title, :reported_date, :completed_date, :sor_code, :description, :notes, :assigned, :available, :completed)
+    # following params can be edited by clients
+    params.permit(:short_title, :completed_date, :description, :notes, :assigned, :completed)
   end
 
   def set_job

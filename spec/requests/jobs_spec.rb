@@ -57,53 +57,20 @@ RSpec.describe 'Jobs API', type: :request do
     before { get "/api/v1/jobs?available=true"}
 
     it 'returns only available jobs' do
-      puts json
       expect(json.size).to eq(5)
     end
   end
-  
-  # # Test suite for POST /api/jobs
-  # describe 'POST /api/jobs' do
-  #   # valid payload
-    
-  #   context 'when the request is valid' do
-  #     let(:user) { create(:user) }
-  #     let(:tenant) { create(:tenant) }
-  #     before { post '/api/jobs', params: { user_id: user.id, tenant_id: tenant.id, short_title: 'Test', reported_date: "2014-03-03" } }
-
-  #     it 'creates a job' do
-  #       expect(json['short_title']).to eq('Test')
-  #       expect(json['user_id']).to eq(user.id)
-  #     end
-
-  #     it 'returns status code 201' do
-  #       expect(response).to have_http_status(201)
-  #     end
-  #   end
-
-  #   context 'when the request is invalid' do
-  #     before { post '/api/jobs', params: { title: 'Foobar' } }
-
-  #     it 'returns status code 422' do
-  #       expect(response).to have_http_status(422)
-  #     end
-
-  #     it 'returns a validation failure message' do
-  #       expect(response.body)
-  #         .to match(/Validation failed: User must exist, Tenant must exist, Short title can't be blank, Reported date can't be blank/)
-  #     end
-  #   end
-  # end
 
   # Test suite for PUT /api/jobs/:id
   describe 'PUT /api/v1/jobs/:id' do
-    let(:valid_attributes) { { short_title: 'Sets' } }
+    let(:valid_attributes) { { completed: true } }
 
     context 'when the record exists' do
       before { put "/api/v1/jobs/#{job_id}", params: valid_attributes }
 
       it 'updates the record' do
-        expect(response.body).to be_empty
+        get "/api/v1/jobs/#{job_id}"
+        expect(json['completed']).to be_truthy
       end
 
       it 'returns status code 204' do
@@ -111,13 +78,4 @@ RSpec.describe 'Jobs API', type: :request do
       end
     end
   end
-
-  # Test suite for DELETE /api/jobs/:id
-  # describe 'DELETE /api/jobs/:id' do
-  #   before { delete "/api/jobs/#{job_id}" }
-
-  #   it 'returns status code 204' do
-  #     expect(response).to have_http_status(204)
-  #   end
-  # end
 end

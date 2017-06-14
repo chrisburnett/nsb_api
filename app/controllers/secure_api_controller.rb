@@ -5,6 +5,8 @@ end
 
 class SecureAPIController < ActionController::Base
   include Authentication
+  include Response
+  include ExceptionHandler
   
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

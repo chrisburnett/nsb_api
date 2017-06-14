@@ -2,11 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do
 
-  def authenticated_header(user_id, admin)
-    token = Authentication::AuthToken.encode({ user_id: user_id, admin: admin })
-    { 'Authorization': "Bearer #{token}" }
-  end
-
   # initialize test data 
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
