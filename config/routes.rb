@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       # assignments
       resources :assignments, only: [:index, :show, :update, :create]
       
-      post 'auth' => 'auth#authenticate'
+      get 'auth' => 'auth#authenticate'
       get 'user', to: 'users#show'
       put 'user', to: 'users#update'
     end
