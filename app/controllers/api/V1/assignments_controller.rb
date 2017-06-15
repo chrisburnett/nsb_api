@@ -17,12 +17,10 @@ module Api
       # POST /assignments
       def create
         if @current_user then
-          # can create assignment if job is available
           job = Job.find_by(id: params[:job_id])
-          if job and !job.assigned then
+          if job then
             @assignment = Assignment.create!(assignment_params)
-            job.assigned = true
-            job.save
+            job.update_attribute(:assigned, true) # probably bad practice
             json_response(@assignment, :created)
           else
             head :unprocessable_entity # unprocessable entity
