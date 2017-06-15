@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'puma', '~> 3.7'
 gem 'jwt'
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
