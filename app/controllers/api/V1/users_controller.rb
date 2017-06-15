@@ -2,7 +2,7 @@ class Api::V1::UsersController < SecureAPIController
 
   def show
     if @current_user then
-      render json: @current_user, status: :ok
+      render json: @current_user, except: :password_digest, status: :ok
     else
       fail NotAuthenticatedError
     end

@@ -25,6 +25,10 @@ RSpec.describe 'Users API', type: :request do
     it 'returns responds 200 to authenticated requests' do
       expect(response).to have_http_status(200)
     end
+
+    it 'does not return the password digest' do
+      expect(json['password_digest']).to be_nil
+    end
   end
 
   describe 'PUT /api/v1/user' do
