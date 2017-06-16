@@ -39,8 +39,14 @@ FactoryGirl.define do
   end
 
   factory :assignment do
+    transient do
+      completed false
+      assigned false
+    end
     association :user
-    association :job
+    job do
+      create(:job, completed: completed, assigned: assigned)
+    end
     assignment_date { Faker::Date.backward(30) }
     scheduled_date { Faker::Date.backward(10) }
     actual_date { Faker::Date.backward(15) }
