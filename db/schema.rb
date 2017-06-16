@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20170613084927) do
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "job_id"
+    t.integer "user_id"
+    t.integer "job_id"
     t.date "assignment_date"
     t.string "am_pm_visit"
     t.text "resolution"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170613084927) do
   end
 
   create_table "job_comments", force: :cascade do |t|
-    t.bigint "job_id"
-    t.bigint "user_id"
+    t.integer "job_id"
+    t.integer "user_id"
     t.text "comment_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170613084927) do
     t.text "sor_code"
     t.text "description"
     t.text "notes"
-    t.bigint "tenant_id"
-    t.bigint "user_id"
+    t.integer "tenant_id"
+    t.integer "user_id"
     t.string "short_title"
     t.boolean "assigned"
     t.boolean "completed"
@@ -74,10 +74,4 @@ ActiveRecord::Schema.define(version: 20170613084927) do
     t.string "username"
   end
 
-  add_foreign_key "assignments", "jobs"
-  add_foreign_key "assignments", "users"
-  add_foreign_key "job_comments", "jobs"
-  add_foreign_key "job_comments", "users"
-  add_foreign_key "jobs", "tenants"
-  add_foreign_key "jobs", "users"
 end

@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Assignments API', type: :request do
-  # initialize test data 
-  let(:assignment) { create(:assignment) }
-  let(:user_id) { assignment.user.id }
-  let(:assignment_id) { assignment.id }
-  let(:header) { authenticated_header(assignment.user.id, false) }
+  # initialize test data
+  let!(:user) { create(:user) }
+  let!(:job1) { create(:job, assigned: true, completed: false) }
+  let!(:job2) { create(:job, assigned: false, completed: true) }
+  let!(:assignments) { create_list(:assignment, 10, job: job1, user: user) }
+  let!(:completed_assignments) { create_list(:assignment, 10, job: job2, user: user) }
+  let!(:assignment_id) { assignments.first.id }
+  let!(:header) { authenticated_header(user.id, false) }
 
   # access without token returns 401 unauthorized
   describe 'GET /api/v1/assignments' do
@@ -23,6 +26,10 @@ RSpec.describe 'Assignments API', type: :request do
 
     it 'returns ' do
       expect(json).not_to be_empty
+    end
+
+    it 'returns 20 assignments' do
+      expect(json.length).to eq(20)
     end
 
     it 'returns status code 200' do
@@ -54,6 +61,18 @@ RSpec.describe 'Assignments API', type: :request do
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
+      end
+    end
+
+  end
+
+  # test scope of assignments with jobs which are open
+  describe 'GET /api/v1/assignments?active=true' do
+    before { get "/api/v1/assignments?active=true", headers: header }
+
+    context 'when requesting only open assignments' do
+      it 'returns only open assignments' do
+        expect(json.length).to eq(1)
       end
     end
 
@@ -92,7 +111,7 @@ RSpec.describe 'Assignments API', type: :request do
     end
   end
 
-  # Test suite for PUT /api/v1/jobs/:id
+  # Test suite for PUT /api/v1/assignments/:id
   describe 'PUT /api/v1/assignments/:id' do
     let(:valid_attributes) { { assignment_date: '2014-04-04' } }
     let(:other_assignment) { create(:assignment) }

@@ -8,7 +8,11 @@ module Api
       def index
         if @current_user then
           @assignments = Assignment.where(user_id: @current_user.id)
-          render json: @assignments.to_json(include: :job)
+          if(params[:active] == 'true') then
+            render json: @assignments.active.to_json(include: :job)
+          else
+            render json: @assignments.to_json(include: :job)
+          end
         else
           fail NotAuthenticatedError
         end
