@@ -41,13 +41,13 @@ RSpec.describe 'Jobs API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:job_id) { 100 }
-
       it 'returns status code 404' do
+        get "/api/v1/jobs/fail"
         expect(response).to have_http_status(404)
       end
 
       it 'returns a not found message' do
+        get "/api/v1/jobs/fail"
         expect(response.body).to match(/Couldn't find Job/)
       end
     end
