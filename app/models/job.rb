@@ -1,5 +1,5 @@
 class Job < ApplicationRecord
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   belongs_to :user
   belongs_to :tenant
   
