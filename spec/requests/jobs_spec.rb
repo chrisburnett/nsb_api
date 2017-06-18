@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Jobs API', type: :request do
   # initialize test data 
-  let!(:jobs) { create_list(:job, 5, assigned: true) }
-  let!(:available_jobs) { create_list(:job, 5, assigned: false) }
+  let!(:jobs) { create_list(:job, 5, assigned: true, assignment_count: 3) }
+  let!(:available_jobs) { create_list(:job, 5, assigned: false, assignment_count: 3) }
   let(:job_id) { jobs.first.id }
 
   # Test suite for GET /todos

@@ -9,9 +9,9 @@ module Api
         if @current_user then
           @assignments = Assignment.where(user_id: @current_user.id)
           if(params[:active] == 'true') then
-            render json: @assignments.active.to_json(include: :job)
+            render json: @assignments.active.to_json({include: :job, methods: :active})
           else
-            render json: @assignments.to_json(include: :job)
+            render json: @assignments.to_json({include: :job, methods: :active})
           end
         else
           fail NotAuthenticatedError

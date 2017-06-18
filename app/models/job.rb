@@ -9,4 +9,7 @@ class Job < ApplicationRecord
   scope :available, -> { where(assigned: false) }
   scope :open, -> { where(completed: false) }
 
+  def latest_assignment
+    assignments.order('assignment_date DESC').first
+  end
 end

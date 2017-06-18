@@ -21,9 +21,12 @@ FactoryGirl.define do
   end
 
   factory :job do
+    transient do
+      assignment_count 0
+    end
     short_title { Faker::Lorem.sentence(3) }
-    reported_date { Faker::Date.backward(30) }
-    completed_date { Faker::Date.backward(15) }
+    reported_date { Faker::Time.backward(30) }
+    completed_date { Faker::Time.backward(15) }
     reported_fault { Faker::Lorem.sentence(10) }
     sor_code { Faker::Code.asin }
     description { Faker::Lorem.sentence(10) }
@@ -33,8 +36,8 @@ FactoryGirl.define do
     assigned false
     completed false
 
-    after(:create) do |job|
-      create(:assignment, job: job)
+    after(:create) do |job, evaluator|
+      create_list(:assignment, evaluator.assignment_count, job: job)
     end
   end
 
@@ -47,9 +50,9 @@ FactoryGirl.define do
     job do
       create(:job, completed: completed, assigned: assigned)
     end
-    assignment_date { Faker::Date.backward(30) }
-    scheduled_date { Faker::Date.backward(10) }
-    actual_date { Faker::Date.backward(15) }
+    assignment_date { Faker::Time.backward(30) }
+    scheduled_date { Faker::Time.backward(10) }
+    actual_date { Faker::Time.backward(15) }
     notes { Faker::Lorem.sentence(10) }
     resolution { Faker::Lorem.sentence(10) }
     am_pm_visit "am"

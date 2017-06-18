@@ -73,6 +73,7 @@ RSpec.describe 'Assignments API', type: :request do
     context 'when requesting only open assignments' do
       it 'returns only open assignments' do
         expect(json.length).to eq(1)
+        expect(json[0]['active']).to be_truthy
       end
     end
 
