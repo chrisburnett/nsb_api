@@ -37,7 +37,7 @@ FactoryGirl.define do
     completed false
 
     after(:create) do |job, evaluator|
-      create_list(:assignment, evaluator.assignment_count, job: job)
+      create_list(:assignment, evaluator.assignment_count, job: job, user: job.user)
     end
   end
 
