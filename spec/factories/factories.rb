@@ -59,8 +59,8 @@ FactoryGirl.define do
   end
 
   factory :job_comment do
-    user
-    job
+    association :user
+    association :job
     comment_text { Faker::Lorem.sentence(20) }
   end
   

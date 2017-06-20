@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       # jobs/assignments
       resources :jobs, only: [:index, :show, :update] do
         resources :assignments
+        resources :comments, controller: 'job_comments'
       end
       
       # assignments

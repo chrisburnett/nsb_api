@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :jobs
+  has_many :job_comments
   has_many :assignments
   
   has_secure_password

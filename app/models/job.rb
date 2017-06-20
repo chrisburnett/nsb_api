@@ -1,5 +1,6 @@
 class Job < ApplicationRecord
   has_many :assignments, dependent: :destroy
+  has_many :job_comments, dependent: :destroy
   belongs_to :user
   belongs_to :tenant
   
