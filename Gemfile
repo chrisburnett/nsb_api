@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'puma', '~> 3.7'
+gem 'carrierwave', '~> 1.0'
 gem 'jwt'
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
@@ -31,6 +31,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner'
+  gem 'pry'
+  gem 'faker'
 end
 
 group :development do
@@ -41,11 +45,7 @@ group :development do
 end
 
 group :test do
-  gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker'
-  gem 'database_cleaner'
-  gem 'pry'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -9,6 +9,8 @@ class Job < ApplicationRecord
   scope :available, -> { where(assigned: false) }
   scope :open, -> { where(completed: false) }
 
+  mount_uploader :signature, SignatureUploader 
+  
   def latest_assignment
     assignments.order('assignment_date DESC').first
   end

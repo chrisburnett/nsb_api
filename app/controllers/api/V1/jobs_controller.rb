@@ -30,7 +30,7 @@ class Api::V1::JobsController < SecureAPIController
 
   def job_params
     # following params can be edited by clients
-    params.permit(:short_title, :description, :notes, :completed, :assigned)
+    params.permit(:short_title, :description, :notes, :completed, :assigned, :signature)
   end
 
   def set_job

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618010046) do
+ActiveRecord::Schema.define(version: 20170620023821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "job_id"
+    t.integer "user_id"
+    t.integer "job_id"
     t.datetime "assignment_date"
     t.string "am_pm_visit"
     t.text "resolution"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170618010046) do
   end
 
   create_table "job_comments", force: :cascade do |t|
-    t.bigint "job_id"
-    t.bigint "user_id"
+    t.integer "job_id"
+    t.integer "user_id"
     t.text "comment_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,11 +47,12 @@ ActiveRecord::Schema.define(version: 20170618010046) do
     t.text "sor_code"
     t.text "description"
     t.text "notes"
-    t.bigint "tenant_id"
-    t.bigint "user_id"
+    t.integer "tenant_id"
+    t.integer "user_id"
     t.string "short_title"
     t.boolean "assigned"
     t.boolean "completed"
+    t.string "signature"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
@@ -74,10 +75,4 @@ ActiveRecord::Schema.define(version: 20170618010046) do
     t.string "username"
   end
 
-  add_foreign_key "assignments", "jobs"
-  add_foreign_key "assignments", "users"
-  add_foreign_key "job_comments", "jobs"
-  add_foreign_key "job_comments", "users"
-  add_foreign_key "jobs", "tenants"
-  add_foreign_key "jobs", "users"
 end
