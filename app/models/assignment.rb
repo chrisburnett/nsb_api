@@ -2,9 +2,9 @@ class Assignment < ApplicationRecord
   belongs_to :user
   belongs_to :job
 
-  validates_presence_of :assignment_date
   validates_presence_of :job_id
 
+  before_create :set_assignment_date
   # open assignments are ones which are currently assigned and haven't
   # been completed yet
   # NOTE: DOESN'T WORK IN POSTGRES, PSQL SOLUTION BELOW
@@ -22,6 +22,12 @@ class Assignment < ApplicationRecord
 
   def active
     job.assigned && !job.completed && id == job.assignments.order('assignment_date DESC').first.id
+  end
+
+  private
+
+  def set_assignment_date
+    self.assignment_date = Time.now
   end
 
 end

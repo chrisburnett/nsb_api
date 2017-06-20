@@ -84,12 +84,12 @@ RSpec.describe 'Assignments API', type: :request do
     # valid payload
     
     context 'when the request is valid' do
-      let(:user) { create(:user) }
       let(:job) { create(:job, assigned: false) }
-      before { post '/api/v1/assignments', params: { user_id: user.id, job_id: job.id, assignment_date: "2014-03-03" }, headers: header }
+      before { post '/api/v1/assignments', params: { job_id: job.id }, headers: header }
 
       it 'creates an assignment' do        
         expect(json['job_id']).to eq(job.id)
+        expect(json['assignment_date']).not_to be_nil
       end
 
       it 'returns status code 201' do
@@ -114,7 +114,7 @@ RSpec.describe 'Assignments API', type: :request do
 
   # Test suite for PUT /api/v1/assignments/:id
   describe 'PUT /api/v1/assignments/:id' do
-    let(:valid_attributes) { { assignment_date: '2014-04-04' } }
+    let(:valid_attributes) { { am_pm_visit: 'am_pm_visit' } }
     let(:other_assignment) { create(:assignment) }
     context 'when the record exists' do
       before { put "/api/v1/assignments/#{assignment_id}", params: valid_attributes, headers: header }

@@ -23,7 +23,9 @@ module Api
         if @current_user then
           job = Job.find_by(id: params[:job_id])
           if job then
-            @assignment = Assignment.create!(assignment_params)
+            @assignment = Assignment.new(assignment_params)
+            @assignment.user = @current_user
+            @assignment.save
             job.update_attribute(:assigned, true) # probably bad practice
             json_response(@assignment, :created)
           else
@@ -41,6 +43,7 @@ module Api
         else
           fail NotAuthenticatedError
         end
+        
       end
 
       # PUT /assignments/:id
@@ -61,7 +64,7 @@ module Api
 
       def assignment_params
         # whitelist params
-        params.permit(:job_id, :user_id, :assignment_date, :am_pm_visit, :resolution, :notes, :scheduled_date, :actual_date)
+        params.permit(:job_id, :am_pm_visit, :resolution, :notes, :scheduled_date, :actual_date)
       end
 
       def set_assignment
