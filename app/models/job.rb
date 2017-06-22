@@ -1,4 +1,6 @@
 class Job < ApplicationRecord
+  has_paper_trail # versioning/auditing
+
   has_many :assignments, dependent: :destroy
   has_many :job_comments, dependent: :destroy
   belongs_to :user
@@ -7,8 +9,8 @@ class Job < ApplicationRecord
   validates_presence_of :short_title
   validates_presence_of :reported_date
 
-  scope :available, -> { where(assigned: false) }
-  scope :open, -> { where(completed: false) }
+  scope :accepted, -> { where(status: "accepted") }
+  scope :assigned, -> { where(assigned: true) }
 
   mount_uploader :signature, SignatureUploader 
   

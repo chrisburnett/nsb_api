@@ -54,14 +54,6 @@ RSpec.describe 'Jobs API', type: :request do
     end
   end
 
-  describe 'GET /api/v1/jobs/?available=true' do
-    before { get "/api/v1/jobs?available=true", headers: header}
-
-    it 'returns only available jobs' do
-      expect(json.size).to eq(5)
-    end
-  end
-
   # Test suite for PUT /api/jobs/:id
   describe 'PUT /api/v1/jobs/:id' do
     let(:valid_attributes) { { short_title: "booooo" } }

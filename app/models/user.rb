@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-
+  has_paper_trail # versioning/auditing
+  
   has_many :jobs
   has_many :job_comments
   has_many :assignments

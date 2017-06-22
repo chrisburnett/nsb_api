@@ -16,4 +16,18 @@ Rails.application.routes.draw do
       put 'user', to: 'users#update'
     end
   end
+
+  namespace :admin do
+
+    resources :users
+
+    get 'login' => 'session#index'
+    get 'logout' => 'session#destroy'
+    post 'login' => 'session#create'
+    get 'dashboard' => 'dashboard#index'
+
+    root to: 'dashboard#index'
+    
+  end
+  
 end

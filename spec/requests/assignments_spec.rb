@@ -5,8 +5,9 @@ RSpec.describe 'Assignments API', type: :request do
   let!(:user) { create(:user) }
   let!(:job1) { create(:job, assigned: true, completed: false) }
   let!(:job2) { create(:job, assigned: false, completed: true) }
-  let!(:assignments) { create_list(:assignment, 10, job: job1, user: user) }
-  let!(:completed_assignments) { create_list(:assignment, 10, job: job2, user: user) }
+  let!(:pending_assignments) { create_list(:assignment, 10, status: "pending", job: job1, user: user, contractor: user) }
+  let!(:assignments) { create_list(:assignment, 10, status: "accepted", job: job1, user: user, contractor: user) }
+  let!(:completed_assignments) { create_list(:assignment, 10, job: job2, user: user, contractor: user) }
   let!(:assignment_id) { assignments.first.id }
   let!(:header) { authenticated_header(user.id, false) }
 
@@ -28,8 +29,8 @@ RSpec.describe 'Assignments API', type: :request do
       expect(json).not_to be_empty
     end
 
-    it 'returns 20 assignments' do
-      expect(json.length).to eq(20)
+    it 'returns 30 assignments' do
+      expect(json.length).to eq(30)
     end
 
     it 'returns status code 200' do
@@ -37,6 +38,19 @@ RSpec.describe 'Assignments API', type: :request do
     end
   end
 
+  # test scope of assignments which are assigned and accepted
+  describe 'GET /api/v1/assignments?active=true' do
+    before { get "/api/v1/assignments?active=true", headers: header }
+
+    context 'when requesting only open assignments' do
+      it 'returns only open assignments' do
+        expect(json.length).to eq(1)
+        expect(json[0]['active']).to be_truthy
+      end
+    end
+
+  end
+  
   # Test suite for GET /api/v1/assignments/:id
   describe 'GET /api/v1/assignments/:id' do
     before { get "/api/v1/assignments/#{assignment_id}", headers: header }
@@ -65,57 +79,11 @@ RSpec.describe 'Assignments API', type: :request do
     end
 
   end
-
-  # test scope of assignments with jobs which are open
-  describe 'GET /api/v1/assignments?active=true' do
-    before { get "/api/v1/assignments?active=true", headers: header }
-
-    context 'when requesting only open assignments' do
-      it 'returns only open assignments' do
-        expect(json.length).to eq(1)
-        expect(json[0]['active']).to be_truthy
-      end
-    end
-
-  end
-
-  # # Test suite for POST /api/v1/assignments
-  describe 'POST /api/v1/assignments' do
-    # valid payload
-    
-    context 'when the request is valid' do
-      let(:job) { create(:job, assigned: false) }
-      before { post '/api/v1/assignments', params: { job_id: job.id }, headers: header }
-
-      it 'creates an assignment' do        
-        expect(json['job_id']).to eq(job.id)
-        expect(json['assignment_date']).not_to be_nil
-      end
-
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
-      end
-
-      it 'updates the associated job' do
-        get "/api/v1/jobs/#{job.id}", headers: header
-        expect(json['assigned']).to be_truthy
-      end
-    end
-
-    context 'when the request is invalid' do
-      before { post '/api/v1/assignments', params: { titlea: 'Foobar' }, headers: header }
-
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
-
-    end
-  end
-
   # Test suite for PUT /api/v1/assignments/:id
   describe 'PUT /api/v1/assignments/:id' do
     let(:valid_attributes) { { am_pm_visit: 'am_pm_visit' } }
     let(:other_assignment) { create(:assignment) }
+
     context 'when the record exists' do
       before { put "/api/v1/assignments/#{assignment_id}", params: valid_attributes, headers: header }
 
@@ -128,21 +96,36 @@ RSpec.describe 'Assignments API', type: :request do
       end
     end
 
-    context 'when the record belongs to someone else' do
+    context 'when the assignment concerns someone else' do
       before { put "/api/v1/assignments/#{other_assignment.id}", params: valid_attributes, headers: header }
       it 'returns http code 403 forbidden' do
         expect(response).to have_http_status(403)
       end
     end
+
+    context 'when the assignment is accepted' do
+      before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "accepted" }, headers: header }
+      before { get "/api/v1/assignments/#{job1.latest_assignment.id}", headers: header}
+      it 'sets the status to accepted' do
+        expect(json['status']).to eq("accepted")
+      end
+
+      it 'sets the job status to assigned' do
+        expect(json['job']['assigned']).to be_truthy
+      end
+    end
+
+    context 'when the assignment is rejected' do
+      before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "rejected" }, headers: header }
+      before { get "/api/v1/assignments/#{job1.latest_assignment.id}", headers: header}
+      it 'sets the status to rejected' do
+        expect(json['status']).to eq("rejected")
+      end
+
+      it 'sets the job status to unassigned' do
+        expect(json['job']['assigned']).to be_falsey
+      end
+    end
     
   end
-
-  # Test suite for DELETE /api/v1/assignments/:id
-  # describe 'DELETE /api/v1/assignments/:id' do
-  #   before { delete "/api/v1/assignments/#{assignment_id}" }
-
-  #   it 'returns status code 204' do
-  #     expect(response).to have_http_status(204)
-  #   end
-  # end
 end

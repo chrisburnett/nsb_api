@@ -47,6 +47,7 @@ FactoryGirl.define do
       assigned false
     end
     association :user
+    association :contractor, factory: :user
     job do
       create(:job, completed: completed, assigned: assigned)
     end

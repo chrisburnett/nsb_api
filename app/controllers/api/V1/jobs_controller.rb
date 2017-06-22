@@ -4,11 +4,7 @@ class Api::V1::JobsController < SecureAPIController
 
   # GET /jobs
   def index
-    if params[:available] == 'true' then
-      render json: Job.available.to_json(include: :assignments)
-    else
-      render json: Job.all.to_json(include: :assignments)
-    end
+    render json: Job.all.to_json(include: :assignments)
   end
 
   # GET /jobs/:id
