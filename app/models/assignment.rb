@@ -6,18 +6,18 @@ class Assignment < ApplicationRecord
   belongs_to :contractor, class_name: "User"
 
   validates_presence_of :job_id
-
+  validates :status, inclusion: { in: %w(pending accepted rejected cancelled).push(nil) }
   before_create :set_assignment_date
   before_save :update_job_status
-  
+
+  # active assignments are the latest accepted assignments on open jobs
   scope :active, -> { includes(:job)
-                      .where(status: "accepted", jobs: { assigned: true, completed: false })
+                      .where(status: "accepted", jobs: { completed: false })
                       .order("job_id, assignment_date DESC") 
                       .select("DISTINCT ON(job_id) *") }
 
   def active
     status == "accepted" &&
-      job.assigned &&
       !job.completed &&
       id == job.assignments.order('assignment_date DESC').first.id
   end

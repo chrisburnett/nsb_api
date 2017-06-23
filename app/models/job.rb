@@ -9,10 +9,13 @@ class Job < ApplicationRecord
   validates_presence_of :short_title
   validates_presence_of :reported_date
 
-  scope :accepted, -> { where(status: "accepted") }
-  scope :assigned, -> { where(assigned: true) }
-
   mount_uploader :signature, SignatureUploader 
+
+  # job considered assigned if it has a latest assignment and that
+  # assignment is accepted
+  def self.assigned
+    !latest_assignment.nil? && latest_assignment.status == 'accepted'
+  end
   
   def latest_assignment
     assignments.order('assignment_date DESC').first
