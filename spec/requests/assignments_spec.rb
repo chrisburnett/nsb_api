@@ -113,12 +113,15 @@ RSpec.describe 'Assignments API', type: :request do
       it 'sets the job status to assigned' do
         expect(json['job']['assigned']).to be_truthy
       end
-    end
 
+      it 'retains the id of the user who accepted the assignment', versioning: true do
+        puts job1.versions.last.whodunnit
+      end
+    end
     context 'when the assignment is rejected' do
       before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "rejected" }, headers: header }
       before { get "/api/v1/assignments/#{job1.latest_assignment.id}", headers: header}
-      it 'sets the status to rejected' do
+      it 'sets the status to rejected', versioning: true do
         expect(json['status']).to eq("rejected")
       end
 

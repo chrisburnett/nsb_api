@@ -1,7 +1,7 @@
 module Api
   module V1
     class AssignmentsController < SecureAPIController
-
+      before_action :set_paper_trail_whodunnit
       before_action :set_assignment, only: [:show, :update, :destroy]
 
       # GET /assignments
