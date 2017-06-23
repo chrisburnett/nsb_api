@@ -1,0 +1,56 @@
+header.main-header
+  /! Logo
+  a.logo href="../../index2.html" 
+    /! mini logo for sidebar mini 50x50 pixels
+    span.logo-mini
+      b> NSB      
+    /! logo for regular state and mobile devices
+    span.logo-lg
+      b> Admin
+      | Console
+  /! Header Navbar: style can be found in header.less
+  nav.navbar.navbar-static-top
+    /! Sidebar toggle button
+    a.sidebar-toggle data-toggle="push-menu" href="#" role="button" 
+      span.sr-only Toggle navigation
+    .navbar-custom-menu
+      ul.nav.navbar-nav
+        /! Notifications: style can be found in dropdown.less
+        li.dropdown.notifications-menu
+          a.dropdown-toggle data-toggle="dropdown" href="#" 
+            i.fa.fa-bell-o
+            span.label.label-warning 10
+          ul.dropdown-menu
+            li.header You have 10 notifications
+            li
+              /! inner menu: contains the actual data
+              ul.menu
+                li
+                  a href="#" 
+                    i.fa.fa-users.text-aqua
+                    | 5 new members joined today
+            li.footer
+              a href="#"  View all
+        /! User Account: style can be found in dropdown.less
+        li.dropdown.user.user-menu
+          a.dropdown-toggle data-toggle="dropdown" href="#" 
+            img.user-image alt=("User Image") src="../../dist/img/user2-160x160.jpg" /
+            span.hidden-xs Alexander Pierce
+          ul.dropdown-menu
+            /! User image
+            li.user-header
+                | Alexander Pierce - Web Developer
+                small Member since Nov. 2012
+            /! Menu Body
+            li.user-body
+            /! Menu Footer
+            li.user-footer
+              .pull-left
+                a.btn.btn-default.btn-flat href="#"  Profile
+              .pull-right
+                a.btn.btn-default.btn-flat href="#"  Sign out
+        /! Control Sidebar Toggle Button
+        li
+          a data-toggle="control-sidebar" href="#" 
+            i.fa.fa-gears
+

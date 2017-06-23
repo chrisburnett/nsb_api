@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>development.log - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../Procfile.html">Procfile</a>
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../config_ru.html">config.ru</a>
+  
+    <li><a href="../log/RAILS_ENV=test_log.html">RAILS_ENV=test.log</a>
+  
+    <li><a href="../log/development_log.html">development.log</a>
+  
+    <li><a href="../log/test_log.html">test.log</a>
+  
+    <li><a href="../public/robots_txt.html">robots</a>
+  
+    <li><a href="../tmp/restart_txt.html">restart</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page log/development.log">
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE &quot;schema_migrations&quot; (&quot;version&quot; varchar NOT NULL PRIMARY KEY)[0m
+[1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE &quot;ar_internal_metadata&quot; (&quot;key&quot; varchar NOT NULL PRIMARY KEY, &quot;value&quot; varchar, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../CreateUsers.html">CreateUsers</a> (20170608054915)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE &quot;users&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;name&quot; varchar, &quot;address&quot; varchar, &quot;admin&quot; boolean, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608054915&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m</pre>
+
+<p>Migrating to <a href="../CreateTenants.html">CreateTenants</a>
+(20170608055429)</p>
+
+<pre>[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE &quot;tenants&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;name&quot; varchar, &quot;address&quot; varchar, &quot;notes&quot; text, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608055429&quot;]]
+[1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m</pre>
+
+<p>Migrating to <a href="../CreateJobs.html">CreateJobs</a> (20170608060228)</p>
+
+<pre>[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime, &quot;completed_date&quot; datetime, &quot;reported_fault&quot; text, &quot;sor_code&quot; text, &quot;description&quot; text, &quot;notes&quot; text, &quot;status&quot; varchar, &quot;tenant_id&quot; integer, &quot;user_id&quot; integer, CONSTRAINT &quot;fk_rails_3fbd580f09&quot;</pre>
+
+<p>FOREIGN KEY (“tenant_id”)</p>
+
+<pre>REFERENCES &quot;tenants&quot; (&quot;id&quot;)</pre>
+
+<p>, CONSTRAINT “fk_rails_df6238c8a6” FOREIGN KEY (“user_id”)</p>
+
+<pre>REFERENCES &quot;users&quot; (&quot;id&quot;)</pre>
+
+<p>)[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot; (&quot;user_id&quot;)[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608060228&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m</pre>
+
+<p>Migrating to <a href="../CreateAssignments.html">CreateAssignments</a>
+(20170608061506)</p>
+
+<pre>[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE &quot;assignments&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;user_id&quot; integer, &quot;job_id&quot; integer, &quot;assignment_date&quot; date, &quot;am_pm_visit&quot; varchar, &quot;resolution&quot; text, &quot;notes&quot; text, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL, CONSTRAINT &quot;fk_rails_aa6b76dac2&quot;</pre>
+
+<p>FOREIGN KEY (“user_id”)</p>
+
+<pre>REFERENCES &quot;users&quot; (&quot;id&quot;)</pre>
+
+<p>, CONSTRAINT “fk_rails_4f003e6587” FOREIGN KEY (“job_id”)</p>
+
+<pre>REFERENCES &quot;jobs&quot; (&quot;id&quot;)</pre>
+
+<p>)[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_assignments_on_user_id&quot; ON &quot;assignments&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_assignments_on_job_id&quot; ON &quot;assignments&quot; (&quot;job_id&quot;)[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608061506&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m</pre>
+
+<p>Migrating to <a href="../CreateJobComments.html">CreateJobComments</a>
+(20170608061703)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE &quot;job_comments&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;job_id&quot; integer, &quot;user_id&quot; integer, &quot;comment_text&quot; text, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL, CONSTRAINT &quot;fk_rails_720b201851&quot;</pre>
+
+<p>FOREIGN KEY (“job_id”)</p>
+
+<pre>REFERENCES &quot;jobs&quot; (&quot;id&quot;)</pre>
+
+<p>, CONSTRAINT “fk_rails_e950486fcc” FOREIGN KEY (“user_id”)</p>
+
+<pre>REFERENCES &quot;users&quot; (&quot;id&quot;)</pre>
+
+<p>)[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_job_comments_on_job_id&quot; ON &quot;job_comments&quot; (&quot;job_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_job_comments_on_user_id&quot; ON &quot;job_comments&quot; (&quot;user_id&quot;)[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608061703&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;ar_internal_metadata&quot; (&quot;key&quot;, &quot;value&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES (?, ?, ?, ?)[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;value&quot;, &quot;development&quot;], [&quot;created_at&quot;, &quot;2017-06-08 06:19:28.177269&quot;], [&quot;updated_at&quot;, &quot;2017-06-08 06:19:28.177269&quot;]]
+[1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../AddShortTitleToJobs.html">AddShortTitleToJobs</a>
+(20170608062709)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (1.0ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;short_title&quot; varchar[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608062709&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../AddDatesToAssignments.html">AddDatesToAssignments</a>
+(20170608064534)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.5ms)[0m  [1m[35mALTER TABLE &quot;assignments&quot; ADD &quot;scheduled_date&quot; date[0m
+[1m[35m (0.1ms)[0m  [1m[35mALTER TABLE &quot;assignments&quot; ADD &quot;actual_date&quot; date[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608064534&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.6ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../RenameAdminFlag.html">RenameAdminFlag</a>
+(20170608065548)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE &quot;ausers&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;name&quot; varchar DEFAULT NULL, &quot;address&quot; varchar DEFAULT NULL, &quot;is_admin&quot; boolean DEFAULT NULL, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35m (0.5ms)[0m  [1m[32mINSERT INTO &quot;ausers&quot; (&quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;is_admin&quot;,&quot;created_at&quot;,&quot;updated_at&quot;)
+                   SELECT &quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;admin&quot;,&quot;created_at&quot;,&quot;updated_at&quot; FROM &quot;users&quot;[0m
+[1m[35m (0.8ms)[0m  [1m[35mDROP TABLE &quot;users&quot;[0m
+[1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE &quot;users&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;name&quot; varchar DEFAULT NULL, &quot;address&quot; varchar DEFAULT NULL, &quot;is_admin&quot; boolean DEFAULT NULL, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;is_admin&quot;,&quot;created_at&quot;,&quot;updated_at&quot;)
+                   SELECT &quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;is_admin&quot;,&quot;created_at&quot;,&quot;updated_at&quot; FROM &quot;ausers&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mDROP TABLE &quot;ausers&quot;[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608065548&quot;]]
+[1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.6ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../ChangeTenantAddressType.html">ChangeTenantAddressType</a>
+(20170608070336)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE &quot;atenants&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;name&quot; varchar DEFAULT NULL, &quot;address&quot; varchar DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35m (0.4ms)[0m  [1m[32mINSERT INTO &quot;atenants&quot; (&quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;notes&quot;,&quot;created_at&quot;,&quot;updated_at&quot;)
+                   SELECT &quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;notes&quot;,&quot;created_at&quot;,&quot;updated_at&quot; FROM &quot;tenants&quot;[0m
+[1m[35m (0.7ms)[0m  [1m[35mDROP TABLE &quot;tenants&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE &quot;tenants&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;name&quot; varchar DEFAULT NULL, &quot;address&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;created_at&quot; datetime NOT NULL, &quot;updated_at&quot; datetime NOT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[32mINSERT INTO &quot;tenants&quot; (&quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;notes&quot;,&quot;created_at&quot;,&quot;updated_at&quot;)
+                   SELECT &quot;id&quot;,&quot;name&quot;,&quot;address&quot;,&quot;notes&quot;,&quot;created_at&quot;,&quot;updated_at&quot; FROM &quot;atenants&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mDROP TABLE &quot;atenants&quot;[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608070336&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../AddPasswordDigestToUsers.html">AddPasswordDigestToUsers</a>
+(20170608115632)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (1.4ms)[0m  [1m[35mALTER TABLE &quot;users&quot; ADD &quot;password_digest&quot; varchar[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608115632&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.6ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../AddCurrentAssignmentToJobs.html">AddCurrentAssignmentToJobs</a>
+(20170608132613)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.5ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;current_assignment&quot; varchar[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608132613&quot;]]
+[1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.6ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../AddCurrentAssignmentToJobs.html">AddCurrentAssignmentToJobs</a>
+(20170608132613)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE &quot;ajobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime DEFAULT NULL, &quot;completed_date&quot; datetime DEFAULT NULL, &quot;reported_fault&quot; text DEFAULT NULL, &quot;sor_code&quot; text DEFAULT NULL, &quot;description&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;status&quot; varchar DEFAULT NULL, &quot;tenant_id&quot; integer DEFAULT NULL, &quot;user_id&quot; integer DEFAULT NULL, &quot;short_title&quot; varchar DEFAULT NULL, &quot;current_assignment&quot; varchar DEFAULT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;tindex_ajobs_on_user_id&quot; ON &quot;ajobs&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;tindex_ajobs_on_tenant_id&quot; ON &quot;ajobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.4ms)[0m  [1m[32mINSERT INTO &quot;ajobs&quot; (&quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;,&quot;current_assignment&quot;)
+                   SELECT &quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;,&quot;current_assignment&quot; FROM &quot;jobs&quot;[0m
+[1m[35m (2.0ms)[0m  [1m[35mDROP TABLE &quot;jobs&quot;[0m
+[1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime DEFAULT NULL, &quot;completed_date&quot; datetime DEFAULT NULL, &quot;reported_fault&quot; text DEFAULT NULL, &quot;sor_code&quot; text DEFAULT NULL, &quot;description&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;status&quot; varchar DEFAULT NULL, &quot;tenant_id&quot; integer DEFAULT NULL, &quot;user_id&quot; integer DEFAULT NULL, &quot;short_title&quot; varchar DEFAULT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;tindex_ajobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;tindex_ajobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;tindex_ajobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;tindex_ajobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;)
+                   SELECT &quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot; FROM &quot;ajobs&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mDROP TABLE &quot;ajobs&quot;[0m
+[1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM &quot;schema_migrations&quot; WHERE &quot;schema_migrations&quot;.&quot;version&quot; = ?[0m  [[&quot;version&quot;, &quot;20170608132613&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../AddCurrentAssignmentToJobs.html">AddCurrentAssignmentToJobs</a>
+(20170608132613)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.5ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;current_assignment&quot; integer[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170608132613&quot;]]
+[1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.2ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../RemoveCurrentAssignmentFromJobs.html">RemoveCurrentAssignmentFromJobs</a>
+(20170609014352)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE &quot;ajobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime DEFAULT NULL, &quot;completed_date&quot; datetime DEFAULT NULL, &quot;reported_fault&quot; text DEFAULT NULL, &quot;sor_code&quot; text DEFAULT NULL, &quot;description&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;status&quot; varchar DEFAULT NULL, &quot;tenant_id&quot; integer DEFAULT NULL, &quot;user_id&quot; integer DEFAULT NULL, &quot;short_title&quot; varchar DEFAULT NULL, &quot;current_assignment&quot; integer DEFAULT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX &quot;tindex_ajobs_on_user_id&quot; ON &quot;ajobs&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;tindex_ajobs_on_tenant_id&quot; ON &quot;ajobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.4ms)[0m  [1m[32mINSERT INTO &quot;ajobs&quot; (&quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;,&quot;current_assignment&quot;)
+                   SELECT &quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;,&quot;current_assignment&quot; FROM &quot;jobs&quot;[0m
+[1m[35m (1.5ms)[0m  [1m[35mDROP TABLE &quot;jobs&quot;[0m
+[1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime DEFAULT NULL, &quot;completed_date&quot; datetime DEFAULT NULL, &quot;reported_fault&quot; text DEFAULT NULL, &quot;sor_code&quot; text DEFAULT NULL, &quot;description&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;status&quot; varchar DEFAULT NULL, &quot;tenant_id&quot; integer DEFAULT NULL, &quot;user_id&quot; integer DEFAULT NULL, &quot;short_title&quot; varchar DEFAULT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;tindex_ajobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;tindex_ajobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;tindex_ajobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;tindex_ajobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.2ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;)
+                   SELECT &quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot; FROM &quot;ajobs&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mDROP TABLE &quot;ajobs&quot;[0m
+[1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170609014352&quot;]]
+[1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.2ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[36mTenant Load (1.4ms)[0m  [1m[34mSELECT  &quot;tenants&quot;.* FROM &quot;tenants&quot; LIMIT ?[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mTenant Load (0.1ms)[0m  [1m[34mSELECT  &quot;tenants&quot;.* FROM &quot;tenants&quot; ORDER BY &quot;tenants&quot;.&quot;id&quot; ASC LIMIT ?[0m  [[&quot;LIMIT&quot;, 1]]
+[1m[36mTenant Load (0.6ms)[0m  [1m[34mSELECT  &quot;tenants&quot;.* FROM &quot;tenants&quot; ORDER BY &quot;tenants&quot;.&quot;id&quot; ASC LIMIT ?[0m  [[&quot;LIMIT&quot;, 1]]
+[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../AddUsernameToUsers.html">AddUsernameToUsers</a>
+(20170612220049)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.8ms)[0m  [1m[35mALTER TABLE &quot;users&quot; ADD &quot;username&quot; varchar[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170612220049&quot;]]
+[1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.3ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../RemoveStatusFromJobs.html">RemoveStatusFromJobs</a>
+(20170613084637)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE &quot;ajobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime DEFAULT NULL, &quot;completed_date&quot; datetime DEFAULT NULL, &quot;reported_fault&quot; text DEFAULT NULL, &quot;sor_code&quot; text DEFAULT NULL, &quot;description&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;status&quot; varchar DEFAULT NULL, &quot;tenant_id&quot; integer DEFAULT NULL, &quot;user_id&quot; integer DEFAULT NULL, &quot;short_title&quot; varchar DEFAULT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;tindex_ajobs_on_user_id&quot; ON &quot;ajobs&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;tindex_ajobs_on_tenant_id&quot; ON &quot;ajobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.4ms)[0m  [1m[32mINSERT INTO &quot;ajobs&quot; (&quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;)
+                   SELECT &quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;status&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot; FROM &quot;jobs&quot;[0m
+[1m[35m (1.6ms)[0m  [1m[35mDROP TABLE &quot;jobs&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, &quot;reported_date&quot; datetime DEFAULT NULL, &quot;completed_date&quot; datetime DEFAULT NULL, &quot;reported_fault&quot; text DEFAULT NULL, &quot;sor_code&quot; text DEFAULT NULL, &quot;description&quot; text DEFAULT NULL, &quot;notes&quot; text DEFAULT NULL, &quot;tenant_id&quot; integer DEFAULT NULL, &quot;user_id&quot; integer DEFAULT NULL, &quot;short_title&quot; varchar DEFAULT NULL)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;tindex_ajobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;tindex_ajobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;tindex_ajobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;tindex_ajobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot; (&quot;tenant_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot; (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot;)
+                   SELECT &quot;id&quot;,&quot;reported_date&quot;,&quot;completed_date&quot;,&quot;reported_fault&quot;,&quot;sor_code&quot;,&quot;description&quot;,&quot;notes&quot;,&quot;tenant_id&quot;,&quot;user_id&quot;,&quot;short_title&quot; FROM &quot;ajobs&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[35mDROP TABLE &quot;ajobs&quot;[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170613084637&quot;]]
+[1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (4.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../AddAssignedToJobs.html">AddAssignedToJobs</a>
+(20170613084854)</p>
+
+<pre>[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.5ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;assigned&quot; boolean[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170613084854&quot;]]
+[1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m</pre>
+
+<p>Migrating to <a href="../AddCompletedToJobs.html">AddCompletedToJobs</a>
+(20170613084927)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.3ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;completed&quot; boolean[0m
+[1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES (?)[0m  [[&quot;version&quot;, &quot;20170613084927&quot;]]
+[1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = ? LIMIT ?[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+[1m[35m (0.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_assignments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_job_comments_on_job_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_user_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+          FROM sqlite_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;
+          UNION ALL
+          SELECT sql
+          FROM sqlite_temp_master
+          WHERE name=&#39;index_jobs_on_tenant_id&#39; AND type=&#39;index&#39;</pre>
+
+<p>[0m Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;assigned&quot; = ? LIMIT ?[0m  [[&quot;assigned&quot;, &quot;f&quot;], [&quot;LIMIT&quot;, 11]]
+[1m[36mJob Load (0.9ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;assigned&quot; = ? LIMIT ?[0m  [[&quot;assigned&quot;, &quot;f&quot;], [&quot;LIMIT&quot;, 11]]
+[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; ORDER BY &quot;users&quot;.&quot;id&quot; ASC LIMIT ?[0m  [[&quot;LIMIT&quot;, 1]]
+[1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; ORDER BY &quot;users&quot;.&quot;id&quot; ASC LIMIT ?[0m  [[&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-14 14:41:04 +0100</p>
+
+<pre>[1m[35m (0.5ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m</pre>
+
+<p>Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 0.7ms)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+[1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; LIMIT ?[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT &quot;users&quot;.* FROM &quot;users&quot;[0m
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+[1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+[1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;is_admin&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [[&quot;name&quot;, &quot;dave&quot;], [&quot;address&quot;, &quot;street&quot;], [&quot;is_admin&quot;, &quot;f&quot;], [&quot;created_at&quot;, &quot;2017-06-14 13:46:57.009255&quot;], [&quot;updated_at&quot;, &quot;2017-06-14 13:46:57.009255&quot;], [&quot;password_digest&quot;, &quot;$2a$10$3MNHpnLyoOlaFkySkBkg1OEHWSi7tPEVv4Bu6NJkt4fgqAQ1ctWy.&quot;], [&quot;username&quot;, &quot;dave&quot;]]
+[1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+[1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT &quot;users&quot;.* FROM &quot;users&quot;[0m</pre>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-14 14:47:47 +0100</p>
+
+<p>ActionController::RoutingError (No route matches [GET] “/api/v1/auth”):</p>
+
+<p>actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in
+`call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/show_exceptions.rb:31:in `call&#39; railties
+(5.1.1) lib/rails/rack/logger.rb:36:in `call_app&#39; railties (5.1.1)
+lib/rails/rack/logger.rb:24:in `block in call&#39; activesupport (5.1.1)
+lib/active_support/tagged_logging.rb:69:in `block in tagged&#39;
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in
+`tagged&#39; activesupport (5.1.1)
+lib/active_support/tagged_logging.rb:69:in `tagged&#39; railties (5.1.1)
+lib/rails/rack/logger.rb:24:in `call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/remote_ip.rb:79:in `call&#39; actionpack
+(5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call&#39; rack
+(2.0.3) lib/rack/runtime.rb:22:in `call&#39; activesupport (5.1.1)
+lib/active_support/cache/strategy/local_cache_middleware.rb:27:in
+`call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/executor.rb:12:in `call&#39; actionpack
+(5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call&#39; rack
+(2.0.3) lib/rack/sendfile.rb:111:in `call&#39; railties (5.1.1)
+lib/rails/engine.rb:522:in `call&#39; puma (3.9.1)
+lib/puma/configuration.rb:224:in `call&#39; puma (3.9.1)
+lib/puma/server.rb:602:in `handle_request&#39; puma (3.9.1)
+lib/puma/server.rb:435:in `process_client&#39; puma (3.9.1)
+lib/puma/server.rb:299:in `block in run&#39; puma (3.9.1)
+lib/puma/thread_pool.rb:120:in `block in spawn_thread&#39; Started POST
+“/api/v1/auth” for 127.0.0.1 at 2017-06-14 14:48:21 +0100 Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;username&quot;=&gt;&quot;dave&quot;, &quot;password&quot;=&gt;&quot;[FILTERED]&quot;, &quot;auth&quot;=&gt;{&quot;username&quot;=&gt;&quot;dave&quot;, &quot;password&quot;=&gt;&quot;[FILTERED]&quot;}}
+[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = ? LIMIT ?[0m  [[&quot;username&quot;, &quot;dave&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 82ms (Views: 0.2ms | ActiveRecord: 1.4ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-14 14:52:09 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m</pre>
+
+<p>Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.5ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-14 14:52:25 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m</pre>
+
+<p>Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)</p>
+
+<p>Started GET “/api/v1/user” for 127.0.0.1 at 2017-06-14 14:52:44 +0100
+Processing by <a
+href="../Api/V1/UsersController.html#method-i-show">Api::V1::UsersController#show</a>
+as JSON Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/user” for 127.0.0.1 at 2017-06-14 14:54:48 +0100
+Processing by <a
+href="../Api/V1/UsersController.html#method-i-show">Api::V1::UsersController#show</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/user” for 127.0.0.1 at 2017-06-14 14:56:05 +0100
+Processing by <a
+href="../Api/V1/UsersController.html#method-i-show">Api::V1::UsersController#show</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-14 14:56:31 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m</pre>
+
+<p>Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)</p>
+
+<p>Started GET “/api/v1/assignments” for 127.0.0.1 at 2017-06-14 14:56:41
++0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-index">Api::V1::AssignmentsController#index</a>
+as JSON Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/assignments” for 127.0.0.1 at 2017-06-14 14:58:11
++0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-index">Api::V1::AssignmentsController#index</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/user” for 127.0.0.1 at 2017-06-14 14:58:31 +0100
+Processing by <a
+href="../Api/V1/UsersController.html#method-i-show">Api::V1::UsersController#show</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started POST “/api/v1/auth” for 127.0.0.1 at 2017-06-14 14:59:00 +0100
+Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;username&quot;=&gt;&quot;dave&quot;, &quot;password&quot;=&gt;&quot;[FILTERED]&quot;, &quot;auth&quot;=&gt;{&quot;username&quot;=&gt;&quot;dave&quot;, &quot;password&quot;=&gt;&quot;[FILTERED]&quot;}}
+[1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = ? LIMIT ?[0m  [[&quot;username&quot;, &quot;dave&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 68ms (Views: 0.1ms | ActiveRecord: 1.1ms)</p>
+
+<p>Started GET “/api/v1/user” for 127.0.0.1 at 2017-06-14 14:59:45 +0100
+Processing by <a
+href="../Api/V1/UsersController.html#method-i-show">Api::V1::UsersController#show</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = ? LIMIT ?[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms)</p>
+
+<pre>[1m[35m (18.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;assignments&quot; CASCADE[0m
+[1m[35m (45.4ms)[0m  [1m[35mCREATE TABLE &quot;assignments&quot; (&quot;id&quot; bigserial primary key, &quot;user_id&quot; integer, &quot;job_id&quot; integer, &quot;assignment_date&quot; date, &quot;am_pm_visit&quot; character varying, &quot;resolution&quot; text, &quot;notes&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL, &quot;scheduled_date&quot; date, &quot;actual_date&quot; date)[0m
+[1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  &quot;index_assignments_on_job_id&quot; ON &quot;assignments&quot;  (&quot;job_id&quot;)[0m
+[1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  &quot;index_assignments_on_user_id&quot; ON &quot;assignments&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;job_comments&quot; CASCADE[0m
+[1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE &quot;job_comments&quot; (&quot;id&quot; bigserial primary key, &quot;job_id&quot; integer, &quot;user_id&quot; integer, &quot;comment_text&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  &quot;index_job_comments_on_job_id&quot; ON &quot;job_comments&quot;  (&quot;job_id&quot;)[0m
+[1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  &quot;index_job_comments_on_user_id&quot; ON &quot;job_comments&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;jobs&quot; CASCADE[0m
+[1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; bigserial primary key, &quot;reported_date&quot; timestamp, &quot;completed_date&quot; timestamp, &quot;reported_fault&quot; text, &quot;sor_code&quot; text, &quot;description&quot; text, &quot;notes&quot; text, &quot;tenant_id&quot; integer, &quot;user_id&quot; integer, &quot;short_title&quot; character varying, &quot;assigned&quot; boolean, &quot;completed&quot; boolean)[0m
+[1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot;  (&quot;tenant_id&quot;)[0m
+[1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;tenants&quot; CASCADE[0m
+[1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE &quot;tenants&quot; (&quot;id&quot; bigserial primary key, &quot;name&quot; character varying, &quot;address&quot; text, &quot;notes&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;users&quot; CASCADE[0m
+[1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE &quot;users&quot; (&quot;id&quot; bigserial primary key, &quot;name&quot; character varying, &quot;address&quot; character varying, &quot;is_admin&quot; boolean, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL, &quot;password_digest&quot; character varying, &quot;username&quot; character varying)[0m
+[1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE &quot;schema_migrations&quot; (&quot;version&quot; character varying NOT NULL PRIMARY KEY)[0m
+[1m[35m (0.7ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (26.2ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (version) VALUES (20170613084927)[0m
+[1m[35m (2.1ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (version) VALUES</pre>
+
+<p>(20170608054915), (20170608055429), (20170608060228), (20170608061506),
+(20170608061703), (20170608062709), (20170608064534), (20170608065548),
+(20170608070336), (20170608115632), (20170608132613), (20170609014352),
+(20170612220049), (20170613084637), (20170613084854);</p>
+
+<p>[0m</p>
+
+<pre>[1m[35m (22.2ms)[0m  [1m[35mCREATE TABLE &quot;ar_internal_metadata&quot; (&quot;key&quot; character varying NOT NULL PRIMARY KEY, &quot;value&quot; character varying, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO &quot;ar_internal_metadata&quot; (&quot;key&quot;, &quot;value&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4) RETURNING &quot;key&quot;[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;value&quot;, &quot;development&quot;], [&quot;created_at&quot;, &quot;2017-06-14 23:39:31.371344&quot;], [&quot;updated_at&quot;, &quot;2017-06-14 23:39:31.371344&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.8ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;assignments&quot; CASCADE[0m
+[1m[35m (31.1ms)[0m  [1m[35mCREATE TABLE &quot;assignments&quot; (&quot;id&quot; bigserial primary key, &quot;user_id&quot; integer, &quot;job_id&quot; integer, &quot;assignment_date&quot; date, &quot;am_pm_visit&quot; character varying, &quot;resolution&quot; text, &quot;notes&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL, &quot;scheduled_date&quot; date, &quot;actual_date&quot; date)[0m
+[1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  &quot;index_assignments_on_job_id&quot; ON &quot;assignments&quot;  (&quot;job_id&quot;)[0m
+[1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  &quot;index_assignments_on_user_id&quot; ON &quot;assignments&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;job_comments&quot; CASCADE[0m
+[1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE &quot;job_comments&quot; (&quot;id&quot; bigserial primary key, &quot;job_id&quot; integer, &quot;user_id&quot; integer, &quot;comment_text&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  &quot;index_job_comments_on_job_id&quot; ON &quot;job_comments&quot;  (&quot;job_id&quot;)[0m
+[1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  &quot;index_job_comments_on_user_id&quot; ON &quot;job_comments&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;jobs&quot; CASCADE[0m
+[1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; bigserial primary key, &quot;reported_date&quot; timestamp, &quot;completed_date&quot; timestamp, &quot;reported_fault&quot; text, &quot;sor_code&quot; text, &quot;description&quot; text, &quot;notes&quot; text, &quot;tenant_id&quot; integer, &quot;user_id&quot; integer, &quot;short_title&quot; character varying, &quot;assigned&quot; boolean, &quot;completed&quot; boolean)[0m
+[1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot;  (&quot;tenant_id&quot;)[0m
+[1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;tenants&quot; CASCADE[0m
+[1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE &quot;tenants&quot; (&quot;id&quot; bigserial primary key, &quot;name&quot; character varying, &quot;address&quot; text, &quot;notes&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS &quot;users&quot; CASCADE[0m
+[1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE &quot;users&quot; (&quot;id&quot; bigserial primary key, &quot;name&quot; character varying, &quot;address&quot; character varying, &quot;is_admin&quot; boolean, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL, &quot;password_digest&quot; character varying, &quot;username&quot; character varying)[0m
+[1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE &quot;schema_migrations&quot; (&quot;version&quot; character varying NOT NULL PRIMARY KEY)[0m
+[1m[35m (1.0ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (6.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (version) VALUES (20170613084927)[0m
+[1m[35m (7.2ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (version) VALUES</pre>
+
+<p>(20170608054915), (20170608055429), (20170608060228), (20170608061506),
+(20170608061703), (20170608062709), (20170608064534), (20170608065548),
+(20170608070336), (20170608115632), (20170608132613), (20170609014352),
+(20170612220049), (20170613084637), (20170613084854);</p>
+
+<p>[0m</p>
+
+<pre>[1m[35m (26.1ms)[0m  [1m[35mCREATE TABLE &quot;ar_internal_metadata&quot; (&quot;key&quot; character varying NOT NULL PRIMARY KEY, &quot;value&quot; character varying, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;ar_internal_metadata&quot; (&quot;key&quot;, &quot;value&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4) RETURNING &quot;key&quot;[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;value&quot;, &quot;development&quot;], [&quot;created_at&quot;, &quot;2017-06-15 13:09:57.593476&quot;], [&quot;updated_at&quot;, &quot;2017-06-15 13:09:57.593476&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.8ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (24.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3497077979748029565);[0m
+[1m[35m (0.8ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3497077979748029565)[0m
+[1m[35m (0.2ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3497077979748029565);[0m
+[1m[35m (0.7ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(3497077979748029565)[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE &quot;schema_migrations&quot; (&quot;version&quot; character varying NOT NULL PRIMARY KEY)[0m
+[1m[35m (23.8ms)[0m  [1m[35mCREATE TABLE &quot;ar_internal_metadata&quot; (&quot;key&quot; character varying NOT NULL PRIMARY KEY, &quot;value&quot; character varying, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4255814849408913945);[0m
+[1m[35m (1.2ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../CreateUsers.html">CreateUsers</a> (20170608054915)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (28.9ms)[0m  [1m[35mCREATE TABLE &quot;users&quot; (&quot;id&quot; bigserial primary key, &quot;name&quot; character varying, &quot;address&quot; character varying, &quot;admin&quot; boolean, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608054915&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../CreateTenants.html">CreateTenants</a>
+(20170608055429)</p>
+
+<pre>[1m[35m (5.5ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE &quot;tenants&quot; (&quot;id&quot; bigserial primary key, &quot;name&quot; character varying, &quot;address&quot; character varying, &quot;notes&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL)[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608055429&quot;]]
+[1m[35m (5.2ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../CreateJobs.html">CreateJobs</a> (20170608060228)</p>
+
+<pre>[1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (35.7ms)[0m  [1m[35mCREATE TABLE &quot;jobs&quot; (&quot;id&quot; bigserial primary key, &quot;reported_date&quot; timestamp, &quot;completed_date&quot; timestamp, &quot;reported_fault&quot; text, &quot;sor_code&quot; text, &quot;description&quot; text, &quot;notes&quot; text, &quot;status&quot; character varying, &quot;tenant_id&quot; bigint, &quot;user_id&quot; bigint, CONSTRAINT &quot;fk_rails_3fbd580f09&quot;</pre>
+
+<p>FOREIGN KEY (“tenant_id”)</p>
+
+<pre>REFERENCES &quot;tenants&quot; (&quot;id&quot;)</pre>
+
+<p>, CONSTRAINT “fk_rails_df6238c8a6” FOREIGN KEY (“user_id”)</p>
+
+<pre>REFERENCES &quot;users&quot; (&quot;id&quot;)</pre>
+
+<p>)[0m</p>
+
+<pre>[1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  &quot;index_jobs_on_tenant_id&quot; ON &quot;jobs&quot;  (&quot;tenant_id&quot;)[0m
+[1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  &quot;index_jobs_on_user_id&quot; ON &quot;jobs&quot;  (&quot;user_id&quot;)[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608060228&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../CreateAssignments.html">CreateAssignments</a>
+(20170608061506)</p>
+
+<pre>[1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (22.8ms)[0m  [1m[35mCREATE TABLE &quot;assignments&quot; (&quot;id&quot; bigserial primary key, &quot;user_id&quot; bigint, &quot;job_id&quot; bigint, &quot;assignment_date&quot; date, &quot;am_pm_visit&quot; character varying, &quot;resolution&quot; text, &quot;notes&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL, CONSTRAINT &quot;fk_rails_aa6b76dac2&quot;</pre>
+
+<p>FOREIGN KEY (“user_id”)</p>
+
+<pre>REFERENCES &quot;users&quot; (&quot;id&quot;)</pre>
+
+<p>, CONSTRAINT “fk_rails_4f003e6587” FOREIGN KEY (“job_id”)</p>
+
+<pre>REFERENCES &quot;jobs&quot; (&quot;id&quot;)</pre>
+
+<p>)[0m</p>
+
+<pre>[1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  &quot;index_assignments_on_user_id&quot; ON &quot;assignments&quot;  (&quot;user_id&quot;)[0m
+[1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  &quot;index_assignments_on_job_id&quot; ON &quot;assignments&quot;  (&quot;job_id&quot;)[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608061506&quot;]]
+[1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../CreateJobComments.html">CreateJobComments</a>
+(20170608061703)</p>
+
+<pre>[1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (19.6ms)[0m  [1m[35mCREATE TABLE &quot;job_comments&quot; (&quot;id&quot; bigserial primary key, &quot;job_id&quot; bigint, &quot;user_id&quot; bigint, &quot;comment_text&quot; text, &quot;created_at&quot; timestamp NOT NULL, &quot;updated_at&quot; timestamp NOT NULL, CONSTRAINT &quot;fk_rails_720b201851&quot;</pre>
+
+<p>FOREIGN KEY (“job_id”)</p>
+
+<pre>REFERENCES &quot;jobs&quot; (&quot;id&quot;)</pre>
+
+<p>, CONSTRAINT “fk_rails_e950486fcc” FOREIGN KEY (“user_id”)</p>
+
+<pre>REFERENCES &quot;users&quot; (&quot;id&quot;)</pre>
+
+<p>)[0m</p>
+
+<pre>[1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  &quot;index_job_comments_on_job_id&quot; ON &quot;job_comments&quot;  (&quot;job_id&quot;)[0m
+[1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  &quot;index_job_comments_on_user_id&quot; ON &quot;job_comments&quot;  (&quot;user_id&quot;)[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608061703&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../AddShortTitleToJobs.html">AddShortTitleToJobs</a>
+(20170608062709)</p>
+
+<pre>[1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (22.8ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;short_title&quot; character varying[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608062709&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a
+href="../AddDatesToAssignments.html">AddDatesToAssignments</a>
+(20170608064534)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.3ms)[0m  [1m[35mALTER TABLE &quot;assignments&quot; ADD &quot;scheduled_date&quot; date[0m
+[1m[35m (0.3ms)[0m  [1m[35mALTER TABLE &quot;assignments&quot; ADD &quot;actual_date&quot; date[0m
+[1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608064534&quot;]]
+[1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../RenameAdminFlag.html">RenameAdminFlag</a>
+(20170608065548)</p>
+
+<pre>[1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (11.7ms)[0m  [1m[35mALTER TABLE &quot;users&quot; RENAME COLUMN &quot;admin&quot; TO &quot;is_admin&quot;[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608065548&quot;]]
+[1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a
+href="../ChangeTenantAddressType.html">ChangeTenantAddressType</a>
+(20170608070336)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.7ms)[0m  [1m[35mALTER TABLE &quot;tenants&quot; ALTER COLUMN &quot;address&quot; TYPE text[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608070336&quot;]]
+[1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a
+href="../AddPasswordDigestToUsers.html">AddPasswordDigestToUsers</a>
+(20170608115632)</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.4ms)[0m  [1m[35mALTER TABLE &quot;users&quot; ADD &quot;password_digest&quot; character varying[0m
+[1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608115632&quot;]]
+[1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a
+href="../AddCurrentAssignmentToJobs.html">AddCurrentAssignmentToJobs</a>
+(20170608132613)</p>
+
+<pre>[1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (1.2ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;current_assignment&quot; integer[0m
+[1m[35m (26.1ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD CONSTRAINT &quot;fk_rails_312d11c922&quot;</pre>
+
+<p>FOREIGN KEY (“current_assignment”)</p>
+
+<pre>REFERENCES &quot;assignments&quot; (&quot;id&quot;)</pre>
+
+<p>[0m</p>
+
+<pre>[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170608132613&quot;]]
+[1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a
+href="../RemoveCurrentAssignmentFromJobs.html">RemoveCurrentAssignmentFromJobs</a>
+(20170609014352)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (26.4ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; DROP &quot;current_assignment&quot;[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170609014352&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../AddUsernameToUsers.html">AddUsernameToUsers</a>
+(20170612220049)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.5ms)[0m  [1m[35mALTER TABLE &quot;users&quot; ADD &quot;username&quot; character varying[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170612220049&quot;]]
+[1m[35m (12.1ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a
+href="../RemoveStatusFromJobs.html">RemoveStatusFromJobs</a>
+(20170613084637)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.6ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; DROP &quot;status&quot;[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170613084637&quot;]]
+[1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../AddAssignedToJobs.html">AddAssignedToJobs</a>
+(20170613084854)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.5ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;assigned&quot; boolean[0m
+[1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170613084854&quot;]]
+[1m[35m (12.0ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Migrating to <a href="../AddCompletedToJobs.html">AddCompletedToJobs</a>
+(20170613084927)</p>
+
+<pre>[1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.6ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;completed&quot; boolean[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170613084927&quot;]]
+[1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;ar_internal_metadata&quot; (&quot;key&quot;, &quot;value&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4) RETURNING &quot;key&quot;[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;value&quot;, &quot;development&quot;], [&quot;created_at&quot;, &quot;2017-06-15 13:18:06.105233&quot;], [&quot;updated_at&quot;, &quot;2017-06-15 13:18:06.105233&quot;]]
+[1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4255814849408913945)[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;s&quot;], [&quot;address&quot;, &quot;j&quot;], [&quot;created_at&quot;, &quot;2017-06-15 13:41:50.590583&quot;], [&quot;updated_at&quot;, &quot;2017-06-15 13:41:50.590583&quot;], [&quot;password_digest&quot;, &quot;$2a$10$8eBrjqXtBdBgXKHdi52soOyasPPOOe2D3Fesg8lk/7F0GRuJTtgz2&quot;], [&quot;username&quot;, &quot;j&quot;]]
+[1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-15 14:44:04 +0100</p>
+
+<pre>[1m[35m (0.8ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>ActionController::RoutingError (No route matches [GET] “/api/v1/auth”):</p>
+
+<p>actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in
+`call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/show_exceptions.rb:31:in `call&#39; railties
+(5.1.1) lib/rails/rack/logger.rb:36:in `call_app&#39; railties (5.1.1)
+lib/rails/rack/logger.rb:24:in `block in call&#39; activesupport (5.1.1)
+lib/active_support/tagged_logging.rb:69:in `block in tagged&#39;
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in
+`tagged&#39; activesupport (5.1.1)
+lib/active_support/tagged_logging.rb:69:in `tagged&#39; railties (5.1.1)
+lib/rails/rack/logger.rb:24:in `call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/remote_ip.rb:79:in `call&#39; actionpack
+(5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call&#39; rack
+(2.0.3) lib/rack/runtime.rb:22:in `call&#39; activesupport (5.1.1)
+lib/active_support/cache/strategy/local_cache_middleware.rb:27:in
+`call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/executor.rb:12:in `call&#39; actionpack
+(5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call&#39; rack
+(2.0.3) lib/rack/sendfile.rb:111:in `call&#39; railties (5.1.1)
+lib/rails/engine.rb:522:in `call&#39; puma (3.9.1)
+lib/puma/configuration.rb:224:in `call&#39; puma (3.9.1)
+lib/puma/server.rb:602:in `handle_request&#39; puma (3.9.1)
+lib/puma/server.rb:435:in `process_client&#39; puma (3.9.1)
+lib/puma/server.rb:299:in `block in run&#39; puma (3.9.1)
+lib/puma/thread_pool.rb:120:in `block in spawn_thread&#39; Started POST
+“/api/v1/auth” for 127.0.0.1 at 2017-06-15 14:44:20 +0100 Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = $1 LIMIT $2[0m  [[&quot;username&quot;, &quot;j&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 108ms (Views: 0.3ms | ActiveRecord: 14.2ms)</p>
+
+<p>Creating scope :open. Overwriting existing method Assignment.open. Creating
+scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (35.2ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; INNER JOIN &quot;assignments&quot; ON &quot;assignments&quot;.&quot;job_id&quot; = &quot;jobs&quot;.&quot;id&quot; LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mJob Load (0.9ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; INNER JOIN &quot;assignments&quot; ON &quot;assignments&quot;.&quot;job_id&quot; = &quot;jobs&quot;.&quot;id&quot; WHERE &quot;jobs&quot;.&quot;completed&quot; = $1 LIMIT $2[0m  [[&quot;completed&quot;, &quot;f&quot;], [&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (0.8ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; INNER JOIN &quot;jobs&quot; ON &quot;jobs&quot;.&quot;id&quot; = &quot;assignments&quot;.&quot;job_id&quot; LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (0.7ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; INNER JOIN &quot;jobs&quot; ON &quot;jobs&quot;.&quot;id&quot; = &quot;assignments&quot;.&quot;job_id&quot; LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (8.0ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; GROUP BY &quot;assignments&quot;.&quot;job_id&quot; HAVING (date = MAX(date)) LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (5.2ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; GROUP BY &quot;assignments&quot;.&quot;job_id&quot; HAVING (assignment_date = MAX(assignment_date)) LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (0.7ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; GROUP BY &quot;assignment_id&quot;, &quot;assignments&quot;.&quot;job_id&quot; HAVING (assignment_date = MAX(assignment_date)) LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (1.7ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; GROUP BY &quot;assignments&quot;.&quot;id&quot;, &quot;assignments&quot;.&quot;job_id&quot; HAVING (assignment_date = MAX(assignment_date)) LIMIT $1[0m  [[&quot;LIMIT&quot;, 11]]
+[1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3497077979748029565);[0m
+[1m[35m (7.6ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3497077979748029565)[0m
+[1m[35m (0.2ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (12.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3497077979748029565);[0m
+[1m[35m (1.7ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a
+href="../ChangeAssignmentDateType.html">ChangeAssignmentDateType</a>
+(20170618010046)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (47.1ms)[0m  [1m[35mALTER TABLE &quot;assignments&quot; ALTER COLUMN &quot;assignment_date&quot; TYPE timestamp[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170618010046&quot;]]
+[1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3497077979748029565)[0m
+[1m[35m (0.4ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m
+[1m[35m (6.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3497077979748029565);[0m
+[1m[35m (2.1ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Migrating to <a href="../AddSignatureToJob.html">AddSignatureToJob</a>
+(20170620023821)</p>
+
+<pre>[1m[35m (6.3ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (24.4ms)[0m  [1m[35mALTER TABLE &quot;jobs&quot; ADD &quot;signature&quot; character varying[0m
+[1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO &quot;schema_migrations&quot; (&quot;version&quot;) VALUES ($1) RETURNING &quot;version&quot;[0m  [[&quot;version&quot;, &quot;20170620023821&quot;]]
+[1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mActiveRecord::InternalMetadata Load (2.1ms)[0m  [1m[34mSELECT  &quot;ar_internal_metadata&quot;.* FROM &quot;ar_internal_metadata&quot; WHERE &quot;ar_internal_metadata&quot;.&quot;key&quot; = $1 LIMIT $2[0m  [[&quot;key&quot;, &quot;environment&quot;], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3497077979748029565)[0m
+[1m[35m (0.4ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-20 03:48:55 +0100</p>
+
+<pre>[1m[35m (0.8ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = $1 LIMIT $2[0m  [[&quot;username&quot;, &quot;justin&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 401 Unauthorized in 22ms (Views: 0.4ms | ActiveRecord: 9.3ms)</p>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-20 03:49:05 +0100
+Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = $1 LIMIT $2[0m  [[&quot;username&quot;, &quot;justin&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 401 Unauthorized in 14ms (Views: 0.2ms | ActiveRecord: 7.8ms)</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (25.7ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;j&quot;], [&quot;address&quot;, &quot;S&quot;], [&quot;created_at&quot;, &quot;2017-06-20 02:49:34.553473&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 02:49:34.553473&quot;], [&quot;password_digest&quot;, &quot;$2a$10$DdFrurMEzfluXKNwY7sTcOx/2Zj8xnYNfD9m1VbDSEPvuedTZiBx2&quot;], [&quot;username&quot;, &quot;j&quot;]]
+[1m[35m (13.5ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-20 03:49:47 +0100
+Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = $1 LIMIT $2[0m  [[&quot;username&quot;, &quot;j&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 85ms (Views: 0.2ms | ActiveRecord: 5.9ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 03:50:31 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 03:50:40 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 03:51:03 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 03:51:10 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1” for 127.0.0.1 at 2017-06-20 03:52:04 +0100</p>
+
+<p>ActionController::RoutingError (No route matches [GET] “/api/v1”):</p>
+
+<p>actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in
+`call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/show_exceptions.rb:31:in `call&#39; railties
+(5.1.1) lib/rails/rack/logger.rb:36:in `call_app&#39; railties (5.1.1)
+lib/rails/rack/logger.rb:24:in `block in call&#39; activesupport (5.1.1)
+lib/active_support/tagged_logging.rb:69:in `block in tagged&#39;
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in
+`tagged&#39; activesupport (5.1.1)
+lib/active_support/tagged_logging.rb:69:in `tagged&#39; railties (5.1.1)
+lib/rails/rack/logger.rb:24:in `call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/remote_ip.rb:79:in `call&#39; actionpack
+(5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call&#39; rack
+(2.0.3) lib/rack/runtime.rb:22:in `call&#39; activesupport (5.1.1)
+lib/active_support/cache/strategy/local_cache_middleware.rb:27:in
+`call&#39; actionpack (5.1.1)
+lib/action_dispatch/middleware/executor.rb:12:in `call&#39; actionpack
+(5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call&#39; rack
+(2.0.3) lib/rack/sendfile.rb:111:in `call&#39; railties (5.1.1)
+lib/rails/engine.rb:522:in `call&#39; puma (3.9.1)
+lib/puma/configuration.rb:224:in `call&#39; puma (3.9.1)
+lib/puma/server.rb:602:in `handle_request&#39; puma (3.9.1)
+lib/puma/server.rb:435:in `process_client&#39; puma (3.9.1)
+lib/puma/server.rb:299:in `block in run&#39; puma (3.9.1)
+lib/puma/thread_pool.rb:120:in `block in spawn_thread&#39; Started GET
+“/api/v1/jobs” for 127.0.0.1 at 2017-06-20 03:52:20 +0100 Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-20 03:53:48 +0100
+Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = $1 LIMIT $2[0m  [[&quot;username&quot;, &quot;j&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 74ms (Views: 0.2ms | ActiveRecord: 0.5ms)</p>
+
+<p>Started GET “/api/v1/auth” for 127.0.0.1 at 2017-06-20 03:58:03 +0100
+Processing by <a
+href="../Api/V1/AuthController.html#method-i-authenticate">Api::V1::AuthController#authenticate</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;username&quot; = $1 LIMIT $2[0m  [[&quot;username&quot;, &quot;j&quot;], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 77ms (Views: 0.1ms | ActiveRecord: 0.5ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 03:58:41 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (14.3ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m</pre>
+
+<p>Completed 200 OK in 40ms (Views: 0.2ms | ActiveRecord: 20.3ms)</p>
+
+<p>Creating scope :open. Overwriting existing method Job.open. Creating scope
+:open. Overwriting existing method Job.open. Creating scope :open.
+Overwriting existing method Job.open. Creating scope :open. Overwriting
+existing method Job.open. Creating scope :open. Overwriting existing method
+Job.open.</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (7.3ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;is_admin&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Pete Wehner&quot;], [&quot;address&quot;, &quot;635 Heaney Flats&quot;], [&quot;is_admin&quot;, &quot;f&quot;], [&quot;created_at&quot;, &quot;2017-06-20 03:17:55.246119&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 03:17:55.246119&quot;], [&quot;password_digest&quot;, &quot;$2a$10$4ERVmGl2.ofl8p8s.xZBI.TUvCvEkHYy6YgvWyiLouvnxU/i5Hviq&quot;], [&quot;username&quot;, &quot;nichole&quot;]]
+[1m[35m (13.2ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (6.8ms)[0m  [1m[32mINSERT INTO &quot;tenants&quot; (&quot;name&quot;, &quot;address&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Herman Ritchie&quot;], [&quot;address&quot;, &quot;724 Stark Coves&quot;], [&quot;notes&quot;, &quot;Delectus debitis est tempora expedita nostrum odio enim exercitationem qui in nihil qui est eos.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 03:17:55.304015&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 03:17:55.304015&quot;]]
+[1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;reported_date&quot;, &quot;completed_date&quot;, &quot;reported_fault&quot;, &quot;sor_code&quot;, &quot;description&quot;, &quot;notes&quot;, &quot;tenant_id&quot;, &quot;user_id&quot;, &quot;short_title&quot;, &quot;assigned&quot;, &quot;completed&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING &quot;id&quot;[0m  [[&quot;reported_date&quot;, &quot;2017-05-29 21:21:48&quot;], [&quot;completed_date&quot;, &quot;2017-06-09 23:43:06&quot;], [&quot;reported_fault&quot;, &quot;Dolores error quod incidunt aut perspiciatis fugit dolorem reiciendis earum.&quot;], [&quot;sor_code&quot;, &quot;B000A2MIJY&quot;], [&quot;description&quot;, &quot;Nostrum sed minima porro dolor voluptatem qui ab eum laboriosam ducimus quia et.&quot;], [&quot;notes&quot;, &quot;Optio quidem rerum modi iusto molestiae ut sapiente.&quot;], [&quot;tenant_id&quot;, 1], [&quot;user_id&quot;, 3], [&quot;short_title&quot;, &quot;Cum est qui velit non labore.&quot;], [&quot;assigned&quot;, &quot;f&quot;], [&quot;completed&quot;, &quot;f&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mAssignment Load (23.5ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 LIMIT $2[0m  [[&quot;job_id&quot;, 1], [&quot;LIMIT&quot;, 11]]
+[1m[36mAssignment Load (0.4ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;is_admin&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Vanessa Friesen DVM&quot;], [&quot;address&quot;, &quot;874 Waters Gateway&quot;], [&quot;is_admin&quot;, &quot;f&quot;], [&quot;created_at&quot;, &quot;2017-06-20 03:19:03.000782&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 03:19:03.000782&quot;], [&quot;password_digest&quot;, &quot;$2a$10$TF1AI/EWlGBAX84c7jTWW.FgUAbulcfSyMOJjon8IKNGci.ywCgCu&quot;], [&quot;username&quot;, &quot;howell.rohan&quot;]]
+[1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (6.4ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 4], [&quot;job_id&quot;, 1], [&quot;assignment_date&quot;, &quot;2017-05-24 20:27:02&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Nesciunt veritatis fugiat dolor accusamus minus in modi molestiae voluptate culpa.&quot;], [&quot;notes&quot;, &quot;Hic consequatur alias architecto ratione expedita itaque inventore consequatur et numquam.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 03:19:03.014267&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 03:19:03.014267&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-15&quot;], [&quot;actual_date&quot;, &quot;2017-06-07&quot;]]
+[1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;is_admin&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Eusebio Rice PhD&quot;], [&quot;address&quot;, &quot;99456 Hyatt Stream&quot;], [&quot;is_admin&quot;, &quot;f&quot;], [&quot;created_at&quot;, &quot;2017-06-20 03:19:16.788040&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 03:19:16.788040&quot;], [&quot;password_digest&quot;, &quot;$2a$10$G9dKoBrgQ9C4ZB2P02QX6eJh/7.EQ3nPoG3GKA7y2NGTzSwuP5FKG&quot;], [&quot;username&quot;, &quot;katharina_kozey&quot;]]
+[1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 5], [&quot;job_id&quot;, 1], [&quot;assignment_date&quot;, &quot;2017-06-06 06:14:10&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Accusantium doloribus quo qui et labore debitis cumque veritatis molestiae quos sed.&quot;], [&quot;notes&quot;, &quot;Vel asperiores iste qui officia tempora et sunt excepturi ratione possimus ut.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 03:19:16.793432&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 03:19:16.793432&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-11&quot;], [&quot;actual_date&quot;, &quot;2017-06-15&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (43.8ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (65.1ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;is_admin&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Julian Baumbach V&quot;], [&quot;address&quot;, &quot;8145 Javonte Plains&quot;], [&quot;is_admin&quot;, &quot;f&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:32:52.831025&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:32:52.831025&quot;], [&quot;password_digest&quot;, &quot;$2a$10$ybXkMJNwRX2PJs9ZGejuu.Lhk2IqyyfD1m7vLH9SBvMwb/4VDHyt6&quot;], [&quot;username&quot;, &quot;samantha&quot;]]
+[1m[35m (29.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO &quot;tenants&quot; (&quot;name&quot;, &quot;address&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Ms. Amely Renner&quot;], [&quot;address&quot;, &quot;739 Welch Squares&quot;], [&quot;notes&quot;, &quot;Aliquid aut eveniet atque dolorem optio dignissimos assumenda suscipit accusantium sit.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:32:52.954253&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:32:52.954253&quot;]]
+[1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (6.6ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;reported_date&quot;, &quot;completed_date&quot;, &quot;reported_fault&quot;, &quot;sor_code&quot;, &quot;description&quot;, &quot;notes&quot;, &quot;tenant_id&quot;, &quot;user_id&quot;, &quot;short_title&quot;, &quot;assigned&quot;, &quot;completed&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING &quot;id&quot;[0m  [[&quot;reported_date&quot;, &quot;2017-06-06 04:33:24&quot;], [&quot;completed_date&quot;, &quot;2017-06-10 15:45:47&quot;], [&quot;reported_fault&quot;, &quot;Vel expedita est sed molestiae enim odit debitis ipsum saepe sint ratione sed id.&quot;], [&quot;sor_code&quot;, &quot;B000BPGAOE&quot;], [&quot;description&quot;, &quot;Blanditiis quas tenetur et illum reiciendis exercitationem quibusdam aliquid vel consequatur.&quot;], [&quot;notes&quot;, &quot;Reprehenderit voluptas et voluptatibus aut temporibus tempore fugit.&quot;], [&quot;tenant_id&quot;, 2], [&quot;user_id&quot;, 6], [&quot;short_title&quot;, &quot;In beatae blanditiis est consequuntur.&quot;], [&quot;assigned&quot;, &quot;f&quot;], [&quot;completed&quot;, &quot;f&quot;]]
+[1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 6], [&quot;job_id&quot;, 2], [&quot;assignment_date&quot;, &quot;2017-05-29 04:37:05&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Debitis expedita eum quam mollitia quia voluptatum impedit sint inventore eius ab sed saepe.&quot;], [&quot;notes&quot;, &quot;Ex corrupti et quas consequatur voluptas facilis sed quos omnis quia.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:32:52.987403&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:32:52.987403&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-11&quot;], [&quot;actual_date&quot;, &quot;2017-06-11&quot;]]
+[1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 6], [&quot;job_id&quot;, 2], [&quot;assignment_date&quot;, &quot;2017-06-02 14:48:24&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Omnis minus quidem laborum et ab rerum blanditiis libero qui.&quot;], [&quot;notes&quot;, &quot;Voluptas unde aperiam sit qui sunt voluptas dolorem autem voluptatem.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:32:53.000957&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:32:53.000957&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-16&quot;], [&quot;actual_date&quot;, &quot;2017-06-09&quot;]]
+[1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 6], [&quot;job_id&quot;, 2], [&quot;assignment_date&quot;, &quot;2017-06-17 19:57:33&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Voluptatem distinctio consequatur eligendi vero maiores quisquam ea dolorem earum a optio impedit qui.&quot;], [&quot;notes&quot;, &quot;Eius maiores exercitationem qui totam nemo nihil et voluptatem quis soluta id.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:32:53.013459&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:32:53.013459&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-14&quot;], [&quot;actual_date&quot;, &quot;2017-06-16&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 6], [&quot;job_id&quot;, 2], [&quot;assignment_date&quot;, &quot;2017-06-09 18:36:43&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Sunt nisi accusantium vero atque qui consequatur quod veniam et error occaecati sit soluta.&quot;], [&quot;notes&quot;, &quot;Porro possimus velit dolorem ut ratione ullam ab voluptatem quisquam a.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:32:53.021030&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:32:53.021030&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-18&quot;], [&quot;actual_date&quot;, &quot;2017-06-11&quot;]]
+[1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (6.2ms)[0m  [1m[32mINSERT INTO &quot;users&quot; (&quot;name&quot;, &quot;address&quot;, &quot;is_admin&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;password_digest&quot;, &quot;username&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Kobe Cummings&quot;], [&quot;address&quot;, &quot;415 Joanny Gateway&quot;], [&quot;is_admin&quot;, &quot;f&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:33:46.290466&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:33:46.290466&quot;], [&quot;password_digest&quot;, &quot;$2a$10$bSkQCNSN9.VRJBquaB2Y9eDc2Z.rmtn/tznYXVShsNYDjqRBj.sd6&quot;], [&quot;username&quot;, &quot;joanny_auer&quot;]]
+[1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;tenants&quot; (&quot;name&quot;, &quot;address&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Russell Schultz&quot;], [&quot;address&quot;, &quot;54769 Jacobs Walk&quot;], [&quot;notes&quot;, &quot;Ea nobis aut ducimus nam similique inventore velit nihil aperiam sit neque qui eum.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:33:46.338865&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:33:46.338865&quot;]]
+[1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;reported_date&quot;, &quot;completed_date&quot;, &quot;reported_fault&quot;, &quot;sor_code&quot;, &quot;description&quot;, &quot;notes&quot;, &quot;tenant_id&quot;, &quot;user_id&quot;, &quot;short_title&quot;, &quot;assigned&quot;, &quot;completed&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING &quot;id&quot;[0m  [[&quot;reported_date&quot;, &quot;2017-05-23 14:51:20&quot;], [&quot;completed_date&quot;, &quot;2017-06-08 19:06:31&quot;], [&quot;reported_fault&quot;, &quot;Est eaque exercitationem omnis provident qui alias reprehenderit quis dolorem omnis aliquam.&quot;], [&quot;sor_code&quot;, &quot;B000A3WUAK&quot;], [&quot;description&quot;, &quot;Reiciendis quia consectetur non repudiandae nam quis iusto iure sed.&quot;], [&quot;notes&quot;, &quot;Nobis sunt ex rerum impedit.&quot;], [&quot;tenant_id&quot;, 3], [&quot;user_id&quot;, 7], [&quot;short_title&quot;, &quot;Tempore beatae itaque.&quot;], [&quot;assigned&quot;, &quot;f&quot;], [&quot;completed&quot;, &quot;f&quot;]]
+[1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 7], [&quot;job_id&quot;, 3], [&quot;assignment_date&quot;, &quot;2017-05-22 17:36:22&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Modi tempore quidem laboriosam eligendi similique consequuntur et quia molestiae omnis iste illum reprehenderit rem.&quot;], [&quot;notes&quot;, &quot;Est et architecto recusandae ipsum enim a optio quo facere ipsa esse cum assumenda asperiores.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:33:46.376176&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:33:46.376176&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-10&quot;], [&quot;actual_date&quot;, &quot;2017-06-08&quot;]]
+[1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mUser Load (7.1ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]
+[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO &quot;tenants&quot; (&quot;name&quot;, &quot;address&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5) RETURNING &quot;id&quot;[0m  [[&quot;name&quot;, &quot;Ignatius Cartwright&quot;], [&quot;address&quot;, &quot;4582 Hane Mill&quot;], [&quot;notes&quot;, &quot;Expedita nemo ut quidem sed necessitatibus qui amet pariatur tempore quibusdam et illum deleniti consequatur.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:36:10.026867&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:36:10.026867&quot;]]
+[1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO &quot;jobs&quot; (&quot;reported_date&quot;, &quot;completed_date&quot;, &quot;reported_fault&quot;, &quot;sor_code&quot;, &quot;description&quot;, &quot;notes&quot;, &quot;tenant_id&quot;, &quot;user_id&quot;, &quot;short_title&quot;, &quot;assigned&quot;, &quot;completed&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING &quot;id&quot;[0m  [[&quot;reported_date&quot;, &quot;2017-06-08 02:08:38&quot;], [&quot;completed_date&quot;, &quot;2017-06-19 06:09:03&quot;], [&quot;reported_fault&quot;, &quot;Ex quo ut tempore repellat ipsum voluptate dolores est commodi aut et quasi.&quot;], [&quot;sor_code&quot;, &quot;B000Q71WNG&quot;], [&quot;description&quot;, &quot;Voluptatem eaque aut recusandae sed laudantium aut architecto nam nihil minus velit.&quot;], [&quot;notes&quot;, &quot;Unde sit eum blanditiis aut et officiis reiciendis.&quot;], [&quot;tenant_id&quot;, 4], [&quot;user_id&quot;, 2], [&quot;short_title&quot;, &quot;Accusamus deserunt pariatur repellat illo harum.&quot;], [&quot;assigned&quot;, &quot;f&quot;], [&quot;completed&quot;, &quot;f&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;resolution&quot;, &quot;notes&quot;, &quot;created_at&quot;, &quot;updated_at&quot;, &quot;scheduled_date&quot;, &quot;actual_date&quot;) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 2], [&quot;job_id&quot;, 4], [&quot;assignment_date&quot;, &quot;2017-06-18 02:45:47&quot;], [&quot;am_pm_visit&quot;, &quot;am&quot;], [&quot;resolution&quot;, &quot;Deserunt impedit aut animi non doloremque adipisci sit nesciunt magni iusto repellat aut ad.&quot;], [&quot;notes&quot;, &quot;Sed iure optio nam veritatis iusto eos dolorem enim qui ea hic est minus.&quot;], [&quot;created_at&quot;, &quot;2017-06-20 12:36:10.036483&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 12:36:10.036483&quot;], [&quot;scheduled_date&quot;, &quot;2017-06-16&quot;], [&quot;actual_date&quot;, &quot;2017-06-06&quot;]]
+[1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 13:52:33 +0100</p>
+
+<pre>[1m[35m (12.7ms)[0m  [1m[34mSELECT &quot;schema_migrations&quot;.&quot;version&quot; FROM &quot;schema_migrations&quot; ORDER BY &quot;schema_migrations&quot;.&quot;version&quot; ASC[0m</pre>
+
+<p>Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m
+[1m[36mAssignment Load (0.9ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 1]]
+[1m[36mAssignment Load (0.4ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 2]]
+[1m[36mAssignment Load (0.3ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 3]]
+[1m[36mAssignment Load (0.4ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 4]]</pre>
+
+<p>Completed 200 OK in 92ms (Views: 0.2ms | ActiveRecord: 19.1ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 13:54:11 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord:
+0.0ms)</p>
+
+<p>Started GET “/api/v1/jobs” for 127.0.0.1 at 2017-06-20 13:54:13 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-index">Api::V1::JobsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT &quot;jobs&quot;.* FROM &quot;jobs&quot;[0m
+[1m[36mAssignment Load (1.0ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 1]]
+[1m[36mAssignment Load (0.4ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 2]]
+[1m[36mAssignment Load (0.3ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 3]]
+[1m[36mAssignment Load (0.3ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1[0m  [[&quot;job_id&quot;, 4]]</pre>
+
+<p>Completed 200 OK in 40ms (Views: 0.2ms | ActiveRecord: 11.6ms)</p>
+
+<pre>[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]
+[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;user_id&quot; = $1 LIMIT $2[0m  [[&quot;user_id&quot;, 2], [&quot;LIMIT&quot;, 11]]
+[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.5ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;user_id&quot; = $1 LIMIT $2[0m  [[&quot;user_id&quot;, 2], [&quot;LIMIT&quot;, 11]]</pre>
+
+<p>Started PUT “/api/v1/jobs/4” for 127.0.0.1 at 2017-06-20 14:00:45 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-update">Api::V1::JobsController#update</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;signature&quot;=&gt;#&lt;ActionDispatch::Http::UploadedFile:0x007fc0121d81c8 @tempfile=#&lt;Tempfile:/var/folders/4s/5jwtbjf92dj_28nhw1l9qlbw0000gn/T/RackMultipart20170620-94056-17isn0c.jpg&gt;, @original_filename=&quot;a.jpg&quot;, @content_type=&quot;image/jpeg&quot;, @headers=&quot;Content-Disposition: form-data; name=\&quot;signature\&quot;; filename=\&quot;a.jpg\&quot;\r\nContent-Type: image/jpeg\r\n&quot;&gt;, &quot;id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (1.0ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 403 Forbidden in 9ms (ActiveRecord: 2.1ms)</p>
+
+<pre>[1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (1.2ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.8ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (24.6ms)[0m  [1m[33mUPDATE &quot;jobs&quot; SET &quot;assigned&quot; = $1 WHERE &quot;jobs&quot;.&quot;id&quot; = $2[0m  [[&quot;assigned&quot;, &quot;t&quot;], [&quot;id&quot;, 4]]
+[1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Started PUT “/api/v1/jobs/4” for 127.0.0.1 at 2017-06-20 14:02:03 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-update">Api::V1::JobsController#update</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;signature&quot;=&gt;#&lt;ActionDispatch::Http::UploadedFile:0x007fc012022e50 @tempfile=#&lt;Tempfile:/var/folders/4s/5jwtbjf92dj_28nhw1l9qlbw0000gn/T/RackMultipart20170620-94056-1q2t1cp.jpg&gt;, @original_filename=&quot;a.jpg&quot;, @content_type=&quot;image/jpeg&quot;, @headers=&quot;Content-Disposition: form-data; name=\&quot;signature\&quot;; filename=\&quot;a.jpg\&quot;\r\nContent-Type: image/jpeg\r\n&quot;&gt;, &quot;id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.4ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 403 Forbidden in 5ms (ActiveRecord: 1.4ms)</p>
+
+<pre>[1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.6ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Started GET “/api/v1/user” for 127.0.0.1 at 2017-06-20 14:04:31 +0100
+Processing by <a
+href="../Api/V1/UsersController.html#method-i-show">Api::V1::UsersController#show</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 0.5ms)</p>
+
+<pre>[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.8ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.5ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.6ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE &quot;assignments&quot; SET &quot;user_id&quot; = $1, &quot;updated_at&quot; = $2 WHERE &quot;assignments&quot;.&quot;id&quot; = $3[0m  [[&quot;user_id&quot;, 1], [&quot;updated_at&quot;, &quot;2017-06-20 13:05:23.501148&quot;], [&quot;id&quot;, 8]]
+[1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+[1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.6ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Started PUT “/api/v1/jobs/4” for 127.0.0.1 at 2017-06-20 14:05:46 +0100
+Processing by <a
+href="../Api/V1/JobsController.html#method-i-update">Api::V1::JobsController#update</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;signature&quot;=&gt;#&lt;ActionDispatch::Http::UploadedFile:0x007fc00e375f98 @tempfile=#&lt;Tempfile:/var/folders/4s/5jwtbjf92dj_28nhw1l9qlbw0000gn/T/RackMultipart20170620-94056-p3wwa5.jpg&gt;, @original_filename=&quot;a.jpg&quot;, @content_type=&quot;image/jpeg&quot;, @headers=&quot;Content-Disposition: form-data; name=\&quot;signature\&quot;; filename=\&quot;a.jpg\&quot;\r\nContent-Type: image/jpeg\r\n&quot;&gt;, &quot;id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (1.3ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameters: :format, :id</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 2], [&quot;LIMIT&quot;, 1]]
+[1m[36mTenant Load (0.4ms)[0m  [1m[34mSELECT  &quot;tenants&quot;.* FROM &quot;tenants&quot; WHERE &quot;tenants&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE &quot;jobs&quot; SET &quot;signature&quot; = $1 WHERE &quot;jobs&quot;.&quot;id&quot; = $2[0m  [[&quot;signature&quot;, &quot;a.jpg&quot;], [&quot;id&quot;, 4]]
+[1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Completed 200 OK in 84ms (ActiveRecord: 27.0ms)</p>
+
+<p>Started POST “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+21:59:06 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-create">Api::V1::AssignmentsController#create</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;job_id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameter: :format</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m</pre>
+
+<p>Completed 422 Unprocessable Entity in 558ms (Views: 0.3ms | ActiveRecord:
+42.2ms)</p>
+
+<p>Started POST “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+21:59:12 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-create">Api::V1::AssignmentsController#create</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;job_id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameter: :format</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m</pre>
+
+<p>Completed 422 Unprocessable Entity in 7ms (Views: 0.2ms | ActiveRecord:
+1.9ms)</p>
+
+<p>Started POST “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+22:03:21 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-create">Api::V1::AssignmentsController#create</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;job_id&quot;=&gt;&quot;4&quot;, &quot;am_pm_visit&quot;=&gt;&quot;pm&quot;}
+[1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameter: :format</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m</pre>
+
+<p>Completed 422 Unprocessable Entity in 57ms (Views: 0.2ms | ActiveRecord:
+14.2ms)</p>
+
+<p>Started POST “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+22:06:59 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-create">Api::V1::AssignmentsController#create</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;job_id&quot;=&gt;&quot;4&quot;, &quot;am_pm_visit&quot;=&gt;&quot;pm&quot;}
+[1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameter: :format</p>
+
+<pre>[1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35mSQL (6.2ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5, $6) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 1], [&quot;job_id&quot;, 4], [&quot;assignment_date&quot;, &quot;2017-06-20 21:06:59.945084&quot;], [&quot;am_pm_visit&quot;, &quot;pm&quot;], [&quot;created_at&quot;, &quot;2017-06-20 21:06:59.944986&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 21:06:59.944986&quot;]]
+[1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Completed 201 Created in 62ms (Views: 0.8ms | ActiveRecord: 9.1ms)</p>
+
+<p>Started GET “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+22:09:13 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-index">Api::V1::AssignmentsController#index</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;job_id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.7ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;user_id&quot; = $1[0m  [[&quot;user_id&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (1.1ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mCACHE Job Load (0.0ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mCACHE Assignment Load (0.0ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 56ms (Views: 0.2ms | ActiveRecord: 2.6ms)</p>
+
+<p>Started GET “/api/v1/assignments” for 127.0.0.1 at 2017-06-20 22:10:06
++0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-index">Api::V1::AssignmentsController#index</a>
+as JSON</p>
+
+<pre>[1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.7ms)[0m  [1m[34mSELECT &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;user_id&quot; = $1[0m  [[&quot;user_id&quot;, 1]]
+[1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mAssignment Load (0.5ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mCACHE Job Load (0.0ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[36mCACHE Assignment Load (0.0ms)[0m  [1m[34mSELECT  &quot;assignments&quot;.* FROM &quot;assignments&quot; WHERE &quot;assignments&quot;.&quot;job_id&quot; = $1 ORDER BY assignment_date DESC LIMIT $2[0m  [[&quot;job_id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 1.8ms)</p>
+
+<p>Started POST “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+22:14:42 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-create">Api::V1::AssignmentsController#create</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;am_pm_visit&quot;=&gt;&quot;pm&quot;, &quot;job_id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]
+[1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameter: :format</p>
+
+<pre>[1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+[1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5, $6) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 1], [&quot;job_id&quot;, 4], [&quot;assignment_date&quot;, &quot;2017-06-20 21:14:42.793113&quot;], [&quot;am_pm_visit&quot;, &quot;pm&quot;], [&quot;created_at&quot;, &quot;2017-06-20 21:14:42.793019&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 21:14:42.793019&quot;]]
+[1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Completed 201 Created in 14ms (Views: 0.6ms | ActiveRecord: 7.5ms)</p>
+
+<p>Started POST “/api/v1/jobs/4/assignments” for 127.0.0.1 at 2017-06-20
+23:35:05 +0100 Processing by <a
+href="../Api/V1/AssignmentsController.html#method-i-create">Api::V1::AssignmentsController#create</a>
+as JSON</p>
+
+<pre>Parameters: {&quot;am_pm_visit&quot;=&gt;&quot;pm&quot;, &quot;job_id&quot;=&gt;&quot;4&quot;}
+[1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  &quot;users&quot;.* FROM &quot;users&quot; WHERE &quot;users&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 1], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Creating scope :open. Overwriting existing method Job.open.</p>
+
+<pre>[1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]</pre>
+
+<p>Unpermitted parameter: :format</p>
+
+<pre>[1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+[1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  &quot;jobs&quot;.* FROM &quot;jobs&quot; WHERE &quot;jobs&quot;.&quot;id&quot; = $1 LIMIT $2[0m  [[&quot;id&quot;, 4], [&quot;LIMIT&quot;, 1]]
+[1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO &quot;assignments&quot; (&quot;user_id&quot;, &quot;job_id&quot;, &quot;assignment_date&quot;, &quot;am_pm_visit&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES ($1, $2, $3, $4, $5, $6) RETURNING &quot;id&quot;[0m  [[&quot;user_id&quot;, 1], [&quot;job_id&quot;, 4], [&quot;assignment_date&quot;, &quot;2017-06-20 22:35:05.290598&quot;], [&quot;am_pm_visit&quot;, &quot;pm&quot;], [&quot;created_at&quot;, &quot;2017-06-20 22:35:05.290505&quot;], [&quot;updated_at&quot;, &quot;2017-06-20 22:35:05.290505&quot;]]
+[1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m</pre>
+
+<p>Completed 201 Created in 80ms (Views: 0.8ms | ActiveRecord: 8.3ms)</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

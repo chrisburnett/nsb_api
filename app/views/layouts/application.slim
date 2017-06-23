@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title NSB Administration Console
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  
+    body.fixed.skin-blue-light
+      .wrapper
+        = render 'layouts/navigation/layout'
+        .content-wrapper
+          = yield
+        = render 'layouts/navigation/footer'
