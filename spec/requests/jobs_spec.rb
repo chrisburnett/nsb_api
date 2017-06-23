@@ -3,18 +3,17 @@ require 'rails_helper'
 RSpec.describe 'Jobs API', type: :request do
   # initialize test data
   let!(:user) { create(:user) }
-  let!(:jobs) { create_list(:job, 5, assigned: true, assignment_count: 3, user: user) }
-  let!(:available_jobs) { create_list(:job, 5, assigned: false, assignment_count: 3, user: user) }
-  let(:job_id) { jobs.first.id }
+  let!(:assignments) { create_list(:assignment, 5, user: user, contractor: user) }
+  let(:job_id) { assignments.first.job.id }
   let(:header) { authenticated_header(user.id, false) }
   # Test suite for GET /todos
   describe 'GET /api/v1/jobs' do
     # make HTTP get request before each example
-    before { get '/api/v1/jobs',headers: header }
+    before { get '/api/v1/jobs', headers: header }
 
     it 'returns jobs' do
       expect(json).not_to be_empty
-      expect(json.size).to eq(10)
+      expect(json.size).to eq(5)
     end
 
     it 'returns status code 200' do
@@ -58,7 +57,6 @@ RSpec.describe 'Jobs API', type: :request do
   describe 'PUT /api/v1/jobs/:id' do
     let(:valid_attributes) { { short_title: "booooo" } }
     
-
     context 'when the record exists' do
       before { put "/api/v1/jobs/#{job_id}", params: valid_attributes, headers: header }
 
@@ -83,26 +81,12 @@ RSpec.describe 'Jobs API', type: :request do
       it 'returns http status 200' do
         expect(response).to have_http_status(200)
       end
-    end
 
-    context 'when the job is released' do
-      let(:header) { authenticated_header(user.id, false) }
-
-      before { put "/api/v1/jobs/#{jobs[2].id}", headers: header, params: { short_title: "booooo", assigned: "false" } }
-      
-      it 'changes the job status to not assigned' do
-        get "/api/v1/jobs/#{jobs[2].id}", headers: header
-        expect(json["assigned"]).to be_falsey
+      it 'maintains the identity of the user who updated the job' do
+        who = Job.find(job_id).versions.last.whodunnit
+        expect(who).to eq(user.id.to_s)
       end
       
-      it 'returns http status 200' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'no longer allows job to be changed by user' do
-        put "/api/v1/jobs/#{jobs[2].id}", headers: header, params: { short_title: "booooo", assigned: "true" }
-        expect(response).to have_http_status(403)
-      end
     end
   end
 end

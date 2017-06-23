@@ -13,7 +13,7 @@ class Job < ApplicationRecord
 
   # job considered assigned if it has a latest assignment and that
   # assignment is accepted
-  def self.assigned
+  def assigned
     !latest_assignment.nil? && latest_assignment.status == 'accepted'
   end
   
