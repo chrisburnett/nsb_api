@@ -130,5 +130,13 @@ RSpec.describe 'Assignments API', type: :request do
       end
     end
     
+    context 'when an assignment status is invalid' do
+      before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "rubbish" }, headers: header }
+      
+      it 'returns response code 422' do
+        expect(response).to have_http_status(422)
+      end
+    end
+    
   end
 end

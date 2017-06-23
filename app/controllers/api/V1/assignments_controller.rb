@@ -53,8 +53,11 @@ module Api
       def update
         if @current_user then
           if can_edit? then
-            @assignment.update(assignment_params)
-            head :no_content
+            if @assignment.update(assignment_params)
+              head :no_content
+            else
+              head :unprocessable_entity
+            end
           else
             head :forbidden # not allowed to edit other people's assignments
           end
