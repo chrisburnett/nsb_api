@@ -1,9 +1,9 @@
-class Admin::DashboardController < ActionController::Base
-
-  include ActionView::Layouts
+class Admin::DashboardController < SecureAdminController
   layout "application"
+  before_action :authenticate_user
   
   def index
+    @jobs = Job.all
   end
 
 end

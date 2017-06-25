@@ -16,6 +16,10 @@ class Job < ApplicationRecord
   def assigned
     !latest_assignment.nil? && latest_assignment.status == 'accepted'
   end
+
+  def status
+    completed || (latest_assignment.status || 'pending')
+  end
   
   def latest_assignment
     assignments.order('assignment_date DESC').first
