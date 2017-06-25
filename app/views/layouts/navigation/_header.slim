@@ -31,7 +31,8 @@ header.main-header
         /! User Account: style can be found in dropdown.less
         li.dropdown.user.user-menu
           a.dropdown-toggle data-toggle="dropdown" href="#" 
-            span.hidden-xs = @current_user.name
+            - if @current_user
+              span.hidden-xs = @current_user.name
           ul.dropdown-menu
             /! Menu Body
             li.user-body

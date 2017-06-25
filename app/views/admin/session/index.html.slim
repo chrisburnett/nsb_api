@@ -1,0 +1,21 @@
+body.hold-transition.login-page
+  .login-box
+    .login-logo
+      a href="../../index2.html" 
+        b> NSB
+        | Contracting
+    .login-box-body
+      p.login-box-msg Please sign in to use the admin console
+      - flash.each do |type, message|
+        .flash.alert.alert-danger
+          = message
+      form action="#{admin_login_url}" method="post" 
+        .form-group.has-feedback
+          input.form-control name="username" placeholder="Username" type="username" /
+          span.glyphicon.glyphicon-envelope.form-control-feedback
+        .form-group.has-feedback
+          input.form-control name="password" placeholder="Password" type="password" /
+          span.glyphicon.glyphicon-lock.form-control-feedback
+        .row
+          .col-xs-4
+            button.btn.btn-primary.btn-block.btn-flat type="submit"  Sign In
