@@ -20,13 +20,14 @@ Rails.application.routes.draw do
   namespace :admin do
 
     resources :users
-
+    resources :jobs, only: [:index]
+    
     get 'login' => 'session#index'
     get 'logout' => 'session#destroy'
     post 'login' => 'session#create'
     get 'dashboard' => 'dashboard#index'
 
-    root to: 'dashboard#index'
+    #root to: 'dashboard#index'
     
   end
   

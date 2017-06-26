@@ -18,10 +18,13 @@ gem 'rails', '~> 5.1.1'
 gem 'puma', '~> 3.7'
 # slim templates
 gem 'slim-rails'
+gem 'coffee-rails'
 # bootstrap for admin page
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'jquery-datatables-rails'
+gem 'ajax-datatables-rails'
 gem 'turbolinks'
 gem 'font-awesome-rails'
 # auditing/versioning
