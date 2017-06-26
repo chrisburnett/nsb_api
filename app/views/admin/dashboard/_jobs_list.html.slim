@@ -6,7 +6,7 @@ div.row
           | Active Jobs
       div.box-body
         - unless @jobs.empty?
-          table id="jobs-table" data-source = admin_jobs_url(format: :json)
+          table.table.table-bordered.table-hover id="jobs-table" data-source = admin_jobs_path(format: :json) style="width: 100%"
             thead
               tr
                 th Name
