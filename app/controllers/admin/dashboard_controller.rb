@@ -6,6 +6,7 @@ class Admin::DashboardController < SecureAdminController
   
   def index
     @jobs = Job.all
+    @open_job_count = Job.open.length
   end
 
 end

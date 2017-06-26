@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622233353) do
+ActiveRecord::Schema.define(version: 20170626203136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170622233353) do
     t.boolean "assigned"
     t.boolean "completed"
     t.string "signature"
+    t.integer "latest_assignment_id"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170622233353) do
   add_foreign_key "assignments", "users", column: "contractor_id"
   add_foreign_key "job_comments", "jobs"
   add_foreign_key "job_comments", "users"
+  add_foreign_key "jobs", "assignments", column: "latest_assignment_id"
   add_foreign_key "jobs", "tenants"
   add_foreign_key "jobs", "users"
 end

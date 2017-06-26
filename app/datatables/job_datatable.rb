@@ -4,9 +4,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
-      # id: { source: "User.id", cond: :eq },
-      # name: { source: "User.name", cond: :like }
-      name: { source: "Job.short_title", cond: :like },
+      title: { source: "Job.short_title", cond: :like },
       tenant: { source: "Job.tenant.id", cond: :eq },
       status: { source: "Job.status", cond: :eq }
     }
@@ -15,7 +13,7 @@ class JobDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       {
-        name: record.short_title,
+        title: record.short_title,
         tenant: record.tenant.id,
         status: record.status
       }
@@ -25,7 +23,7 @@ class JobDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Job.includes(:tenant).all
+    Job.includes(:tenant)
   end
 
   # ==== These methods represent the basic operations to perform on records

@@ -2,6 +2,8 @@ class Job < ApplicationRecord
   has_paper_trail # versioning/auditing
 
   has_many :assignments, dependent: :destroy
+  has_one :latest_assignment, class_name: "Assignment"
+
   has_many :job_comments, dependent: :destroy
   belongs_to :user
   belongs_to :tenant
@@ -11,6 +13,8 @@ class Job < ApplicationRecord
 
   mount_uploader :signature, SignatureUploader 
 
+  scope :open, -> { where(completed: false) }
+  scope :completed, -> { where(completed: true) }
   # job considered assigned if it has a latest assignment and that
   # assignment is accepted
   def assigned
@@ -20,8 +24,5 @@ class Job < ApplicationRecord
   def status
     completed || (latest_assignment.status || 'pending')
   end
-  
-  def latest_assignment
-    assignments.order('assignment_date DESC').first
-  end
+
 end
