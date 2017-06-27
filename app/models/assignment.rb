@@ -16,6 +16,9 @@ class Assignment < ApplicationRecord
                       .order("job_id, assignment_date DESC") 
                       .select("DISTINCT ON(job_id) *") }
 
+  # allow signatures to be uploaded
+  mount_uploader :signature, SignatureUploader 
+  
   def active
     status == "accepted" &&
       !job.completed &&
