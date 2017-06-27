@@ -23,13 +23,12 @@ FactoryGirl.define do
   factory :job do
     transient do
       assignment_count 0
+      item_count 2
     end
     short_title { Faker::Lorem.sentence(3) }
     reported_date { Faker::Time.backward(30) }
     completed_date { Faker::Time.backward(15) }
     reported_fault { Faker::Lorem.sentence(10) }
-    sor_code { Faker::Code.asin }
-    description { Faker::Lorem.sentence(10) }
     notes { Faker::Lorem.sentence(5) }
     association :user
     association :tenant
@@ -37,6 +36,7 @@ FactoryGirl.define do
 
     after(:create) do |job, evaluator|
       create_list(:assignment, evaluator.assignment_count, job: job, user: job.user)
+      create_list(:item, evaluator.item_count, job: job)
     end
   end
 
@@ -62,6 +62,13 @@ FactoryGirl.define do
     association :user
     association :job
     comment_text { Faker::Lorem.sentence(20) }
+  end
+
+  factory :item do
+    association :job
+    sor_code { Faker::Code.asin }
+    description { Faker::Lorem.sentence(10) }
+    quantity { Faker::Number.between(1.00, 5.00) }
   end
   
 end

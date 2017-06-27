@@ -14,6 +14,7 @@ RSpec.describe 'Jobs API', type: :request do
     it 'returns jobs' do
       expect(json).not_to be_empty
       expect(json.size).to eq(5)
+      expect(json[1]["items"].size).to eq(2)
     end
 
     it 'returns status code 200' do

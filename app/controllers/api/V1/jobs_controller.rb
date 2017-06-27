@@ -4,12 +4,12 @@ class Api::V1::JobsController < SecureAPIController
 
   # GET /jobs
   def index
-    render json: Job.all.to_json(include: :assignments)
+    render json: Job.all.to_json(include: [:assignments, :items])
   end
 
   # GET /jobs/:id
   def show
-    render json: @job.to_json(include: :assignments)
+    render json: @job.to_json(include: [:assignments, :items])
   end
 
   # PUT /jobs/:id

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627151128) do
+ActiveRecord::Schema.define(version: 20170627191347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "job_id"
+    t.integer "user_id"
+    t.integer "job_id"
     t.datetime "assignment_date"
     t.string "am_pm_visit"
     t.text "resolution"
@@ -33,9 +33,19 @@ ActiveRecord::Schema.define(version: 20170627151128) do
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
-  create_table "job_comments", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
+    t.string "sor_code"
+    t.text "description"
+    t.float "quantity"
     t.bigint "job_id"
-    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_items_on_job_id"
+  end
+
+  create_table "job_comments", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "user_id"
     t.text "comment_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,11 +57,9 @@ ActiveRecord::Schema.define(version: 20170627151128) do
     t.datetime "reported_date"
     t.datetime "completed_date"
     t.text "reported_fault"
-    t.text "sor_code"
-    t.text "description"
     t.text "notes"
-    t.bigint "tenant_id"
-    t.bigint "user_id"
+    t.integer "tenant_id"
+    t.integer "user_id"
     t.string "short_title"
     t.boolean "assigned"
     t.boolean "completed"
@@ -90,12 +98,7 @@ ActiveRecord::Schema.define(version: 20170627151128) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key "assignments", "jobs"
-  add_foreign_key "assignments", "users"
   add_foreign_key "assignments", "users", column: "contractor_id"
-  add_foreign_key "job_comments", "jobs"
-  add_foreign_key "job_comments", "users"
+  add_foreign_key "items", "jobs"
   add_foreign_key "jobs", "assignments", column: "latest_assignment_id"
-  add_foreign_key "jobs", "tenants"
-  add_foreign_key "jobs", "users"
 end

@@ -5,6 +5,8 @@ class Job < ApplicationRecord
   belongs_to :latest_assignment, class_name: "Assignment", foreign_key: :latest_assignment_id, optional: true
 
   has_many :job_comments, dependent: :destroy
+  has_many :items, dependent: :destroy
+  
   belongs_to :user
   belongs_to :tenant
   
