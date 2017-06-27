@@ -6,7 +6,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     @view_columns ||= {
       title: { source: "Job.short_title", cond: :like },
       tenant: { source: "Job.tenant.id", cond: :eq },
-      status: { source: "Job.status", cond: :eq }
+      status: { source: "Job.latest_assignment.id", cond: :eq },
     }
   end
 
@@ -15,15 +15,20 @@ class JobDatatable < AjaxDatatablesRails::Base
       {
         title: record.short_title,
         tenant: record.tenant.id,
-        status: record.status
+        status: get_status_string(record),
       }
     end
   end
 
   private
 
+  def get_status_string(record)
+    if record.completed then "completed"
+    elsif record.latest_assignment.nil? then "unassigned"
+    else record.latest_assignment.status || "pending" end
+  end
   def get_raw_records
-    Job.includes(:tenant)
+    Job.includes(:tenant, :latest_assignment)
   end
 
   # ==== These methods represent the basic operations to perform on records

@@ -7,8 +7,9 @@ class Assignment < ApplicationRecord
 
   validates_presence_of :job_id
   validates :status, inclusion: { in: %w(pending accepted rejected cancelled).push(nil) }
-  before_create :set_assignment_date
 
+  before_create :set_assignment_date
+  after_create :update_job_latest_assignment
   # active assignments are the latest accepted assignments on open jobs
   scope :active, -> { includes(:job)
                       .where(status: "accepted", jobs: { completed: false })
@@ -23,6 +24,9 @@ class Assignment < ApplicationRecord
 
   private
 
+  def update_job_latest_assignment
+    job.update(latest_assignment_id: id)
+  end
   def set_assignment_date
     self.assignment_date = Time.now
   end

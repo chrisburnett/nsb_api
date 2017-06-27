@@ -13,5 +13,13 @@ RSpec.describe Assignment, type: :model do
       expect(assignment.save).to be_falsey
     end
   end
+
+  describe 'Latest assignment' do
+    it 'sets itself to be the latest assignment of the job on create' do
+      expect(assignment.job.latest_assignment.id).to eq(assignment.id)
+      new_assignment = create(:assignment, job: assignment.job)
+      expect(assignment.job.latest_assignment.id).to eq(new_assignment.id)
+    end
+  end
   
 end

@@ -2,7 +2,7 @@ class Job < ApplicationRecord
   has_paper_trail # versioning/auditing
 
   has_many :assignments, dependent: :destroy
-  has_one :latest_assignment, class_name: "Assignment"
+  belongs_to :latest_assignment, class_name: "Assignment", foreign_key: :latest_assignment_id, optional: true
 
   has_many :job_comments, dependent: :destroy
   belongs_to :user

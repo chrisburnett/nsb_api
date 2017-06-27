@@ -7,15 +7,16 @@ $ ->
         columns: [
           {data: 'title'}
           {data: 'tenant'}
-          {data: 'status', render: (data, type, full, meta) -> return '<span class="label label-'+job_status_class(data)+'">'+data+'</a>'}
+          {data: 'status', render: (data, type, full, meta) ->
+            data = "unassigned" if !data?
+            status_map = {
+                unassigned: "default",
+                pending: "info",
+                accepted: "primary",
+                rejected: "danger",
+                cancelled: "danger",
+                completed: "success"
+            }
+            return '<span class="label label-'+status_map[data]+'">'+data+'</span>' }
         ]
-    # pagingType is optional,
 
-    job_status_class = (label) ->
-        {
-            pending: "default",
-            accepted: "primary",
-            rejected: "danger",
-            cancelled: "danger",
-            completed: "success"
-        }[label]
