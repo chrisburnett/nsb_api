@@ -1,15 +1,15 @@
-div.row
-  div.col-md-6
-    div.box
-      div.box-header.with-border
-        h3.box-title
-          | Active Jobs
-      div.box-body
-        - unless @jobs.empty?
-          table.table.table-bordered.table-hover id="jobs-table" data-source = admin_jobs_path(format: :json) style="width: 100%"
-            thead
-              tr
-                th Title
-                th Tenant
-                th Status
-            tbody
+div.box
+  div.box-header.with-border
+    h3.box-title
+      | Active Jobs
+  div.box-body
+    - unless @jobs.empty?
+      table.table.table-bordered.table-hover id="jobs-table" data-source = admin_jobs_path(format: :json) style="width: 100%"
+        thead
+          tr
+            th Title
+            th Tenant
+            th Contractor
+            th Status
+            th Action
+        tbody

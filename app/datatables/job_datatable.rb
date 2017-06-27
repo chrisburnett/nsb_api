@@ -6,6 +6,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     @view_columns ||= {
       title: { source: "Job.short_title", cond: :like },
       tenant: { source: "Job.tenant.id", cond: :eq },
+      contractor: {source: "Job.latest_assignment.contractor.name", cond: :eq },
       status: { source: "Job.latest_assignment.id", cond: :eq },
     }
   end
@@ -15,6 +16,7 @@ class JobDatatable < AjaxDatatablesRails::Base
       {
         title: record.short_title,
         tenant: record.tenant.id,
+        contractor: get_contractor_string(record),
         status: get_status_string(record),
       }
     end
@@ -22,11 +24,20 @@ class JobDatatable < AjaxDatatablesRails::Base
 
   private
 
+  # functions to return correct result when there's no assignments,
+  # otherwise table fails
+  def get_contractor_string(record)
+    if record.latest_assignment.nil? then ""
+    else record.latest_assignment.contractor.name
+    end
+  end
+  
   def get_status_string(record)
     if record.completed then "completed"
     elsif record.latest_assignment.nil? then "unassigned"
     else record.latest_assignment.status || "pending" end
   end
+
   def get_raw_records
     Job.includes(:tenant, :latest_assignment)
   end

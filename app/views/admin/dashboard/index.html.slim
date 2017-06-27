@@ -1,3 +1,8 @@
 div.content.body
-  = render '/admin/dashboard/statistics'
-  = render '/admin/dashboard/jobs_list'
+  div.row
+    = render '/admin/dashboard/open_job_widget'
+    = render '/admin/dashboard/open_job_widget'
+    = render '/admin/dashboard/open_job_widget'
+  div.row
+    div.col-md-12
+      = render '/admin/dashboard/jobs_list'
