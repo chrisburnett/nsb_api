@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627191347) do
+ActiveRecord::Schema.define(version: 20170627211754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,9 +65,16 @@ ActiveRecord::Schema.define(version: 20170627191347) do
     t.boolean "completed"
     t.string "signature"
     t.integer "latest_assignment_id"
-    t.string "priority"
+    t.bigint "priority_id"
+    t.index ["priority_id"], name: "index_jobs_on_priority_id"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
+  end
+
+  create_table "priorities", force: :cascade do |t|
+    t.string "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -101,4 +108,5 @@ ActiveRecord::Schema.define(version: 20170627191347) do
   add_foreign_key "assignments", "users", column: "contractor_id"
   add_foreign_key "items", "jobs"
   add_foreign_key "jobs", "assignments", column: "latest_assignment_id"
+  add_foreign_key "jobs", "priorities"
 end
