@@ -25,5 +25,5 @@ div.content.body
           = f.collection_select :priority_id, Priority.all, :id, :priority, {}, class: "form-control select2 select2-hidden-accessible"
         div.form-group
           = f.label :tenant
-          = text_field_tag 'tenant_name_autocomplete', nil, class: "form-control", data: { source: admin_tenants_path }
+          = text_field_tag 'tenant_name_autocomplete', nil, class: "form-control", data: { source: admin_tenants_path }, placeholder: "Search..."
           = f.hidden_field :tenant_id
