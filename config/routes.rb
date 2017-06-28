@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   namespace :admin do
 
     resources :users
-    resources :jobs, only: [:index]
+    resources :tenants
+    resources :jobs, only: [:index, :new, :create]
     
     get 'login' => 'session#index'
     get 'logout' => 'session#destroy'
