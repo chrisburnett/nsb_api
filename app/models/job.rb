@@ -13,6 +13,8 @@ class Job < ApplicationRecord
   
   validates_presence_of :short_title
   validates_presence_of :reported_date
+  validates_presence_of :tenant_id
+  validates_presence_of :client_id
 
   accepts_nested_attributes_for :items
   
