@@ -3,7 +3,7 @@ class Job < ApplicationRecord
   
   has_many :assignments, dependent: :destroy
   has_many :job_comments, dependent: :destroy
-  has_many :items, dependent: :destroy
+  has_many :items, inverse_of: :job, dependent: :destroy
 
   belongs_to :latest_assignment, class_name: "Assignment", foreign_key: :latest_assignment_id, optional: true
   belongs_to :user
@@ -13,6 +13,8 @@ class Job < ApplicationRecord
   validates_presence_of :short_title
   validates_presence_of :reported_date
 
+  accepts_nested_attributes_for :items
+  
   mount_uploader :signature, SignatureUploader 
 
   scope :open, -> { where(completed: false) }

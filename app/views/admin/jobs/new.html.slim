@@ -27,3 +27,19 @@ div.content.body
           = f.label :tenant
           = text_field_tag 'tenant_name_autocomplete', nil, class: "form-control", data: { source: admin_tenants_path }, placeholder: "Search..."
           = f.hidden_field :tenant_id
+        h4 Items
+        table.table.table-condensed id="items-table"
+          thead
+            th
+              = f.label :sor_code
+            th
+              = f.label :description
+            th
+              = f.label :quantity
+          tbody
+            = f.fields_for :items do |item|
+              = render 'item_fields', f: item
+        .links
+          = link_to_add_association f, :items, "data-association-insertion-node": "#items-table", "data-association-insertion-method": "append", class: 'btn' do
+            i.fa.fa-plus
+            |  New Item
