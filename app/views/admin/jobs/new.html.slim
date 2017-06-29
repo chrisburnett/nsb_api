@@ -27,6 +27,10 @@ div.content.body
           = f.label :tenant
           = text_field_tag 'tenant_name_autocomplete', nil, class: "form-control", data: { source: admin_tenants_path }, placeholder: "Search..."
           = f.hidden_field :tenant_id
+        div.form-group
+          = f.label :client
+          = text_field_tag 'client_name_autocomplete', nil, class: "form-control", data: { source: admin_clients_path }, placeholder: "Search..."
+          = f.hidden_field :tenant_id
         h4 Items
         table.table.table-condensed id="items-table"
           thead
