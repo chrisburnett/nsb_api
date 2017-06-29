@@ -16,4 +16,27 @@ class Admin::JobsController < SecureAdminController
     @job = Job.new
   end
 
+  def create
+    @job = Job.new(safe_params.merge({ user_id: session[:user_id] }))
+    if @job.save
+      redirect_to admin_dashboard_path
+    else
+      render :new
+    end
+    
+  end
+
+  private
+
+  def safe_params
+    params.require(:job).permit(:short_title,
+                                :reported_date,
+                                :reported_fault,
+                                :notes,
+                                :priority_id,
+                                :tenant_id,
+                                :client_id,
+                                items_attributes: [:sor_code, :description, :quantity])
+  end
+  
 end
