@@ -38,6 +38,9 @@ gem 'paper_trail'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
 
+# API documentation generator
+gem 'apipie-rails'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
