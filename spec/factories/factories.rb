@@ -6,6 +6,11 @@ FactoryGirl.define do
     address { Faker::Address.street_address }
     notes { Faker::Lorem.sentence(10) }
   end
+  factory :client do
+    name { Faker::Name.name }
+    address { Faker::Address.street_address }
+    notes { Faker::Lorem.sentence(10) }
+  end
   
   factory :user do
     name { Faker::Name.name }
@@ -30,8 +35,10 @@ FactoryGirl.define do
     completed_date { Faker::Time.backward(15) }
     reported_fault { Faker::Lorem.sentence(10) }
     notes { Faker::Lorem.sentence(5) }
+    association :priority
     association :user
     association :tenant
+    association :client
     completed false
 
     after(:create) do |job, evaluator|
@@ -69,6 +76,10 @@ FactoryGirl.define do
     sor_code { Faker::Code.asin }
     description { Faker::Lorem.sentence(10) }
     quantity { Faker::Number.between(1.00, 5.00) }
+  end
+
+  factory :priority do
+    priority { ["High", "Medium", "Low"].sample }
   end
   
 end

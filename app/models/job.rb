@@ -8,6 +8,7 @@ class Job < ApplicationRecord
   belongs_to :latest_assignment, class_name: "Assignment", foreign_key: :latest_assignment_id, optional: true
   belongs_to :user
   belongs_to :tenant
+  belongs_to :client
   belongs_to :priority
   
   validates_presence_of :short_title
