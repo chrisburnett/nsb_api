@@ -1,0 +1,1 @@
+$ -> $(".field_with_errors").parent().addClass("has-error")

@@ -19,6 +19,7 @@ class Admin::JobsController < SecureAdminController
   def create
     @job = Job.new(safe_params.merge({ user_id: session[:user_id] }))
     if @job.save
+      flash[:success] = "Job #{@job.id} was created."
       redirect_to admin_dashboard_path
     else
       render :new

@@ -1,0 +1,11 @@
+- if model.errors.any? 
+    .alert.alert-error.alert-dismissible
+      button.close type="button" data-dismiss="alert" aria-hidden="true"
+        | x
+      h4 
+        i.icon.fa.fa-warning
+        | Problems
+      ul
+        - model.errors.full_messages.each do |e|
+          li 
+            = e

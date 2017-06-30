@@ -1,14 +1,5 @@
 div.content.body
-  - if @job.errors.any? 
-    .alert.alert-warning.alert-dismissible
-      button.close type="button" data-dismiss="alert" aria-hidden="true"
-        | x
-      h4 
-        | Problems
-      ul
-        - @job.errors.full_messages.each do |e|
-          li 
-            = e
+  = render partial: '/admin/errors', locals: { model: @job  }
   div.box.box-primary
     div.box-header.with-border
       h3.box-title
