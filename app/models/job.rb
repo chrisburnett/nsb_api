@@ -6,6 +6,8 @@ class Job < ApplicationRecord
   has_many :items, inverse_of: :job, dependent: :destroy
 
   belongs_to :latest_assignment, class_name: "Assignment", foreign_key: :latest_assignment_id, optional: true
+  has_one :contractor, through: :latest_assignment, source: :contractor
+
   belongs_to :user
   belongs_to :tenant
   belongs_to :client

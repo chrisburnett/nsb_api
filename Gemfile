@@ -28,7 +28,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', git: 'https://github.com/jbox-web/ajax-datatables-rails.git'
 
 gem 'turbolinks'
 gem 'font-awesome-rails'

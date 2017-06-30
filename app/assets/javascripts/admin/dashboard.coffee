@@ -8,6 +8,7 @@ $ ->
           {data: 'title'}
           {data: 'tenant'}
           {data: 'contractor'}
+          {data: 'client'}
           {data: 'status', searchable: true, render: (data, type, full, meta) ->
             data = "unassigned" if !data?
             status_map = {
@@ -20,7 +21,7 @@ $ ->
             }
             return '<span class="label label-'+status_map[data]+'">'+data+'</span>'
           }
-          {data: null, render: (data,type,full,meta) ->
+          {data: null, sortable: false, render: (data,type,full,meta) ->
             return """
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-default btn-flat">Edit</button>
