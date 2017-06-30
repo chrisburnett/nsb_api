@@ -1,4 +1,4 @@
-$ ->
+$(document).on "turbolinks:load", ->
     $('#jobs-table').dataTable
         processing: true
         serverSide: true

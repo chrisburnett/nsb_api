@@ -1,4 +1,4 @@
-$ ->
+$(document).on "turbolinks:load", ->
     $("#tenant_name_autocomplete").autocomplete
         source: $("#tenant_name_autocomplete").data("source")
         select: ( event, ui ) ->
