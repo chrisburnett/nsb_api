@@ -22,6 +22,11 @@ class Admin::AssignmentsController < SecureAdminController
     end
   end
 
+  def update
+    @assignment = Assignment.find(params[:id])
+    @assignment.update(safe_params)
+  end
+  
   private
 
   def safe_params
@@ -31,7 +36,8 @@ class Admin::AssignmentsController < SecureAdminController
                                        :am_pm_visit,
                                        :job_id,
                                        :user_id,
-                                       :notes)
+                                       :notes,
+                                       :status)
   end
   
 end

@@ -1,5 +1,7 @@
 class JobDatatable < AjaxDatatablesRails::Base
 
+  def_delegators :@view, :edit_admin_job_url, :admin_job_url, :admin_job_assignment_url, :new_admin_job_assignment_url, :edit_admin_job_assignment_url
+  
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
@@ -20,12 +22,18 @@ class JobDatatable < AjaxDatatablesRails::Base
 
   def data
     records.map do |job|
+      assignment_id = job.latest_assignment.id if job.latest_assignment
       {
         title: job.short_title,
         tenant: job.tenant.name,
         contractor: get_contractor_string(job),
         client: job.client.name,
-        status: get_status_string(job)
+        status: get_status_string(job),
+        admin_job_url: admin_job_url(job.id),
+        edit_job_url: edit_admin_job_url(job.id),
+        admin_assignment_url: assignment_id ? admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil,
+        new_assignment_url: new_admin_job_assignment_url(job_id: job.id),
+        edit_assignment_url: assignment_id ? edit_admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil
       }
     end
   end
@@ -41,7 +49,7 @@ class JobDatatable < AjaxDatatablesRails::Base
   end
   def get_status_string(job)
     if job.completed then "completed"
-    elsif job.latest_assignment.nil? || job.latest_assignment.status.nil? then "unassigned"
+    elsif job.latest_assignment.nil? || %w(cancelled fufilled).include?(job.latest_assignment.status) then "unassigned"
     else job.latest_assignment.status || "pending" end
   end
 
