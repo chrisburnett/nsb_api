@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :users
     resources :tenants, only: [:index]
     resources :clients, only: [:index]
-    resources :jobs, only: [:index, :new, :create]
+    resources :jobs, only: [:index, :new, :create] do
+      resources :assignments, only: [:index, :new, :create]
+    end
     
     get 'login' => 'session#index'
     get 'logout' => 'session#destroy'
