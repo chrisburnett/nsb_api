@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629082716) do
+ActiveRecord::Schema.define(version: 20170704125750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20170629082716) do
     t.bigint "tenant_id"
     t.bigint "user_id"
     t.string "short_title"
-    t.boolean "assigned"
     t.boolean "completed"
     t.string "signature"
     t.integer "latest_assignment_id"

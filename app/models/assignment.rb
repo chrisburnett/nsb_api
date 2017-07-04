@@ -6,10 +6,12 @@ class Assignment < ApplicationRecord
   belongs_to :contractor, class_name: "User"
 
   validates_presence_of :job_id
-  validates :status, inclusion: { in: %w(pending accepted rejected cancelled).push(nil) }
+  validates :status, inclusion: { in: %w(pending accepted rejected cancelled fulfilled).push(nil) }
 
   before_create :set_assignment_date
+  before_create :set_status
   after_create :update_job_latest_assignment
+
   # active assignments are the latest accepted assignments on open jobs
   scope :active, -> { includes(:job)
                       .where(status: "accepted", jobs: { completed: false })
@@ -22,12 +24,21 @@ class Assignment < ApplicationRecord
   def active
     status == "accepted" &&
       !job.completed &&
-      id == job.assignments.order('assignment_date DESC').first.id
+      id == job.latest_assignment&.id
   end
 
   private
 
+  def set_status
+    self.status = "pending"
+  end
+
+  # after create
   def update_job_latest_assignment
+    # if there's a currently active assignment, cancel it
+    if %w(pending accepted).include?(job.latest_assignment&.status) then
+      job.latest_assignment.update(status: "cancelled")
+    end
     job.update(latest_assignment_id: id)
   end
   def set_assignment_date

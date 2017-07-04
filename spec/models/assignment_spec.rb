@@ -14,12 +14,18 @@ RSpec.describe Assignment, type: :model do
     end
   end
 
-  describe 'Latest assignment' do
-    it 'sets itself to be the latest assignment of the job on create' do
+  describe 'Creating an assignment' do
+    it 'sets the previous assignment to be cancelled' do
+      expect(assignment.status).to eq("pending")
+      create(:assignment, job: assignment.job)
+      assignment.reload
+      expect(assignment.status).to eq("cancelled")
+    end
+
+    it 'sets the new assignment to be the latest assignment of the job' do
       expect(assignment.job.latest_assignment.id).to eq(assignment.id)
       new_assignment = create(:assignment, job: assignment.job)
       expect(assignment.job.latest_assignment.id).to eq(new_assignment.id)
     end
   end
-  
 end

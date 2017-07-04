@@ -27,11 +27,19 @@ class Admin::JobsController < SecureAdminController
     
   end
 
+  def update
+    @job.update(safe_params)
+  end
+
+  def delete
+    @job = Job.find(params[:id])
+    @job.destroy
+  end
+
   private
 
   def safe_params
     params.require(:job).permit(:short_title,
-                                :reported_date,
                                 :reported_fault,
                                 :notes,
                                 :priority_id,
