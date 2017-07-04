@@ -7,12 +7,10 @@ module Api
       # GET /assignments
       def index
         if @current_user then
-          # get assignments where this user is the contractor
-          @assignments = Assignment.where(contractor_id: @current_user.id)
           if params[:active] then
-            render json: @assignments.active.to_json({include: :job, methods: :active})
+            render json: @current_user.active_assignments.to_json({include: :job, methods: :active})
           else
-            render json: @assignments.to_json({include: :job, methods: :active})
+            render json: @current_user.assignments.to_json({include: :job, methods: :active})
           end
         else
           fail NotAuthenticatedError
@@ -42,7 +40,7 @@ module Api
       # GET /assignments/:id
       def show
         if @current_user then
-          render json: @assignment.to_json(include: :job)
+          render json: @assignment.to_json(include: { job: { methods: :assigned } })
         else
           fail NotAuthenticatedError
         end

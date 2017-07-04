@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Assignments API', type: :request do
   # initialize test data
   let!(:user) { create(:user) }
-  let!(:job1) { create(:job, assigned: true, completed: false) }
-  let!(:job2) { create(:job, assigned: false, completed: true) }
-  let!(:pending_assignments) { create_list(:assignment, 10, status: "pending", job: job1, user: user, contractor: user) }
-  let!(:assignments) { create_list(:assignment, 10, status: "accepted", job: job1, user: user, contractor: user) }
+  let!(:job1) { create(:job, completed: false) }
+  let!(:job2) { create(:job, completed: true) }
+  let!(:pending_assignments) { create_list(:assignment, 10, status: "pending", user: user, contractor: user) }
+  let!(:assignments) { create_list(:assignment, 5, status: "accepted", user: user, contractor: user) }
   let!(:completed_assignments) { create_list(:assignment, 10, job: job2, user: user, contractor: user) }
   let!(:assignment_id) { assignments.first.id }
   let!(:header) { authenticated_header(user.id, false) }
@@ -30,7 +30,7 @@ RSpec.describe 'Assignments API', type: :request do
     end
 
     it 'returns 30 assignments' do
-      expect(json.length).to eq(30)
+      expect(json.length).to eq(25)
     end
 
     it 'returns status code 200' do
@@ -44,7 +44,7 @@ RSpec.describe 'Assignments API', type: :request do
 
     context 'when requesting only open assignments' do
       it 'returns only open assignments' do
-        expect(json.length).to eq(1)
+        expect(json.length).to eq(5)
         expect(json[0]['active']).to be_truthy
       end
     end
@@ -83,6 +83,7 @@ RSpec.describe 'Assignments API', type: :request do
   describe 'PUT /api/v1/assignments/:id' do
     let(:valid_attributes) { { am_pm_visit: 'am_pm_visit' } }
     let(:other_assignment) { create(:assignment) }
+    let(:new_assignment) { create(:assignment, user: user, contractor: user) }
 
     context 'when the record exists' do
       before { put "/api/v1/assignments/#{assignment_id}", params: valid_attributes, headers: header }
@@ -104,8 +105,8 @@ RSpec.describe 'Assignments API', type: :request do
     end
 
     context 'when the assignment is accepted' do
-      before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "accepted" }, headers: header }
-      before { get "/api/v1/assignments/#{job1.latest_assignment.id}", headers: header}
+      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "accepted" }, headers: header }
+      before { get "/api/v1/assignments/#{new_assignment.id}", headers: header}
       it 'sets the status to accepted' do
         expect(json['status']).to eq("accepted")
       end
@@ -119,8 +120,8 @@ RSpec.describe 'Assignments API', type: :request do
       end
     end
     context 'when the assignment is rejected' do
-      before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "rejected" }, headers: header }
-      before { get "/api/v1/assignments/#{job1.latest_assignment.id}", headers: header}
+      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "rejected" }, headers: header }
+      before { get "/api/v1/assignments/#{new_assignment.id}", headers: header}
       it 'sets the status to rejected', versioning: true do
         expect(json['status']).to eq("rejected")
       end
@@ -131,7 +132,7 @@ RSpec.describe 'Assignments API', type: :request do
     end
     
     context 'when an assignment status is invalid' do
-      before { put "/api/v1/assignments/#{job1.latest_assignment.id}", params: { status: "rubbish" }, headers: header }
+      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "rubbish" }, headers: header }
       
       it 'returns response code 422' do
         expect(response).to have_http_status(422)

@@ -55,7 +55,7 @@ FactoryGirl.define do
     association :user
     association :contractor, factory: :user
     job do
-      create(:job, completed: completed, assigned: assigned)
+      create(:job, completed: completed)
     end
     assignment_date { Faker::Time.backward(30) }
     scheduled_date { Faker::Time.backward(10) }

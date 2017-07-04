@@ -12,12 +12,6 @@ class Assignment < ApplicationRecord
   before_create :set_status
   after_create :update_job_latest_assignment
 
-  # active assignments are the latest accepted assignments on open jobs
-  scope :active, -> { includes(:job)
-                      .where(status: "accepted", jobs: { completed: false })
-                      .order("job_id, assignment_date DESC") 
-                      .select("DISTINCT ON(job_id) *") }
-
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
   
@@ -30,7 +24,7 @@ class Assignment < ApplicationRecord
   private
 
   def set_status
-    self.status = "pending"
+    self.status ||= "pending"
   end
 
   # after create
