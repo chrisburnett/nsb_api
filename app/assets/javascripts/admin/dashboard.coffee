@@ -38,6 +38,7 @@ $(document).on "turbolinks:load", ->
                 accepted: "primary",
                 rejected: "danger",
                 cancelled: "danger",
+                review: "warning",
                 completed: "success"
             }
             return '<span class="label label-'+status_map[data]+'">'+data+'</span>'

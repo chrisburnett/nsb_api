@@ -11,7 +11,8 @@ class Assignment < ApplicationRecord
   before_create :set_assignment_date
   before_create :set_status
   after_create :update_job_latest_assignment
-
+  before_update :unlink_job_if_necessary, :if => :status_changed?
+  
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
   
@@ -35,11 +36,22 @@ class Assignment < ApplicationRecord
     end
     job.update(latest_assignment_id: id)
   end
+  
   def set_assignment_date
     self.assignment_date = Time.now
   end
+  
   def set_response_date
     self.response_date = Time.now
+  end
+
+  # before updating status if this is the current assignment and it's
+  # being fulfilled, unlink it (leaving the job unassigned)
+  def unlink_job_if_necessary
+    if %w(fulfilled).include?(self.status) &&
+       self.job.latest_assignment.id == self.id then
+      self.job.update(latest_assignment: nil)
+    end
   end
 
 end
