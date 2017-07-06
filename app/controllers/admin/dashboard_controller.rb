@@ -6,7 +6,7 @@ class Admin::DashboardController < SecureAdminController
   
   def index
     @jobs = Job.all
-    @open_job_count = Job.open.length
+    @open_job_count = Job.where.not(status: Job::STATE_COMPLETED.to_s).length
   end
 
 end
