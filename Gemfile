@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# AASM for job/assignment state machine
+gem 'aasm'
 # file uploads
 gem 'carrierwave', '~> 1.0'
 # auth tokens
@@ -49,7 +51,9 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'faker'
+  gem 'mocha'
 end
 
 group :development do

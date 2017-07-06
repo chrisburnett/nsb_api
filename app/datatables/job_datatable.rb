@@ -50,9 +50,9 @@ class JobDatatable < AjaxDatatablesRails::Base
 
   # formats the actual status code for the view
   def get_status_string(job)
-    if job.completed then "completed"
-    elsif job.latest_assignment.nil? || %w(cancelled).include?(job.latest_assignment.status) then "unassigned"
-    elsif job.latest_assignment.status == "fulfilled" then "review"
+    if job.completed? then "completed"
+    elsif job.latest_assignment.nil? || job.latest_assignment.cancelled? then "unassigned"
+    elsif job.latest_assignment.fulfilled? then "review"
     else job.latest_assignment.status || "pending" end
   end
 

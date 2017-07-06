@@ -1,4 +1,6 @@
 class Job < ApplicationRecord
+  include AASM
+  
   has_paper_trail # versioning/auditing
   
   has_many :assignments, dependent: :destroy
@@ -22,16 +24,42 @@ class Job < ApplicationRecord
   
   mount_uploader :signature, SignatureUploader 
 
-  scope :open, -> { where(completed: false) }
-  scope :completed, -> { where(completed: true) }
-  # job considered assigned if it has a latest assignment and that
-  # assignment is accepted
-  def assigned
-    !latest_assignment.nil? && latest_assignment.status == 'accepted'
+  aasm column: 'status' do
+    state :unassigned, intitial: true
+    state :assigned
+    state :review
+    state :completed
+
+    event :assign do
+      transitions from: :unassigned, to: :assigned
+    end
+    event :unassign, after: :clear_assignment do
+      transitions from: :assigned, to: :unassigned
+    end
+    event :complete do
+      transitions from: [:unassigned, :assigned, :review], to: :completed
+    end
+    # review state occurs when the assignment is fulfilled and the job
+    # needs to be reviewed to see whether further assignment required
+    event :review do
+      transitions from: [:assigned, :completed], to: :review
+    end
+    # allow reopening of closed jobs without requiring new job created
+    event :reopen do
+      transitions from: [:unassigned, :completed], to: :unassigned
+    end
+    
+  end
+  
+  def clear_assignment
+    self.update(latest_assignment: nil)
   end
 
-  def status
-    completed || (latest_assignment.status || 'pending')
+  def status=(status)
+    if(status == Job::STATE_UNASSIGNED.to_s) then reopen!
+    elsif(status == Job::STATE_COMPLETED.to_s) then complete!
+    elsif(status == Job::STATE_REVIEW.to_s) then review!
+    end
   end
 
 end

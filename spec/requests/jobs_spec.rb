@@ -72,11 +72,11 @@ RSpec.describe 'Jobs API', type: :request do
     context 'when the job is completed' do
       let(:header) { authenticated_header(user.id, false) }
 
-      before { put "/api/v1/jobs/#{job_id}", headers: header, params: { short_title: "booooo", completed: "true" } }
+      before { put "/api/v1/jobs/#{job_id}", headers: header, params: { short_title: "booooo", status: Job::STATE_COMPLETED.to_s } }
       
       it 'changes the job status to completed' do
         get "/api/v1/jobs/#{job_id}", headers: header
-        expect(json["completed"]).to be_truthy
+        expect(json['status']).to eq(Job::STATE_COMPLETED.to_s)
       end
       
       it 'returns http status 200' do

@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Assignments API', type: :request do
   # initialize test data
   let!(:user) { create(:user) }
-  let!(:job1) { create(:job, completed: false) }
-  let!(:job2) { create(:job, completed: true) }
-  let!(:pending_assignments) { create_list(:assignment, 10, status: "pending", user: user, contractor: user) }
-  let!(:assignments) { create_list(:assignment, 5, status: "accepted", user: user, contractor: user) }
+  let!(:job1) { create(:job, status: Job::STATE_UNASSIGNED) }
+  let!(:job2) { create(:job, status: Job::STATE_COMPLETED) }
+  let!(:pending_assignments) { create_list(:assignment, 10, user: user, contractor: user) }
+  let!(:assignments) { create_list(:assignment, 5, status: Assignment::STATE_ACCEPTED.to_s, user: user, contractor: user) }
   let!(:completed_assignments) { create_list(:assignment, 10, job: job2, user: user, contractor: user) }
   let!(:assignment_id) { assignments.first.id }
   let!(:header) { authenticated_header(user.id, false) }
-
+  
   # access without token returns 401 unauthorized
   describe 'GET /api/v1/assignments' do
     before { get '/api/v1/assignments' }
@@ -45,7 +45,7 @@ RSpec.describe 'Assignments API', type: :request do
     context 'when requesting only open assignments' do
       it 'returns only open assignments' do
         expect(json.length).to eq(5)
-        expect(json[0]['active']).to be_truthy
+        expect(json[0]['status']).to eq(Assignment::STATE_ACCEPTED.to_s)
       end
     end
 
@@ -105,14 +105,14 @@ RSpec.describe 'Assignments API', type: :request do
     end
 
     context 'when the assignment is accepted' do
-      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "accepted" }, headers: header }
+      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: Assignment::STATE_ACCEPTED.to_s }, headers: header }
       before { get "/api/v1/assignments/#{new_assignment.id}", headers: header}
       it 'sets the status to accepted' do
-        expect(json['status']).to eq("accepted")
+        expect(json['status']).to eq(Assignment::STATE_ACCEPTED.to_s)
       end
 
       it 'sets the job status to assigned' do
-        expect(json['job']['assigned']).to be_truthy
+        expect(json['job']['status']).to eq(Job::STATE_ASSIGNED.to_s)
       end
 
       it 'retains the id of the user who accepted the assignment', versioning: true do
@@ -123,7 +123,7 @@ RSpec.describe 'Assignments API', type: :request do
       before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "rejected" }, headers: header }
       before { get "/api/v1/assignments/#{new_assignment.id}", headers: header}
       it 'sets the status to rejected', versioning: true do
-        expect(json['status']).to eq("rejected")
+        expect(json['status']).to eq(Assignment::STATE_REJECTED.to_s)
       end
 
       it 'sets the job status to unassigned' do
@@ -132,7 +132,7 @@ RSpec.describe 'Assignments API', type: :request do
     end
     
     context 'when an assignment status is invalid' do
-      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "rubbish" }, headers: header }
+      before { put "/api/v1/assignments/#{new_assignment.id}", params: { status: "feh" }, headers: header }
       
       it 'returns response code 422' do
         expect(response).to have_http_status(422)

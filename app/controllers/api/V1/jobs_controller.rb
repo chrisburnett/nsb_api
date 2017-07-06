@@ -26,7 +26,7 @@ class Api::V1::JobsController < SecureAPIController
 
   def job_params
     # following params can be edited by clients
-    params.permit(:short_title, :description, :notes, :completed, :signature)
+    params.permit(:short_title, :description, :notes, :status, :signature)
   end
 
   def set_job
@@ -35,7 +35,7 @@ class Api::V1::JobsController < SecureAPIController
 
   def can_edit(user, job)
     user &&
-      job.latest_assignment.contractor.id == user.id
+      (user.is_admin || job.latest_assignment.contractor.id == user.id)
   end
 
 end

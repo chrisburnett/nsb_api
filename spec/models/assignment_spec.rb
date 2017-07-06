@@ -7,10 +7,10 @@ RSpec.describe Assignment, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:job) }
 
-  describe 'Status validator' do
+  describe 'Status AASM validator' do
     it 'prevents invalid status being saved' do
       assignment.status = "test"
-      expect(assignment.save).to be_falsey
+      expect(assignment.status).not_to eq("test")
     end
   end
 
