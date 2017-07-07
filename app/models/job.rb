@@ -30,12 +30,14 @@ class Job < ApplicationRecord
     state :review
     state :completed
 
+    # allowed to reassign over existing assignment
     event :assign do
-      transitions from: :unassigned, to: :assigned
+      transitions from: [:assign, :unassigned], to: :assigned
     end
-    event :unassign, after: :clear_assignment do
+    event :unassign do
       transitions from: :assigned, to: :unassigned
     end
+    # always allowed to mark as complete
     event :complete do
       transitions from: [:unassigned, :assigned, :review], to: :completed
     end
@@ -46,15 +48,11 @@ class Job < ApplicationRecord
     end
     # allow reopening of closed jobs without requiring new job created
     event :reopen do
-      transitions from: [:unassigned, :completed], to: :unassigned
+      transitions from: [:completed], to: :unassigned
     end
     
   end
   
-  def clear_assignment
-    self.update(latest_assignment: nil)
-  end
-
   def status=(status)
     if(status == Job::STATE_UNASSIGNED.to_s) then reopen!
     elsif(status == Job::STATE_COMPLETED.to_s) then complete!

@@ -28,7 +28,7 @@ class Admin::JobsController < SecureAdminController
   end
 
   def update
-    @job.update(safe_params)
+    Job.find(params[:id]).update(safe_params)
   end
 
   def delete
@@ -45,6 +45,7 @@ class Admin::JobsController < SecureAdminController
                                 :priority_id,
                                 :tenant_id,
                                 :client_id,
+                                :status,
                                 items_attributes: [:sor_code, :description, :quantity])
   end
   

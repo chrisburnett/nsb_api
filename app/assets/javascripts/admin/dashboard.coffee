@@ -8,10 +8,19 @@ $(document).on "turbolinks:load", ->
             "    </button>"
             "    <ul class='dropdown-menu'>"
         ]
-            
-        if row.status != "unassigned" 
+ 
+        if data.may_assign == "true"
+            menu_html.push "        <li><a href='"+row.new_assignment_url+"'>New assignment</a></li>"
+
+        if data.may_cancel == "true"
             menu_html.push "        <li><a href='"+row.admin_assignment_url+"' data-remote='true' data-params='assignment[status]=cancelled' data-method='put'>Cancel assignment</a></li>"
-            
+
+        if data.may_complete == "true"
+            menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=completed' data-method='put'>Mark as completed</a></li>"
+
+        if data.may_reopen == "true"
+            menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=unassigned' data-method='put'>Reopen</a></li>"
+
         menu_html.concat [
             "        <li><a method='delete', href='#'>Delete</a></li>"
             "    </ul>"
@@ -41,11 +50,10 @@ $(document).on "turbolinks:load", ->
                 review: "warning",
                 completed: "success"
             }
-            return '<span class="label label-'+status_map[data]+'">'+data+'</span>'
+            return '<span class="label label-'+status_map[data.slice(data.lastIndexOf(' ')+1)]+'">'+data+'</span>'
           }
           { data: null, sortable: false, render: get_dropdown_menu_for_row, createdCell: (td, cellData, rowData, row, col) ->
               $(td).on "ajax:success", (e, data, status, xhr) ->
-                  console.log("WTF")
                   jobs_table.api().ajax.reload()
           }
         ]

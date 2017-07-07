@@ -21,7 +21,7 @@ class JobDatatable < AjaxDatatablesRails::Base
   end
 
   def data
-    records.map do |job|
+    data = records.map do |job|
       assignment_id = job.latest_assignment.id if job.latest_assignment
       {
         title: job.short_title,
@@ -33,9 +33,14 @@ class JobDatatable < AjaxDatatablesRails::Base
         edit_job_url: edit_admin_job_url(job.id),
         admin_assignment_url: assignment_id ? admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil,
         new_assignment_url: new_admin_job_assignment_url(job_id: job.id),
-        edit_assignment_url: assignment_id ? edit_admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil
+        edit_assignment_url: assignment_id ? edit_admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil,
+        may_cancel: job.latest_assignment&.may_cancel? || false,
+        may_complete: job.may_complete?,
+        may_reopen: job.may_reopen?,
+        may_assign: job.may_assign?
       }
     end
+    return data
   end
 
   private
@@ -50,15 +55,17 @@ class JobDatatable < AjaxDatatablesRails::Base
 
   # formats the actual status code for the view
   def get_status_string(job)
-    if job.completed? then "completed"
-    elsif job.latest_assignment.nil? || job.latest_assignment.cancelled? then "unassigned"
-    elsif job.latest_assignment.fulfilled? then "review"
-    else job.latest_assignment.status || "pending" end
+    status_string = job.status.dup
+    status_string << ": #{job.latest_assignment&.status}" unless
+      job.status == Job::STATE_COMPLETED.to_s ||
+      job.latest_assignment.nil? ||
+      job.latest_assignment&.status == Assignment::STATE_FULFILLED.to_s
+    return status_string
   end
 
   # performs the actual query backing the datatable
   def get_raw_records
-    Job.includes(:user, :tenant, :client, :contractor).references(:user, :tenant, :client, :contractor, :assignment)
+    Job.includes(:user, :tenant, :client, :contractor, ).references(:user, :tenant, :client, :contractor, :assignment).all
   end
 
   # required for search on custom column
