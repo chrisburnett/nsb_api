@@ -10,6 +10,11 @@ class Admin::AssignmentsController < SecureAdminController
     # route
     @assignment = Assignment.new(job_id: params[:job_id])
   end
+  def edit
+    # assignment controller only accessable via valid job resource
+    # route
+    @assignment = Assignment.find(params[:id])
+  end
 
   def create
     @assignment = Assignment.new(safe_params.merge({ user_id: session[:user_id],
@@ -24,7 +29,12 @@ class Admin::AssignmentsController < SecureAdminController
 
   def update
     @assignment = Assignment.find(params[:id])
-    @assignment.update(safe_params)
+    if @assignment.update(safe_params) then
+      flash[:success] = "Assignment #{@assignment.id} was updated."
+      redirect_to admin_dashboard_path
+    else
+      render :edit
+    end
   end
   
   private

@@ -1,0 +1,28 @@
+= form_for [:admin, :job, @assignment] do |f| 
+  div.box-body
+    div.form-group
+      = f.label :contractor
+      = text_field_tag 'contractor_name_autocomplete', nil, class: "form-control", data: { source: admin_users_path }, placeholder: "Search..."
+      = f.hidden_field :contractor_id
+    div.form-group
+      = f.label :scheduled_date
+      div.input-group.date
+        div.input-group-addon
+          i.fa.fa-calendar
+        = f.text_field :scheduled_date, id: "scheduled_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+    div.form-group
+      = f.label :actual_date
+      div.input-group.date
+        div.input-group-addon
+          i.fa.fa-calendar
+        = f.text_field :actual_date, id: "actual_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+    div.form-group  
+      = f.label "Time of visit", class: "control-label"
+      = f.select :am_pm_visit, options_for_select([["AM", "am"], ["PM", "pm"]]), class: "form-control"
+    div.form-group
+      = f.label :notes
+      = f.text_area :notes, rows: 3, class: "form-control"
+    div.btn-toolbar
+      =f.submit class: "btn btn-primary pull-left"
+      =link_to 'Cancel', admin_dashboard_path, class: 'btn btn-default'
+

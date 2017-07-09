@@ -42,7 +42,7 @@ class Assignment < ApplicationRecord
   def update_job_state
     if job.latest_assignment&.id == id then
       #if accepted? then job.assign!
-      if rejected? || cancelled? then job.unassign!
+      if (rejected? || cancelled?) && job.may_unassign? then job.unassign!
       elsif fulfilled? then job.review!
       end
     end
@@ -73,7 +73,7 @@ class Assignment < ApplicationRecord
       job.latest_assignment.cancel!
     end
     job.update(latest_assignment_id: self.id)
-    job.assign!
+    if job.may_assign? then job.assign! end
   end
   
   def set_assignment_date

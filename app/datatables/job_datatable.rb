@@ -1,6 +1,6 @@
 class JobDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :edit_admin_job_url, :admin_job_url, :admin_job_assignment_url, :new_admin_job_assignment_url, :edit_admin_job_assignment_url
+  def_delegators :@view, :admin_job_url, :admin_job_assignment_url, :edit_admin_job_url, :edit_admin_job_assignment_url, :admin_job_assignments_url, :new_admin_job_assignment_url
   
   def view_columns
     # Declare strings in this format: ModelName.column_name

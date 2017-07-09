@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20170706221213) do
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "job_id"
+    t.bigint "user_id"
+    t.bigint "job_id"
     t.datetime "assignment_date"
     t.string "am_pm_visit"
     t.text "resolution"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20170706221213) do
   end
 
   create_table "job_comments", force: :cascade do |t|
-    t.integer "job_id"
-    t.integer "user_id"
+    t.bigint "job_id"
+    t.bigint "user_id"
     t.text "comment_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20170706221213) do
     t.datetime "completed_date"
     t.text "reported_fault"
     t.text "notes"
-    t.integer "tenant_id"
-    t.integer "user_id"
+    t.bigint "tenant_id"
+    t.bigint "user_id"
     t.string "short_title"
     t.string "signature"
     t.integer "latest_assignment_id"
@@ -114,7 +114,13 @@ ActiveRecord::Schema.define(version: 20170706221213) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "assignments", "jobs"
+  add_foreign_key "assignments", "users"
   add_foreign_key "assignments", "users", column: "contractor_id"
+  add_foreign_key "job_comments", "jobs"
+  add_foreign_key "job_comments", "users"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "priorities"
+  add_foreign_key "jobs", "tenants"
+  add_foreign_key "jobs", "users"
 end

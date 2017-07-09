@@ -14,8 +14,16 @@ class SecureAPIController < ActionController::Base
   before_action :set_current_user, :authenticate_request, :set_paper_trail_whodunnit
   
   skip_before_action :verify_authenticity_token
+  
+  rescue_from NotAuthenticatedError do
+    render json: { error: 'Not Authorized' }, status: :unauthorized
+  end
+  
+  rescue_from JWT::ExpiredSignature do
+    render json: { error: 'Auth token is expired' }, status: 419 # unofficial timeout status code
+  end
 
-  # Based on the user_id inside the token payload, find the user.
+   # Based on the user_id inside the token payload, find the user.
   def set_current_user
     if decoded_auth_token
       @current_user ||= User.find(decoded_auth_token[:user_id])
