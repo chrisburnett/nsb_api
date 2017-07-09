@@ -20,7 +20,7 @@ class Job < ApplicationRecord
   validates_presence_of :tenant_id
   validates_presence_of :client_id
 
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, allow_destroy: true
   
   mount_uploader :signature, SignatureUploader 
 
