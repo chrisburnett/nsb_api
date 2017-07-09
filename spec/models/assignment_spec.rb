@@ -9,8 +9,7 @@ RSpec.describe Assignment, type: :model do
 
   describe 'Status AASM validator' do
     it 'prevents invalid status being saved' do
-      assignment.status = "test"
-      expect(assignment.status).not_to eq("test")
+      expect { assignment.status = "test" }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
