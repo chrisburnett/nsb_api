@@ -1,0 +1,23 @@
+div.box
+  div.box-header.with-border
+    h3.box-title
+      | #{@subject}s
+  div.box-body
+    - unless @users.empty?
+      table.table.table-bordered.table-hover id="users-table" style="width: 100%"
+        thead
+          tr
+            th Username
+            th Name
+            th Date Registered
+            th Action
+        tbody
+          - @users.each do |u|
+            tr
+              td = u.username
+              td = u.name
+              td = u.created_at
+
+  div.box-footer
+    a.btn.btn-primary href = new_admin_user_path(admin: @admin || false)
+      | New #{@subject}

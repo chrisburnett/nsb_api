@@ -1,0 +1,17 @@
+= form_for [:admin, @user] do |f| 
+  div.box-body
+    div.form-group
+      = f.label :username
+      = f.text_field :username, class: "form-control"
+    div.form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+      = f.hidden_field :is_admin, value: @admin
+    div.form-group
+      = f.label :password
+      = f.password_field :password, placeholder: "Password", class: "form-control"
+      = f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control"
+
+    div.btn-toolbar
+      =f.submit "New #{@subject}", class: "btn btn-primary pull-left"
+      =link_to 'Cancel', admin_users_path(admin: @admin), class: 'btn btn-default'

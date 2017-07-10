@@ -7,8 +7,11 @@ class User < ApplicationRecord
   has_many :created_assignments, foreign_key: :user_id, source: :assignment
   
   has_secure_password
+  validates_confirmation_of :password
+
   validates_presence_of :name
-  validates_presence_of :address
+  validates_presence_of :username
+  validates :username, uniqueness: true
 
   def generate_auth_token
     payload = { user_id: self.id }

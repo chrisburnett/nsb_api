@@ -2,7 +2,7 @@
   div.box-body
     div.form-group
       = f.label :contractor
-      = text_field_tag 'contractor_name_autocomplete', @assignment.contractor&.name, class: "form-control", data: { source: admin_users_path }, placeholder: "Search..."
+      = text_field_tag 'contractor_name_autocomplete', @assignment.contractor&.name, class: "form-control", data: { source: admin_users_path(format: :json)}, placeholder: "Search..."
       = f.hidden_field :contractor_id
     div.form-group
       = f.label :scheduled_date
