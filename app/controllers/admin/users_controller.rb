@@ -13,7 +13,7 @@ class Admin::UsersController < SecureAdminController
         if params[:term] then
           render json: search(params[:term])
         else
-          render json: User.all.to_json
+          render json: UserDatatable.new(view_context, {admin: params[:admin]})
         end
       end
       
@@ -57,7 +57,8 @@ class Admin::UsersController < SecureAdminController
   end
 
   def destroy
-    @user = User.find(params[:id]).destroy()
+    @user = User.find(params[:id])
+    @user.destroy
   end
 
   private
