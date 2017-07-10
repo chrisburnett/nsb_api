@@ -29,13 +29,13 @@ header.main-header
             li.footer
               a href="#"  View all
         /! User Account: style can be found in dropdown.less
-        li.dropdown.user.user-menu
-          a.dropdown-toggle data-toggle="dropdown" href="#" 
-            - if @current_user
+        - if @current_user
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" 
               span.hidden-xs = @current_user.name
-          ul.dropdown-menu
-            /! Menu Body
-            li.user-body
-              a.btn.btn-default.btn-flat href="#"  Profile
-              a.btn.btn-default.btn-flat href="#"  Sign out
+            ul.dropdown-menu
+              /! Menu Body
+              li
+                a href= edit_admin_user_url(id: @current_user.id)  Profile
+                a href= admin_logout_url  Sign out
 

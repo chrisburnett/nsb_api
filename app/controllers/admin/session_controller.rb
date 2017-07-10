@@ -4,6 +4,7 @@ class Admin::SessionController < ActionController::Base
   layout "application"
   
   def index
+    @hide_sidebar = true
   end
 
   def create

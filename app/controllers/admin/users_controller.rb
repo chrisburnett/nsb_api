@@ -57,10 +57,10 @@ class Admin::UsersController < SecureAdminController
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(safe_params) then
+    @user = User.find(params[:id])
+    if @user.update(safe_params) then
       flash[:success] = "User #{params[:id]} was updated."
-      redirect_to admin_users_path(admin: user.is_admin)
+      redirect_to admin_users_path(admin: @user.is_admin)
     else
       render :edit
     end
