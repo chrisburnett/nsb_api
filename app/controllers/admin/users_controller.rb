@@ -25,7 +25,7 @@ class Admin::UsersController < SecureAdminController
             @users = User.where(is_admin: true)
           else
             @subject = "Contractor"
-            @users = User.where(is_admin: false)
+            @users = User.where.not(is_admin: true)
           end
         else
           @subject = "User"
@@ -56,6 +56,16 @@ class Admin::UsersController < SecureAdminController
     @user = User.find(params[:id])
   end
 
+  def update
+    user = User.find(params[:id])
+    if user.update(safe_params) then
+      flash[:success] = "User #{params[:id]} was updated."
+      redirect_to admin_users_path(admin: user.is_admin)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -63,12 +73,12 @@ class Admin::UsersController < SecureAdminController
 
   private
 
-  def safe_params
-    params.require(:user).permit(:username, :name, :is_admin, :password, :password_confirmation)
-  end
-
   def search(term)
     User.where("name ILIKE ?", "%#{params[:term]}%").map { |c| {id: c.id, value: "#{c.name}" } }
+  end
+
+  def safe_params
+    params.require(:user).permit(:id, :name, :username, :is_admin, :password, :password_confirmation)
   end
   
 end

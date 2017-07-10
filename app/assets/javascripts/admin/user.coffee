@@ -2,7 +2,7 @@ $(document).on "turbolinks:load", ->
     get_dropdown_menu_for_row = (data, type, row, meta) ->
         menu_html = [ 
             "<div class='btn-group'>"
-            "    <a href='"+row.edit_admin_user_url+"' type='button' class='btn btn-sm btn-default btn-flat'>Edit</a>"
+            "    <a href='"+row.edit_user_url+"' type='button' class='btn btn-sm btn-default btn-flat'>Edit</a>"
             "    <button type='button' class='btn btn-sm btn-default btn-flat dropdown-toggle' data-toggle='dropdown'>"
             "        <span class='caret'</class>"
             "    </button>"
