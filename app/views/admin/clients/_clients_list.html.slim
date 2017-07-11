@@ -1,0 +1,19 @@
+div.box
+  div.box-header.with-border
+    h3.box-title
+      | Clients
+  div.box-body
+    - unless @clients.empty?
+      table.table.table-bordered.table-hover id="clients-table" data-source = admin_clients_path(format: :json) style="width: 100%"
+        thead
+          tr
+            th ID
+            th Name
+            th Address
+            th Notes
+            th Action
+        tbody
+
+  div.box-footer
+    a.btn.btn-primary href = new_admin_client_path()
+      | New Client

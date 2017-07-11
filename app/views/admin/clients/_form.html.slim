@@ -1,0 +1,15 @@
+= form_for [:admin, @client] do |f| 
+  div.box-body
+    div.form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    div.form-group
+      = f.label :address
+      = f.text_field :address, class: "form-control"
+    div.form-group
+      = f.label :notes
+      = f.text_area :notes, rows: 3, class: "form-control"
+
+    div.btn-toolbar
+      =f.submit class: "btn btn-primary pull-left"
+      =link_to 'Cancel', admin_clients_path, class: 'btn btn-default'

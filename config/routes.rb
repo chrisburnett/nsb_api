@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     resources :users
     resources :tenants
-    resources :clients, only: [:index]
+    resources :clients
     resources :jobs, only: [:index, :update, :new, :create, :edit, :destroy] do
       resources :assignments, only: [:index, :new, :create, :update, :edit]
     end
