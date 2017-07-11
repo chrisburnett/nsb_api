@@ -1,0 +1,19 @@
+div.box
+  div.box-header.with-border
+    h3.box-title
+      | Tenants
+  div.box-body
+    - unless @tenants.empty?
+      table.table.table-bordered.table-hover id="tenants-table" data-source = admin_tenants_path(format: :json) style="width: 100%"
+        thead
+          tr
+            th ID
+            th Name
+            th Address
+            th Notes
+            th Action
+        tbody
+
+  div.box-footer
+    a.btn.btn-primary href = new_admin_tenant_path()
+      | New Tenant
