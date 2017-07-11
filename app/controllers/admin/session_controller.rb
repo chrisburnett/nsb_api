@@ -1,7 +1,7 @@
 class Admin::SessionController < ActionController::Base
 
   include ActionView::Layouts
-  layout "application"
+  layout "login"
   
   def index
     @hide_sidebar = true
