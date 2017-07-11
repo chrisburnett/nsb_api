@@ -1,20 +1,22 @@
 .main-sidebar
   .sidebar
-    ul.sidebar-menu
-      li
+    ul.sidebar-menu.nav
+      li.header
+        | MAIN MENU
+      li id="menu-dashboard"
         a href="/admin/dashboard"
           i class="fa fa-dashboard"
           span Dashboard
-      li
+      li id="menu-tenants"
         a href="/admin/tenants"
           span Tenants
-      li
+      li id="menu-clients"
         a href="/admin/clients"
           span Clients
-      li
+      li id="menu-contractors"
         a href="/admin/users?admin=false"
           span Contractors
-      li
+      li id="menu-administrators"
         a href="/admin/users?admin=true"
           span Administrators
 
