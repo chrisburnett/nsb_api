@@ -1,4 +1,4 @@
-$ ->
+$(document).on "turbolinks:load", ->
     $("#tenant_name_autocomplete").autocomplete
         source: $("#tenant_name_autocomplete").data("source")
         select: ( event, ui ) ->
@@ -10,6 +10,7 @@ $ ->
         source: $("#client_name_autocomplete").data("source")
         select: ( event, ui ) ->
             # set job_tenant_id hidden field
-            $("#client_tenant_id").val(ui.item.id)
+            $("#job_client_id").val(ui.item.id)
             $("#client_name_autocomplete").val(ui.item.value)
+
     

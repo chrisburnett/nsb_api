@@ -7,37 +7,15 @@ module Api
       # GET /assignments
       def index
         if @current_user then
-          # get assignments where this user is the contractor
-          @assignments = Assignment.where(contractor_id: @current_user.id)
           if params[:active] then
-            render json: @assignments.active.to_json({include: :job, methods: :active})
+            render json: @current_user.assignments.accepted.to_json({include: :job})
           else
-            render json: @assignments.to_json({include: :job, methods: :active})
+            render json: @current_user.assignments.to_json({include: :job})
           end
         else
           fail NotAuthenticatedError
         end
       end
-
-      # DISABLING - contractors don't create assignments
-      # will be done via the admin interface
-      # POST /assignments
-      # def create
-      #   if @current_user then
-      #     job = Job.find_by(id: params[:job_id])
-      #     if job then
-      #       @assignment = Assignment.new(assignment_params)
-      #       @assignment.user = @current_user
-      #       @assignment.save
-      #       job.update_attribute(:assigned, true) # probably bad practice
-      #       json_response(@assignment, :created)
-      #     else
-      #       head :unprocessable_entity # unprocessable entity
-      #     end
-      #   else
-      #     fail NotAuthenticatedError
-      #   end
-      # end
 
       # GET /assignments/:id
       def show
@@ -53,11 +31,7 @@ module Api
       def update
         if @current_user then
           if can_edit? then
-            if @assignment.update(assignment_params)
-              head :no_content
-            else
-              head :unprocessable_entity
-            end
+            @assignment.update!(assignment_params)
           else
             head :forbidden # not allowed to edit other people's assignments
           end

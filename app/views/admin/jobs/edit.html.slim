@@ -1,0 +1,7 @@
+div.content.body
+  = render partial: '/admin/errors', locals: { model: @job  }
+  div.box.box-primary
+    div.box-header.with-border
+      h3.box-title
+        | Edit Job #{@job.id}
+    = render 'form'

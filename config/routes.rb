@@ -21,9 +21,11 @@ Rails.application.routes.draw do
   namespace :admin do
 
     resources :users
-    resources :tenants, only: [:index]
-    resources :clients, only: [:index]
-    resources :jobs, only: [:index, :new, :create]
+    resources :tenants
+    resources :clients
+    resources :jobs, only: [:index, :update, :new, :create, :edit, :destroy] do
+      resources :assignments, only: [:index, :new, :create, :update, :edit]
+    end
     
     get 'login' => 'session#index'
     get 'logout' => 'session#destroy'

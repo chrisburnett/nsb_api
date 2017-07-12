@@ -1,0 +1,47 @@
+= form_for [:admin, @job] do |f| 
+  div.box-body
+    div.form-group
+      = f.label :short_title
+      = f.text_field :short_title, class: "form-control"
+    div.form-group
+      = f.label :reported_fault
+      = f.text_area :reported_fault, rows: 3, class: "form-control"
+    div.form-group
+      = f.label :notes
+      = f.text_area :notes, rows: 3, class: "form-control"
+    div.form-group
+      = f.label :reported_date
+      div.input-group.date
+        div.input-group-addon
+          i.fa.fa-calendar
+        = f.text_field :reported_date, id: "reported_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+    div.form-group
+      = f.label :priority_id
+      = f.collection_select :priority_id, Priority.all, :id, :priority, {}, class: "form-control select2 select2-hidden-accessible"
+    div.form-group
+      = f.label :tenant
+      = text_field_tag 'tenant_name_autocomplete', @job.tenant&.name, class: "form-control", data: { source: admin_tenants_path }, placeholder: "Search..."
+      = f.hidden_field :tenant_id
+    div.form-group
+      = f.label :client
+      = text_field_tag 'client_name_autocomplete', @job.client&.name, class: "form-control", data: { source: admin_clients_path }, placeholder: "Search..."
+      = f.hidden_field :client_id
+    h4 Items
+    table.table.table-condensed id="items-table"
+      thead
+        th
+          = f.label :sor_code
+        th
+          = f.label :description
+        th
+          = f.label :quantity
+      tbody
+        = f.fields_for :items do |item|
+          = render 'item_fields', f: item
+    .links
+      = link_to_add_association f, :items, "data-association-insertion-node": "#items-table", "data-association-insertion-method": "append", class: 'btn' do
+        i.fa.fa-plus
+        |  New Item
+    div.btn-toolbar
+      =f.submit class: "btn btn-primary pull-left"
+      =link_to 'Cancel', admin_dashboard_path, class: 'btn btn-default'

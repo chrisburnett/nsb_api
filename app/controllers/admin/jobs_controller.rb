@@ -16,9 +16,14 @@ class Admin::JobsController < SecureAdminController
     @job = Job.new
   end
 
+  def edit
+    @job = Job.find(params[:id])
+  end
+
   def create
     @job = Job.new(safe_params.merge({ user_id: session[:user_id] }))
     if @job.save
+      flash[:success] = "Job #{@job.id} was created."
       redirect_to admin_dashboard_path
     else
       render :new
@@ -26,17 +31,33 @@ class Admin::JobsController < SecureAdminController
     
   end
 
+  def update
+    if Job.find(params[:id]).update(safe_params) then
+      flash[:success] = "Job #{params[:id]} was updated."
+      redirect_to admin_dashboard_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+  end
+
   private
 
   def safe_params
     params.require(:job).permit(:short_title,
-                                :reported_date,
                                 :reported_fault,
+                                :reported_date,
                                 :notes,
                                 :priority_id,
                                 :tenant_id,
                                 :client_id,
-                                items_attributes: [:sor_code, :description, :quantity])
+                                :status,
+                                :id,
+                                items_attributes: [:id, :sor_code, :description, :quantity, :_destroy])
   end
   
 end

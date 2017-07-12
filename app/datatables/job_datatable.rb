@@ -1,47 +1,79 @@
 class JobDatatable < AjaxDatatablesRails::Base
 
+  def_delegators :@view, :admin_job_url, :admin_job_assignment_url, :edit_admin_job_url, :edit_admin_job_assignment_url, :admin_job_assignments_url, :new_admin_job_assignment_url
+  
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
+
+    # NOTE: these columns must either exist directly on models or
+    # refer to aliased columns in the (eventual) SQL query. 't4_r1' is
+    # a name given automatically by the rails query generator. This is
+    # probably unreliable and subject to change if the order of these
+    # fields changes etc.
     @view_columns ||= {
       title: { source: "Job.short_title", cond: :like },
-      tenant: { source: "Job.tenant.id", cond: :eq },
-      contractor: {source: "Job.latest_assignment.contractor.name", cond: :eq },
-      status: { source: "Job.latest_assignment.id", cond: :eq },
+      tenant: { source: "Tenant.name", cond: :like },
+      contractor: {source: "t4_r1", searchable: true, cond: filter_custom_column_condition },
+      client: { source: "Client.name", cond: :like},
+      status: { source: "Assignment.status", cond: :like }
     }
   end
 
   def data
-    records.map do |record|
+    data = records.map do |job|
+      assignment_id = job.latest_assignment.id if job.latest_assignment
       {
-        title: record.short_title,
-        tenant: record.tenant.id,
-        contractor: get_contractor_string(record),
-        status: get_status_string(record),
+        title: job.short_title,
+        tenant: job.tenant.name,
+        contractor: get_contractor_string(job),
+        client: job.client.name,
+        status: get_status_string(job),
+        admin_job_url: admin_job_url(job.id),
+        edit_job_url: edit_admin_job_url(job.id),
+        admin_assignment_url: assignment_id ? admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil,
+        new_assignment_url: new_admin_job_assignment_url(job_id: job.id),
+        edit_assignment_url: assignment_id ? edit_admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil,
+        may_cancel: job.latest_assignment&.may_cancel? || false,
+        may_complete: job.may_complete?,
+        may_reopen: job.may_reopen?,
+        may_assign: job.may_assign?
       }
     end
+    return data
   end
 
   private
 
   # functions to return correct result when there's no assignments,
   # otherwise table fails
-  def get_contractor_string(record)
-    if record.latest_assignment.nil? then ""
-    else record.latest_assignment.contractor.name
+  def get_contractor_string(job)
+    if job.contractor.nil? then ""
+    else job.contractor.name
     end
   end
-  
-  def get_status_string(record)
-    if record.completed then "completed"
-    elsif record.latest_assignment.nil? then "unassigned"
-    else record.latest_assignment.status || "pending" end
+
+  # formats the actual status code for the view
+  def get_status_string(job)
+    status_string = job.status.dup
+    status_string << ": #{job.latest_assignment&.status}" unless
+      job.status == Job::STATE_COMPLETED.to_s ||
+      job.latest_assignment.nil? ||
+      job.latest_assignment&.status == Assignment::STATE_FULFILLED.to_s
+    return status_string
   end
 
+  # performs the actual query backing the datatable
   def get_raw_records
-    Job.includes(:tenant, :latest_assignment)
+    Job.includes(:user, :tenant, :client, :contractor, ).references(:user, :tenant, :client, :contractor, :assignment).all
   end
 
+  # required for search on custom column
+  # contractors_jobs is the join table Rails creates that gets aliased to t4_r1
+  def filter_custom_column_condition
+    ->(term) { ::Arel::Nodes::SqlLiteral.new("\"contractors_jobs\".\"name\"").matches("%#{ term.search.value }%") }
+  end
+  
   # ==== These methods represent the basic operations to perform on records
   # and feel free to override them
 

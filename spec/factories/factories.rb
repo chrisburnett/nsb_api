@@ -39,7 +39,6 @@ FactoryGirl.define do
     association :user
     association :tenant
     association :client
-    completed false
 
     after(:create) do |job, evaluator|
       create_list(:assignment, evaluator.assignment_count, job: job, user: job.user)
@@ -48,14 +47,10 @@ FactoryGirl.define do
   end
 
   factory :assignment do
-    transient do
-      completed false
-      assigned false
-    end
     association :user
     association :contractor, factory: :user
     job do
-      create(:job, completed: completed, assigned: assigned)
+      create(:job)
     end
     assignment_date { Faker::Time.backward(30) }
     scheduled_date { Faker::Time.backward(10) }
@@ -63,6 +58,7 @@ FactoryGirl.define do
     notes { Faker::Lorem.sentence(10) }
     resolution { Faker::Lorem.sentence(10) }
     am_pm_visit "am"
+    status "pending"
   end
 
   factory :job_comment do

@@ -1,18 +1,22 @@
 .main-sidebar
   .sidebar
-    ul.sidebar-menu
-      li.active
-        a href="#"
-          span Link
-      li
-        a href="#"
-          span Another Link
-      li.treeview
-        a href="#"
-          span Multilevel
-          i.fa.fa-angle-left.pull-right
-        ul.treeview-menu
-          li
-            a href="#"  Link in level 2
-          li
-            a href="#"  Link in level 2
+    ul.sidebar-menu.nav
+      li.header
+        | MAIN MENU
+      li id="menu-dashboard"
+        a href="/admin/dashboard"
+          i class="fa fa-dashboard"
+          span Dashboard
+      li id="menu-tenants"
+        a href="/admin/tenants"
+          span Tenants
+      li id="menu-clients"
+        a href="/admin/clients"
+          span Clients
+      li id="menu-contractors"
+        a href="/admin/users?admin=false"
+          span Contractors
+      li id="menu-administrators"
+        a href="/admin/users?admin=true"
+          span Administrators
+

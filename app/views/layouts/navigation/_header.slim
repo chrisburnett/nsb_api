@@ -12,30 +12,30 @@ header.main-header
   nav.navbar.navbar-static-top
     .navbar-custom-menu
       ul.nav.navbar-nav
-        /! Notifications: style can be found in dropdown.less
-        li.dropdown.notifications-menu
-          a.dropdown-toggle data-toggle="dropdown" href="#" 
-            i.fa.fa-bell-o
-            span.label.label-warning 10
-          ul.dropdown-menu
-            li.header You have 10 notifications
-            li
-              /! inner menu: contains the actual data
-              ul.menu
-                li
-                  a href="#" 
-                    i.fa.fa-users.text-aqua
-                    | 5 new members joined today
-            li.footer
-              a href="#"  View all
+        / /! Notifications: style can be found in dropdown.less
+        / li.dropdown.notifications-menu
+        /   a.dropdown-toggle data-toggle="dropdown" href="#" 
+        /     i.fa.fa-bell-o
+        /     span.label.label-warning 10
+        /   ul.dropdown-menu
+        /     li.header You have 10 notifications
+        /     li
+        /       /! inner menu: contains the actual data
+        /       ul.menu
+        /         li
+        /           a href="#" 
+        /             i.fa.fa-users.text-aqua
+        /             | 5 new members joined today
+        /     li.footer
+        /       a href="#"  View all
         /! User Account: style can be found in dropdown.less
-        li.dropdown.user.user-menu
-          a.dropdown-toggle data-toggle="dropdown" href="#" 
-            - if @current_user
+        - if @current_user
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#" 
               span.hidden-xs = @current_user.name
-          ul.dropdown-menu
-            /! Menu Body
-            li.user-body
-              a.btn.btn-default.btn-flat href="#"  Profile
-              a.btn.btn-default.btn-flat href="#"  Sign out
+            ul.dropdown-menu
+              /! Menu Body
+              li
+                a href= edit_admin_user_url(id: @current_user.id)  Profile
+                a href= admin_logout_url  Sign out
 

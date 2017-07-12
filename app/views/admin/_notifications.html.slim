@@ -1,0 +1,8 @@
+- if flash[:success]
+  .alert.alert-success.alert-dismissible
+    button.close type="button" data-dismiss="alert" aria-hidden="true"
+      | x
+    h4 
+      i.icon.fa.fa-check
+      | Success
+    = flash[:success]

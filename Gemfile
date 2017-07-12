@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# AASM for job/assignment state machine
+gem 'aasm'
 # file uploads
 gem 'carrierwave', '~> 1.0'
 # auth tokens
@@ -28,7 +30,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', git: 'https://github.com/jbox-web/ajax-datatables-rails.git'
 
 gem 'turbolinks'
 gem 'font-awesome-rails'
@@ -52,7 +54,9 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'faker'
+  gem 'mocha'
 end
 
 group :development do

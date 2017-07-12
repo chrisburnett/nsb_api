@@ -1,0 +1,7 @@
+div.content.body
+  = render partial: '/admin/errors', locals: { model: @client }
+  div.box.box-primary
+    div.box-header.with-border
+      h3.box-title
+        | New Client
+      = render 'form'

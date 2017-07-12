@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create(username: "admin", password: "admin", name: "CHANGE_PASSWORD", address: "", is_admin: true)
+
+Priority.create(priority: "High")
+Priority.create(priority: "Medium")
+Priority.create(priority: "Low")
