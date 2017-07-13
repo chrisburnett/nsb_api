@@ -2,6 +2,8 @@ class Api::V1::JobCommentsController < SecureAPIController
 
   before_action :set_comment, only: [:show, :update, :destroy]
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :GET, '/jobs/:job_id/comments', 'List job comments'
   def index
     if @current_user then
       job = Job.find_by(id: params[:job_id])
@@ -15,6 +17,8 @@ class Api::V1::JobCommentsController < SecureAPIController
     end
   end
   
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :POST, '/jobs/:job_id/comments', 'Create a job comment'
   def create
     if @current_user then
       job = Job.find_by(id: params[:job_id])
@@ -30,6 +34,9 @@ class Api::V1::JobCommentsController < SecureAPIController
   end
 
   # GET /assignments/:id
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :GET, '/jobs/:job_id/comments/:id', 'Show a job comment'
+  error code: 404
   def show
     if @current_user then
       render json: @comment.to_json
@@ -51,6 +58,9 @@ class Api::V1::JobCommentsController < SecureAPIController
     end
   end
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :DELETE, '/jobs/:job_id/comments/:id', 'Destroy a job comment'
+  error code: 403
   def destroy
     if @current_user then
       if @comment && @comment.user.id == @current_user.id then

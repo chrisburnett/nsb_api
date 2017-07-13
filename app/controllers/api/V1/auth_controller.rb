@@ -1,5 +1,8 @@
 class Api::V1::AuthController < ApplicationController
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :GET, '/auth'
+  error code: 401
   def authenticate
     authenticate_or_request_with_http_basic do |username, password| 
       user = User.find_by_username(username).try(:authenticate, password)
