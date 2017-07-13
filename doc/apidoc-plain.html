@@ -1,0 +1,633 @@
+  <h4><a href='#assignments'>Assignments</a></h4>
+  <ul>
+      <li><a href='#assignments-index'>index</a></li>
+      <li><a href='#assignments-show'>show</a></li>
+      <li><a href='#assignments-update'>update</a></li>
+  </ul>
+  <h4><a href='#auth'>Auth</a></h4>
+  <ul>
+      <li><a href='#auth-authenticate'>authenticate</a></li>
+  </ul>
+  <h4><a href='#job_comments'>Job comments</a></h4>
+  <ul>
+      <li><a href='#job_comments-index'>index</a></li>
+      <li><a href='#job_comments-create'>create</a></li>
+      <li><a href='#job_comments-show'>show</a></li>
+      <li><a href='#job_comments-destroy'>destroy</a></li>
+  </ul>
+  <h4><a href='#jobs'>Jobs</a></h4>
+  <ul>
+      <li><a href='#jobs-index'>index</a></li>
+      <li><a href='#jobs-show'>show</a></li>
+      <li><a href='#jobs-update'>update</a></li>
+  </ul>
+  <h4><a href='#users'>Users</a></h4>
+  <ul>
+      <li><a href='#users-show'>show</a></li>
+      <li><a href='#users-update'>update</a></li>
+  </ul>
+
+
+
+  <hr/>
+
+  <div>
+    <h2 id="assignments">
+      <a href='#assignments'>Assignments</a><br>
+      <small></small>
+    </h2>
+  </div>
+
+
+  <div>
+
+      <hr/>
+
+      <h3 id="assignments-index">
+      <a href='#assignments'>Assignments</a> / <a href='#assignments-index'>index</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/jobs/:job_id/assignments
+            <br>
+            <small>Get a list of assignments for user</small>
+          </h4>
+          <h4>
+              GET /api/v1/assignments
+            <br>
+            <small>Get a list of assignments for user</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="assignments-show">
+      <a href='#assignments'>Assignments</a> / <a href='#assignments-show'>show</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/jobs/:job_id/assignments/:id
+            <br>
+            <small>Get details of a particular assignment</small>
+          </h4>
+          <h4>
+              GET /api/v1/assignments/:id
+            <br>
+            <small>Get details of a particular assignment</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="assignments-update">
+      <a href='#assignments'>Assignments</a> / <a href='#assignments-update'>update</a>
+      </h3>
+
+      <div>
+          <h4>
+              PATCH /api/v1/jobs/:job_id/assignments/:id
+            <br>
+            <small>Update a particular assignment</small>
+          </h4>
+          <h4>
+              PUT /api/v1/jobs/:job_id/assignments/:id
+            <br>
+            <small>Update a particular assignment</small>
+          </h4>
+          <h4>
+              PATCH /api/v1/assignments/:id
+            <br>
+            <small>Update a particular assignment</small>
+          </h4>
+          <h4>
+              PUT /api/v1/assignments/:id
+            <br>
+            <small>Update a particular assignment</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>assignment </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a Hash</p>
+ ]
+      </small>
+      
+<p>Assignment properties</p>
+
+    </li>
+    <ul>
+    <li>
+      <strong>contractor_id </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>ID of Contractor (User) associated with this assignment</p>
+
+    </li>
+    
+    <li>
+      <strong>job_id </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>ID of Job associated with this assignment</p>
+
+    </li>
+    
+    <li>
+      <strong>am_pm_visit </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be one of: <code>am</code>, <code>pm</code>.</p>
+ ]
+      </small>
+      
+<p>Whether assignment is AM or PM visit.</p>
+
+    </li>
+    
+    <li>
+      <strong>resolution </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Resolution</p>
+
+    </li>
+    
+    <li>
+      <strong>notes </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Supplementary notes</p>
+
+    </li>
+    
+    <li>
+      <strong>scheduled_date </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Date assignment scheduled to be done</p>
+
+    </li>
+    
+    <li>
+      <strong>actual_date </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Date assignment was actually fulfilled. NOTE: not set automatically on
+state change to fulfilled, but it should be</p>
+
+    </li>
+    
+    <li>
+      <strong>status </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be one of: <code>accepted, rejected, fulfilled</code>.</p>
+ ]
+      </small>
+      
+<p>Status of the assignment</p>
+
+    </li>
+    
+    <li>
+      <strong>signature </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Encoded image data - signature image upload</p>
+
+    </li>
+    
+</ul>
+
+</ul>
+
+      </div>
+  </div>
+
+  <hr/>
+
+  <div>
+    <h2 id="auth">
+      <a href='#auth'>Auth</a><br>
+      <small></small>
+    </h2>
+  </div>
+
+
+  <div>
+
+      <hr/>
+
+      <h3 id="auth-authenticate">
+      <a href='#auth'>Auth</a> / <a href='#auth-authenticate'>authenticate</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/auth
+            <br>
+            <small></small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+          <h4>Errors</h4>
+            401
+            
+            <pre class="prettyprint lang-yaml">--- 
+...
+</pre>
+
+            <br>
+
+      </div>
+  </div>
+
+  <hr/>
+
+  <div>
+    <h2 id="job_comments">
+      <a href='#job_comments'>Job comments</a><br>
+      <small></small>
+    </h2>
+  </div>
+
+
+  <div>
+
+      <hr/>
+
+      <h3 id="job_comments-index">
+      <a href='#job_comments'>Job comments</a> / <a href='#job_comments-index'>index</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/jobs/:job_id/comments
+            <br>
+            <small>List job comments</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="job_comments-create">
+      <a href='#job_comments'>Job comments</a> / <a href='#job_comments-create'>create</a>
+      </h3>
+
+      <div>
+          <h4>
+              POST /api/v1/jobs/:job_id/comments
+            <br>
+            <small>Create a job comment</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="job_comments-show">
+      <a href='#job_comments'>Job comments</a> / <a href='#job_comments-show'>show</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/jobs/:job_id/comments/:id
+            <br>
+            <small>Show a job comment</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+          <h4>Errors</h4>
+            404
+            
+            <pre class="prettyprint lang-yaml">--- 
+...
+</pre>
+
+            <br>
+
+      </div>
+      <hr/>
+
+      <h3 id="job_comments-destroy">
+      <a href='#job_comments'>Job comments</a> / <a href='#job_comments-destroy'>destroy</a>
+      </h3>
+
+      <div>
+          <h4>
+              DELETE /api/v1/jobs/:job_id/comments/:id
+            <br>
+            <small>Destroy a job comment</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+          <h4>Errors</h4>
+            403
+            
+            <pre class="prettyprint lang-yaml">--- 
+...
+</pre>
+
+            <br>
+
+      </div>
+  </div>
+
+  <hr/>
+
+  <div>
+    <h2 id="jobs">
+      <a href='#jobs'>Jobs</a><br>
+      <small></small>
+    </h2>
+  </div>
+
+
+  <div>
+
+      <hr/>
+
+      <h3 id="jobs-index">
+      <a href='#jobs'>Jobs</a> / <a href='#jobs-index'>index</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/jobs
+            <br>
+            <small>Get a list of all jobs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="jobs-show">
+      <a href='#jobs'>Jobs</a> / <a href='#jobs-show'>show</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/jobs/:id
+            <br>
+            <small>Get detail for a given job</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>id </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>Job ID number to retrieve</p>
+
+    </li>
+    
+</ul>
+
+      </div>
+      <hr/>
+
+      <h3 id="jobs-update">
+      <a href='#jobs'>Jobs</a> / <a href='#jobs-update'>update</a>
+      </h3>
+
+      <div>
+          <h4>
+              PATCH /api/v1/jobs/:id
+            <br>
+            <small>Update a job</small>
+          </h4>
+          <h4>
+              PUT /api/v1/jobs/:id
+            <br>
+            <small>Update a job</small>
+          </h4>
+      </div>
+
+      <div>
+        
+<p>Note: only administrators, and users to whom a job is assigned, may edit a
+job.</p>
+
+
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>job </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a Hash</p>
+ ]
+      </small>
+      
+<p>Job properties</p>
+
+    </li>
+    <ul>
+    <li>
+      <strong>short_title </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+    </li>
+    
+    <li>
+      <strong>description </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+    </li>
+    
+    <li>
+      <strong>notes </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+    </li>
+    
+</ul>
+
+</ul>
+
+      </div>
+  </div>
+
+  <hr/>
+
+  <div>
+    <h2 id="users">
+      <a href='#users'>Users</a><br>
+      <small></small>
+    </h2>
+  </div>
+
+
+  <div>
+
+      <hr/>
+
+      <h3 id="users-show">
+      <a href='#users'>Users</a> / <a href='#users-show'>show</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /api/v1/user
+            <br>
+            <small>Show an user</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+          <h4>Errors</h4>
+            401
+            
+            <pre class="prettyprint lang-yaml">--- 
+...
+</pre>
+
+            <br>
+
+      </div>
+      <hr/>
+
+      <h3 id="users-update">
+      <a href='#users'>Users</a> / <a href='#users-update'>update</a>
+      </h3>
+
+      <div>
+          <h4>
+              PUT /api/v1/user
+            <br>
+            <small>Update an user</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+  </div>

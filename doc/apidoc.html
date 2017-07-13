@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li class='active'><a href='./apidoc.html'>NsbApi 1.0</a></li>
+  
+</ul>
+
+<div>
+<p>Another API description</p>
+</div>
+
+<h1 class='page-header'>Resources</h1>
+
+  <h2>
+    <a href='./apidoc/assignments.html'>
+      Assignments
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/index.html'>GET /api/v1/jobs/:job_id/assignments</a>
+            </td>
+            <td width='60%'>Get a list of assignments for user</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/index.html'>GET /api/v1/assignments</a>
+            </td>
+            <td width='60%'>Get a list of assignments for user</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/show.html'>GET /api/v1/jobs/:job_id/assignments/:id</a>
+            </td>
+            <td width='60%'>Get details of a particular assignment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/show.html'>GET /api/v1/assignments/:id</a>
+            </td>
+            <td width='60%'>Get details of a particular assignment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/update.html'>PATCH /api/v1/jobs/:job_id/assignments/:id</a>
+            </td>
+            <td width='60%'>Update a particular assignment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/update.html'>PUT /api/v1/jobs/:job_id/assignments/:id</a>
+            </td>
+            <td width='60%'>Update a particular assignment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/update.html'>PATCH /api/v1/assignments/:id</a>
+            </td>
+            <td width='60%'>Update a particular assignment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/assignments/update.html'>PUT /api/v1/assignments/:id</a>
+            </td>
+            <td width='60%'>Update a particular assignment</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/auth.html'>
+      Auth
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/auth/authenticate.html'>GET /api/v1/auth</a>
+            </td>
+            <td width='60%'></td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/job_comments.html'>
+      Job comments
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/job_comments/index.html'>GET /api/v1/jobs/:job_id/comments</a>
+            </td>
+            <td width='60%'>List job comments</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/job_comments/create.html'>POST /api/v1/jobs/:job_id/comments</a>
+            </td>
+            <td width='60%'>Create a job comment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/job_comments/show.html'>GET /api/v1/jobs/:job_id/comments/:id</a>
+            </td>
+            <td width='60%'>Show a job comment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/job_comments/destroy.html'>DELETE /api/v1/jobs/:job_id/comments/:id</a>
+            </td>
+            <td width='60%'>Destroy a job comment</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/jobs.html'>
+      Jobs
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/jobs/index.html'>GET /api/v1/jobs</a>
+            </td>
+            <td width='60%'>Get a list of all jobs</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/jobs/show.html'>GET /api/v1/jobs/:id</a>
+            </td>
+            <td width='60%'>Get detail for a given job</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/jobs/update.html'>PATCH /api/v1/jobs/:id</a>
+            </td>
+            <td width='60%'>Update a job</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/jobs/update.html'>PUT /api/v1/jobs/:id</a>
+            </td>
+            <td width='60%'>Update a job</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/users.html'>
+      Users
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/users/show.html'>GET /api/v1/user</a>
+            </td>
+            <td width='60%'>Show an user</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/update.html'>PUT /api/v1/user</a>
+            </td>
+            <td width='60%'>Update an user</td>
+          </tr>
+    </tbody>
+  </table>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='./apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/apipie.js'></script>
+</body>
+</html>
