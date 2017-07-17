@@ -1,3 +1,4 @@
-App.cable.subscriptions.create { channel: "JobChannel" },
-    received: (data) ->
-        alert(data)
+$(document).on "turbolinks:load", ->
+    App.cable.subscriptions.create "JobChannel",
+        received: (data) ->
+            alert(data)

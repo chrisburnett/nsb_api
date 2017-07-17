@@ -65,7 +65,7 @@ class Job < ApplicationRecord
   def broadcast
     ActionCable.server.broadcast(
       'jobs',
-      job: job
+      job: self
     )
   end
 
