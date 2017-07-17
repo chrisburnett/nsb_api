@@ -11,6 +11,7 @@ class Admin::SessionController < ActionController::Base
     user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
     if user && user.is_admin then
       session[:user_id] = user.id
+      cookies.signed[:user_id] = user.id # for ActiveCable connection auth
       redirect_to admin_dashboard_url
     else
       flash[:notice] = "Invalid username or password"

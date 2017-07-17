@@ -22,7 +22,9 @@ class Job < ApplicationRecord
 
   accepts_nested_attributes_for :items, allow_destroy: true
   
-  mount_uploader :signature, SignatureUploader 
+  mount_uploader :signature, SignatureUploader
+
+  after_save :broadcast
 
   aasm column: 'status' do
     state :unassigned, intitial: true
@@ -58,6 +60,13 @@ class Job < ApplicationRecord
     elsif(status == Job::STATE_COMPLETED.to_s) then complete!
     elsif(status == Job::STATE_REVIEW.to_s) then review!
     end
+  end
+
+  def broadcast
+    ActionCable.server.broadcast(
+      'jobs',
+      job: job
+    )
   end
 
 end
