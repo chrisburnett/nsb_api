@@ -76,6 +76,7 @@ FactoryGirl.define do
 
   factory :priority do
     priority { ["High", "Medium", "Low"].sample }
+    level { { "High":3, "Medium":2, "Low":1 }[priority.to_sym] }
   end
   
 end
