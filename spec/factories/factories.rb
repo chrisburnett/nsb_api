@@ -18,6 +18,8 @@ FactoryGirl.define do
     is_admin false
     username { Faker::Internet.user_name }
     password "test"
+    email { Faker::Internet.safe_email }
+    phone_number { Faker::PhoneNumber.cell_phone }
 
     factory :admin do
       is_admin true
