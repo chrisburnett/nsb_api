@@ -58,7 +58,7 @@ class Admin::TenantsController < SecureAdminController
   private
 
   def search(term)
-    Tenant.where("name || ' ' || address ILIKE ?", "%#{params[:term]}%").map { |t| {id: t.id, value: "#{t.name}, #{t.address}" } }
+    Tenant.where("name || ' ' || address ILIKE ?", "%#{params[:term]}%").map { |t| t.attributes.merge({value: "#{t.name}, #{t.address}" }) }
   end
 
   def safe_params

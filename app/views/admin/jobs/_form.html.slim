@@ -18,30 +18,62 @@
     div.form-group
       = f.label :priority_id
       = f.collection_select :priority_id, Priority.all, :id, :priority, {}, class: "form-control select2 select2-hidden-accessible"
-    div.form-group
-      = f.label :tenant
-      = text_field_tag 'tenant_name_autocomplete', @job.tenant&.name, class: "form-control", data: { source: admin_tenants_path }, placeholder: "Search..."
-      = f.hidden_field :tenant_id
-    div.form-group
-      = f.label :client
-      = text_field_tag 'client_name_autocomplete', @job.client&.name, class: "form-control", data: { source: admin_clients_path }, placeholder: "Search..."
-      = f.hidden_field :client_id
-    h4 Items
-    table.table.table-condensed id="items-table"
-      thead
-        th
-          = f.label :sor_code
-        th
-          = f.label :description
-        th
-          = f.label :quantity
-      tbody
-        = f.fields_for :items do |item|
-          = render 'item_fields', f: item
-    .links
-      = link_to_add_association f, :items, "data-association-insertion-node": "#items-table", "data-association-insertion-method": "append", class: 'btn' do
-        i.fa.fa-plus
-        |  New Item
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title
+          | Tenant
+      div.panel-body
+        div.form-group
+          = text_field_tag 'tenant_name_autocomplete', @job.tenant&.name, class: "form-control", data: { source: admin_tenants_path }, placeholder: "Search..."
+        = f.fields_for :tenant do |tfs|
+          = tfs.hidden_field :id
+          div.form-group
+            = tfs.label :name
+            = tfs.text_field :name, class: "form-control"
+          div.form-group
+            = tfs.label :address
+            = tfs.text_field :address, class: "form-control"
+          div.form-group
+            = tfs.label :notes
+            = tfs.text_area :notes, class: "form-control"
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title
+          | Client
+      div.panel-body
+        div.form-group
+          = text_field_tag 'client_name_autocomplete', @job.client&.name, class: "form-control", data: { source: admin_clients_path }, placeholder: "Search..."
+        = f.fields_for :client do |tfc|
+          = tfc.hidden_field :id
+          div.form-group
+            = tfc.label :name
+            = tfc.text_field :name, class: "form-control"
+          div.form-group
+            = tfc.label :address
+            = tfc.text_field :address, class: "form-control"
+          div.form-group
+            = tfc.label :notes
+            = tfc.text_area :notes, class: "form-control"
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title
+          | Items
+      div.panel-body
+        table.table.table-condensed id="items-table"
+          thead
+            th
+              = f.label :sor_code
+            th
+              = f.label :description
+            th
+              = f.label :quantity
+          tbody
+            = f.fields_for :items do |item|
+              = render 'item_fields', f: item
+        .links
+          = link_to_add_association f, :items, "data-association-insertion-node": "#items-table", "data-association-insertion-method": "append", class: 'btn' do
+            i.fa.fa-plus
+            |  New Item
     div.btn-toolbar
       =f.submit class: "btn btn-primary pull-left"
       =link_to 'Cancel', admin_dashboard_path, class: 'btn btn-default'

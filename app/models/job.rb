@@ -11,8 +11,8 @@ class Job < ApplicationRecord
   has_one :contractor, through: :latest_assignment, source: :contractor
 
   belongs_to :user
-  belongs_to :tenant
-  belongs_to :client
+  belongs_to :tenant, inverse_of: :jobs
+  belongs_to :client, inverse_of: :jobs
   belongs_to :priority
   
   validates_presence_of :short_title
@@ -21,6 +21,7 @@ class Job < ApplicationRecord
   validates_presence_of :client_id
 
   accepts_nested_attributes_for :items, allow_destroy: true
+  accepts_nested_attributes_for :client, :tenant
   
   mount_uploader :signature, SignatureUploader
 
