@@ -34,7 +34,7 @@ class Job < ApplicationRecord
 
     # allowed to reassign over existing assignment
     event :assign do
-      transitions from: [:assign, :unassigned], to: :assigned
+      transitions from: [:assign, :unassigned, :review], to: :assigned
     end
     event :unassign do
       transitions from: :assigned, to: :unassigned
