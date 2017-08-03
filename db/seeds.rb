@@ -8,6 +8,7 @@
 
 User.create(username: "admin", password: "admin", name: "CHANGE_PASSWORD", address: "", is_admin: true)
 
+Priority.delete_all
 Priority.create(priority: "High")
 Priority.create(priority: "Medium")
 Priority.create(priority: "Low")
