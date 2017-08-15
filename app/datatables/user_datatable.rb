@@ -8,7 +8,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       id: { source: "User.id", cond: :eq },
       username: { source: "User.username", cond: :like },
       name: { source: "User.name", cond: :like },
-      date_registered: { source: "User.created_at", cond: :eq }
+      date_registered: { source: "User.created_at" }
     }
   end
 
