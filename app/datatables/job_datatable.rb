@@ -1,6 +1,11 @@
 class JobDatatable < AjaxDatatablesRails::Base
 
   def_delegators :@view, :admin_job_url, :admin_job_assignment_url, :edit_admin_job_url, :edit_admin_job_assignment_url, :admin_job_assignments_url, :new_admin_job_assignment_url
+
+  def initialize(view, params)
+    @params = params
+    super(view)
+  end
   
   def view_columns
     # Declare strings in this format: ModelName.column_name
@@ -65,7 +70,13 @@ class JobDatatable < AjaxDatatablesRails::Base
 
   # performs the actual query backing the datatable
   def get_raw_records
-    Job.includes(:user, :tenant, :client, :contractor, ).references(:user, :tenant, :client, :contractor, :assignment).all
+    # expecting statuses to be a JSON array
+    if(@params[:statuses]) then
+      jobs = Proc.new { Job.where(status: ActiveSupport::JSON.decode(@params[:statuses])) }
+    else
+      jobs = Proc.new { Job }
+    end
+    jobs.call.includes(:user, :tenant, :client, :contractor, ).references(:user, :tenant, :client, :contractor, :assignment).all
   end
 
   # required for search on custom column
