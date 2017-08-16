@@ -62,6 +62,7 @@ class Admin::JobsController < SecureAdminController
     params.require(:job).permit(:job_number,
                                 :reported_fault,
                                 :reported_date,
+                                :due_date,
                                 :notes,
                                 :priority_id,
                                 :status,

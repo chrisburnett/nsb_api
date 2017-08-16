@@ -35,6 +35,7 @@ FactoryGirl.define do
     job_number { Faker::Lorem.sentence(3) }
     reported_date { Faker::Time.backward(30) }
     completed_date { Faker::Time.backward(15) }
+    due_date { Faker::Time.backward(10) }
     reported_fault { Faker::Lorem.sentence(10) }
     notes { Faker::Lorem.sentence(5) }
     association :priority

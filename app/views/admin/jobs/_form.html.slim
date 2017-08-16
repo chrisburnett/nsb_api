@@ -15,6 +15,11 @@
         div.input-group-addon
           i.fa.fa-calendar
         = f.text_field :reported_date, id: "reported_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+      = f.label :due_date
+      div.input-group.date
+        div.input-group-addon
+          i.fa.fa-calendar
+        = f.text_field :due_date, id: "due_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
     div.form-group
       = f.label :priority_id
       = f.collection_select :priority_id, Priority.all, :id, :priority, {}, class: "form-control select2 select2-hidden-accessible"
