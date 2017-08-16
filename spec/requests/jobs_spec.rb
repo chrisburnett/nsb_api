@@ -56,7 +56,7 @@ RSpec.describe 'Jobs API', type: :request do
 
   # Test suite for PUT /api/jobs/:id
   describe 'PUT /api/v1/jobs/:id' do
-    let(:valid_attributes) { { short_title: "booooo" } }
+    let(:valid_attributes) { { job_number: "booooo" } }
     
     context 'when the record exists' do
       before { put "/api/v1/jobs/#{job_id}", params: valid_attributes, headers: header }
@@ -72,7 +72,7 @@ RSpec.describe 'Jobs API', type: :request do
     context 'when the job is completed' do
       let(:header) { authenticated_header(user.id, false) }
 
-      before { put "/api/v1/jobs/#{job_id}", headers: header, params: { short_title: "booooo", status: Job::STATE_COMPLETED.to_s } }
+      before { put "/api/v1/jobs/#{job_id}", headers: header, params: { job_number: "booooo", status: Job::STATE_COMPLETED.to_s } }
       
       it 'changes the job status to completed' do
         get "/api/v1/jobs/#{job_id}", headers: header

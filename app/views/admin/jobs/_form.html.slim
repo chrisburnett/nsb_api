@@ -1,8 +1,8 @@
 = form_for [:admin, @job] do |f| 
   div.box-body
     div.form-group
-      = f.label :short_title
-      = f.text_field :short_title, class: "form-control"
+      = f.label :job_number
+      = f.text_field :job_number, class: "form-control"
     div.form-group
       = f.label :reported_fault
       = f.text_area :reported_fault, rows: 3, class: "form-control"

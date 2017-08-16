@@ -59,7 +59,7 @@ class Admin::JobsController < SecureAdminController
   private
 
   def safe_params
-    params.require(:job).permit(:short_title,
+    params.require(:job).permit(:job_number,
                                 :reported_fault,
                                 :reported_date,
                                 :notes,

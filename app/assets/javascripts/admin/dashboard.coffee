@@ -40,7 +40,7 @@ $(document).on "turbolinks:load", ->
         ajax: $('#jobs-table').data('source')
         pagingType: 'full_numbers'
         columns: [
-          {data: 'title'}
+          {data: 'jobnumber'}
           {data: 'tenant'}
           {data: 'contractor'}
           {data: 'client'}

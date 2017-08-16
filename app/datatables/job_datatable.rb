@@ -12,7 +12,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     # probably unreliable and subject to change if the order of these
     # fields changes etc.
     @view_columns ||= {
-      title: { source: "Job.short_title", cond: :like },
+      jobnumber: { source: "Job.job_number", cond: :like },
       tenant: { source: "Tenant.name", cond: :like },
       contractor: {source: "t4_r1", searchable: true, cond: filter_custom_column_condition },
       client: { source: "Client.name", cond: :like},
@@ -24,7 +24,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     data = records.map do |job|
       assignment_id = job.latest_assignment.id if job.latest_assignment
       {
-        title: job.short_title,
+        jobnumber: job.job_number,
         tenant: job.tenant.name,
         contractor: get_contractor_string(job),
         client: job.client.name,

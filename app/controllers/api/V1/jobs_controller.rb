@@ -19,7 +19,7 @@ class Api::V1::JobsController < SecureAPIController
   api! 'Update a job'
   desc 'Note: only administrators, and users to whom a job is assigned, may edit a job.'
   param :job, Hash, desc: 'Job properties' do
-    param :short_title, String, required: false
+    param :job_number, String, required: false
     param :description, String, required: false
     param :notes, String, required: false
   end
@@ -36,7 +36,7 @@ class Api::V1::JobsController < SecureAPIController
 
   def job_params
     # following params can be edited by clients
-    params.permit(:short_title, :description, :notes, :status, :signature)
+    params.permit(:job_number, :description, :notes, :status, :signature)
   end
 
   def set_job
