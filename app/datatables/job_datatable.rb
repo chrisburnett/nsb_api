@@ -72,7 +72,7 @@ class JobDatatable < AjaxDatatablesRails::Base
   def get_raw_records
     # expecting statuses to be a JSON array
     if(@params[:statuses]) then
-      jobs = Proc.new { Job.where(status: ActiveSupport::JSON.decode(@params[:statuses])) }
+      jobs = Proc.new { Job.where(status: @params[:statuses]) }
     else
       jobs = Proc.new { Job }
     end

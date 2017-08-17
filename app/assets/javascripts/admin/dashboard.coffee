@@ -2,8 +2,8 @@ $(document).on "turbolinks:load", ->
     get_dropdown_menu_for_row = (data, type, row, meta) ->
         menu_html = [ 
             "<div class='btn-group'>"
-            "    <a href='"+row.edit_job_url+"' type='button' class='btn btn-sm btn-default btn-flat'>Edit</a>"
-            "    <button type='button' class='btn btn-sm btn-default btn-flat dropdown-toggle' data-toggle='dropdown'>"
+            "    <a href='"+row.edit_job_url+"' type='button' class='btn btn-xs btn-default active btn-flat'>Edit</a>"
+            "    <button type='button' class='btn btn-xs btn-default active btn-flat dropdown-toggle' data-toggle='dropdown'>"
             "        <span class='caret'</class>"
             "    </button>"
             "    <ul class='dropdown-menu'>"
@@ -33,11 +33,37 @@ $(document).on "turbolinks:load", ->
         ]
 
         return menu_html.join("\n")
-             
+
+    $('div.toolbar').html('''
+    <span>Show jobs by status: </span>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-xs btn-default active">
+            <input type="checkbox" checked autocomplete="off" value="unassigned">Unassigned
+        </label>
+        <label class="btn btn-xs btn-default active">
+            <input type="checkbox" checked autocomplete="off" value="assigned">Assigned
+        </label>
+        <label class="btn btn-xs btn-default active">
+            <input type="checkbox" checked autocomplete="off" value="review">Review
+        </label>
+        <label class="btn btn-xs btn-default active">
+            <input type="checkbox" checked autocomplete="off" value="completed">Completed
+        </label>
+        <label class="btn btn-xs btn-default active">
+            <input type="checkbox" checked autocomplete="off" value="invoiced">Invoiced
+        </label>
+    </div>
+    ''')
+    $('div.toolbar label input').on 'change', (event) -> jobs_table.api().ajax.reload()
     jobs_table = $('#jobs-table').dataTable
         processing: true
         serverSide: true
-        ajax: $('#jobs-table').data('source')
+        ajax: {
+            url: $('#jobs-table').data('source')
+            data: (d) ->
+                d.statuses = jQuery.makeArray($('input:checkbox:checked')).map( (elem) -> elem.value )
+                return undefined
+        }
         pagingType: 'full_numbers'
         columns: [
           {data: 'jobnumber'}
