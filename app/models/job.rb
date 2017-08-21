@@ -64,10 +64,13 @@ class Job < ApplicationRecord
   end
 
   def broadcast
-    ActionCable.server.broadcast(
-      'jobs',
-      job: self
-    )
+    begin
+      ActionCable.server.broadcast(
+        'jobs',
+        job: self
+      )
+    rescue
+    end
   end
 
 end
