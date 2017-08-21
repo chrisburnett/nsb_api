@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Assignment, type: :model do
 
-  let(:assignment) { create(:assignment) }
+  let!(:assignment) { create(:assignment) }
   
   it { should belong_to(:user) }
   it { should belong_to(:job) }
@@ -25,6 +25,12 @@ RSpec.describe Assignment, type: :model do
       expect(assignment.job.latest_assignment.id).to eq(assignment.id)
       new_assignment = create(:assignment, job: assignment.job)
       expect(assignment.job.latest_assignment.id).to eq(new_assignment.id)
+    end
+  end
+
+  describe 'latest scope' do
+    it 'returns the latest assignments' do
+      expect(Assignment.latest.first.id).to eq(assignment.id)
     end
   end
 end

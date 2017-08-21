@@ -15,6 +15,9 @@ class Assignment < ApplicationRecord
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
 
+  scope :latest, -> { joins(:job).where( 'assignments.id = jobs.latest_assignment_id') }
+  scope :with_open_job, -> { joins(:job).where.not( jobs: { status: Job::STATE_COMPLETED }) }
+  scope :active, -> { where( status: [Assignment::STATE_PENDING, Assignment::STATE_ACCEPTED] ) }
   # state machine
   aasm column: 'status' do
 

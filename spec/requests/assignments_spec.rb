@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Assignments API', type: :request do
   # initialize test data
   let!(:user) { create(:user) }
-  let!(:job1) { create(:job, status: Job::STATE_UNASSIGNED) }
-  let!(:job2) { create(:job, status: Job::STATE_COMPLETED) }
+  let!(:job1) { create(:job, status: Job::STATE_UNASSIGNED.to_s) }
+  let!(:job2) { create(:job, status: Job::STATE_COMPLETED.to_s) }
   let!(:pending_assignments) { create_list(:assignment, 10, user: user, contractor: user) }
   let!(:assignments) { create_list(:assignment, 5, status: Assignment::STATE_ACCEPTED.to_s, user: user, contractor: user) }
   let!(:completed_assignments) { create_list(:assignment, 10, job: job2, user: user, contractor: user) }
@@ -44,8 +44,8 @@ RSpec.describe 'Assignments API', type: :request do
 
     context 'when requesting only open assignments' do
       it 'returns only open assignments' do
-        expect(json.length).to eq(5)
-        expect(json[0]['status']).to eq(Assignment::STATE_ACCEPTED.to_s)
+        expect(json.length).to eq(15)
+        expect(json[0]['status']).to eq(Assignment::STATE_PENDING.to_s)
       end
     end
 

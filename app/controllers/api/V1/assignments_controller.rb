@@ -10,7 +10,7 @@ module Api
       def index
         if @current_user then
           if params[:active] then
-            render json: @current_user.assignments.accepted.to_json({include: :job})
+            render json: @current_user.assignments.latest.with_open_job.active.to_json({include: :job})
           else
             render json: @current_user.assignments.to_json({include: :job})
           end

@@ -57,7 +57,7 @@ class Job < ApplicationRecord
   end
   
   def status=(status)
-    if(status == Job::STATE_UNASSIGNED.to_s) then reopen!
+    if(status == Job::STATE_UNASSIGNED.to_s && may_reopen?) then reopen!
     elsif(status == Job::STATE_COMPLETED.to_s) then complete!
     elsif(status == Job::STATE_REVIEW.to_s) then review!
     end
