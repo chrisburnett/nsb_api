@@ -7,12 +7,15 @@ module Api
       # GET /assignments
       api! 'Get a list of assignments for user'
       header "Authorization: Bearer", "<JWT_TOKEN>"
+
+      @@json_template = { include: { job: { include: :tenant } } }
+
       def index
         if @current_user then
           if params[:active] then
-            render json: @current_user.assignments.latest.with_open_job.active.to_json({include: :job})
+            render json: @current_user.assignments.latest.with_open_job.active.to_json(@@json_template)
           else
-            render json: @current_user.assignments.to_json({include: :job})
+            render json: @current_user.assignments.to_json(@@json_template)
           end
         else
           fail NotAuthenticatedError
@@ -24,7 +27,7 @@ module Api
       header "Authorization: Bearer", "<JWT_TOKEN>"
       def show
         if @current_user then
-          render json: @assignment.to_json(include: :job)
+          render json: @assignment.to_json(@@json_template)
         else
           fail NotAuthenticatedError
         end

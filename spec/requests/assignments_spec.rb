@@ -65,6 +65,10 @@ RSpec.describe 'Assignments API', type: :request do
         expect(json['job']).not_to be_empty
       end
 
+      it 'returns the tenant details with the job' do
+        expect(json['job']['tenant']['id']).not_to be_nil
+      end
+
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
