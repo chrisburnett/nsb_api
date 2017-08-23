@@ -4,6 +4,9 @@ FactoryGirl.define do
   factory :tenant do
     name { Faker::Name.name }
     address { Faker::Address.street_address }
+    contact_number_1 { Faker::PhoneNumber.phone_number }
+    contact_number_2 { Faker::PhoneNumber.phone_number }
+    contact_number_3 { Faker::PhoneNumber.phone_number }
     notes { Faker::Lorem.sentence(10) }
   end
   factory :client do

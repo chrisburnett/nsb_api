@@ -68,7 +68,7 @@ class Admin::JobsController < SecureAdminController
                                 :status,
                                 :id,
                                 client_attributes: [:id, :name, :address, :notes],
-                                tenant_attributes: [:id, :name, :address, :notes],
+                                tenant_attributes: [:id, :name, :address, :contact_number_1, :contact_number_2, :contact_number_3, :notes],
                                 items_attributes: [:id, :sor_code, :description, :quantity, :_destroy])
   end
   
