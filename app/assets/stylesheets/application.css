@@ -3,6 +3,7 @@
  *= require_self
  *= require font-awesome
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require dataTables/extras/dataTables.tableTools
  *= require bootstrap-datepicker3
  *= require jquery-ui
 */

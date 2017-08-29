@@ -29,6 +29,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     data = records.map do |job|
       assignment_id = job.latest_assignment.id if job.latest_assignment
       {
+        '0': nil,
         jobnumber: job.job_number,
         tenant: job.tenant.name,
         contractor: get_contractor_string(job),
