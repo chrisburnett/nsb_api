@@ -16,9 +16,33 @@ div.box
             th Action
         tbody
   div.box-footer
-    div.row
-      div.col-xs-2
+    div.row-fluid
+      div.col-xs-5
         a.btn.btn-primary href = new_admin_job_path
           | New Job
-      div.col-xs-10
+        span &nbsp;
+        a.btn.btn-default.disabled id="invoice-button" 
+          | Add Invoice Numbers
+      div.col-xs-7
         div.toolbar
+
+div.modal.fade tabindex="-1" id="invoice-modal"
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close
+          span &times;
+        h4.modal-title
+          | Add Invoice Numbers
+      div.modal-body
+        table.table.table-bordered.table-hover
+          thead
+            tr 
+              th Job Number
+              th Invoice Number
+          tbody
+      div.modal-footer
+        button.btn.btn-default data-dismiss="modal"
+          | Close
+        button.btn.btn-primary id="invoice-modal-submit-button"
+          | Save changes

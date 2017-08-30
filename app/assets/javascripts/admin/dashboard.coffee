@@ -55,6 +55,8 @@ $(document).on "turbolinks:load", ->
     </div>
     ''')
     $('div.toolbar label input').on 'change', (event) -> jobs_table.api().ajax.reload()
+    $('#invoice-button').on 'click', (event) -> invoice_modal()
+    $('#invoice-modal-submit-button').on 'click', (event) -> submit_invoice_modal()
     jobs_table = $('#jobs-table').dataTable
         processing: true
         serverSide: true
@@ -95,12 +97,40 @@ $(document).on "turbolinks:load", ->
             return '<span class="label label-'+status_map[data.slice(data.lastIndexOf(' ')+1)]+'">'+data+'</span>'
           }
           { data: null, sortable: false, render: get_dropdown_menu_for_row, createdCell: (td, cellData, rowData, row, col) ->
-              $(td).on "ajax:success", (e, data, status, xhr) ->
+              $(td).on "ajax:success", (e, data, kjstatus, xhr) ->
                   jobs_table.api().ajax.reload()
           }
         ]
+
+    # listener for selection events tp enable/disable invoicing button
+    $('#jobs-table').on 'select.dt deselect.dt', () ->
+        if jobs_table.DataTable().rows({selected: true}).data().length == 0
+            $('#invoice-button').addClass('disabled')
+        else
+            $('#invoice-button').removeClass('disabled')
+
         
     cancel_assignment = (url) ->
         $.post url,
             status: 'cancelled'
             (data) -> alert("success")
+
+    invoice_modal = () ->
+        selectedRows = jobs_table.DataTable().rows({selected: true})
+        invoiceTable = $("#invoice-modal").find("tbody")
+        invoiceTable.empty()
+        for row in selectedRows.data()
+            do (row) ->
+                newRow = $("<tr></tr>")
+                newRow.append("<td>"+row.jobnumber+"</td>")
+                newRow.append("<td><input class='form-control' type='text'></td>")
+                invoiceTable.append(newRow)
+        $("#invoice-modal").modal('show')
+
+    submit_invoice_modal = () ->
+        result = []
+        invoiceRows = $("#invoice-modal").find("tbody").find("tr")
+        invoiceRows.each (idx) ->
+            cells = $(this).find("td")
+            result.push { jobnumber: cells[0].innerText, invoicenumber: cells[1].firstChild.value }
+        # READY TO SEND
