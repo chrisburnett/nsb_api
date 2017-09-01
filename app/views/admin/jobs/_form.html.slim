@@ -4,6 +4,9 @@
       = f.label :job_number
       = f.text_field :job_number, class: "form-control"
     div.form-group
+      = f.label :invoice_number
+      = f.text_field :invoice_number, class: "form-control", disabled: !@job.may_invoice?
+    div.form-group
       = f.label :reported_fault
       = f.text_area :reported_fault, rows: 3, class: "form-control"
     div.form-group

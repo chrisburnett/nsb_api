@@ -60,6 +60,7 @@ class Admin::JobsController < SecureAdminController
 
   def safe_params
     params.require(:job).permit(:job_number,
+                                :invoice_number,
                                 :reported_fault,
                                 :reported_date,
                                 :due_date,
