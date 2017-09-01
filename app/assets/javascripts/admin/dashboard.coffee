@@ -49,8 +49,8 @@ $(document).on "turbolinks:load", ->
         <label class="btn btn-xs btn-default active">
             <input type="checkbox" checked autocomplete="off" value="completed">Completed
         </label>
-        <label class="btn btn-xs btn-default active">
-            <input type="checkbox" checked autocomplete="off" value="invoiced">Invoiced
+        <label class="btn btn-xs btn-default">
+            <input type="checkbox"  autocomplete="off" value="invoiced">Invoiced
         </label>
     </div>
     ''')
@@ -92,7 +92,8 @@ $(document).on "turbolinks:load", ->
                 rejected: "danger",
                 cancelled: "danger",
                 review: "warning",
-                completed: "success"
+                completed: "success",
+                invoiced: "success"
             }
             return '<span class="label label-'+status_map[data.slice(data.lastIndexOf(' ')+1)]+'">'+data+'</span>'
           }
@@ -123,14 +124,29 @@ $(document).on "turbolinks:load", ->
             do (row) ->
                 newRow = $("<tr></tr>")
                 newRow.append("<td>"+row.jobnumber+"</td>")
-                newRow.append("<td><input class='form-control' type='text'></td>")
+                if row.status == "completed"
+                    newRow.append("<td><input class='form-control' type='text'></td>")
+                else if row.status == "invoiced"
+                    newRow.append("<td>Job is already invoiced.</td>")
+                else
+                    newRow.append("<td>Job is not completed.</td>")
                 invoiceTable.append(newRow)
         $("#invoice-modal").modal('show')
 
     submit_invoice_modal = () ->
-        result = []
+        jobs = []
         invoiceRows = $("#invoice-modal").find("tbody").find("tr")
         invoiceRows.each (idx) ->
             cells = $(this).find("td")
-            result.push { jobnumber: cells[0].innerText, invoicenumber: cells[1].firstChild.value }
-        # READY TO SEND
+            if cells[1].firstChild.tagName == "INPUT"
+                jobs.push { jobnumber: cells[0].innerText, invoicenumber: cells[1].firstChild.value }
+
+        $.ajax({
+            type: "PUT",
+            url: $('#invoice-modal').data('url')
+            contentType: 'application/json'
+            data: JSON.stringify({jobs: jobs})
+        }).always((data) ->
+            jobs_table.api().ajax.reload()
+            $('#invoice-modal').modal('hide')
+        )

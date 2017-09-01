@@ -16,6 +16,8 @@ class Job < ApplicationRecord
   belongs_to :priority
   
   validates_presence_of :job_number
+  validates_uniqueness_of :job_number
+  
   validates_presence_of :reported_date
   validates_presence_of :tenant_id
   validates_presence_of :client_id
@@ -25,6 +27,7 @@ class Job < ApplicationRecord
   
   mount_uploader :signature, SignatureUploader
 
+  before_save :update_invoiced_state
   after_save :broadcast
 
   aasm column: 'status' do
@@ -32,6 +35,7 @@ class Job < ApplicationRecord
     state :assigned
     state :review
     state :completed
+    state :invoiced
 
     # allowed to reassign over existing assignment
     event :assign do
@@ -49,6 +53,13 @@ class Job < ApplicationRecord
     event :review do
       transitions from: [:assigned, :completed], to: :review
     end
+
+    # can only invoice a completed job (may be too restrictive)
+    # no return from invoiced - need to create new job, can't reopen
+    event :invoice do
+      transitions from: [:completed], to: :invoiced
+    end
+    
     # allow reopening of closed jobs without requiring new job created
     event :reopen do
       transitions from: [:completed], to: :unassigned
@@ -70,6 +81,12 @@ class Job < ApplicationRecord
         job: self
       )
     rescue
+    end
+  end
+
+  def update_invoiced_state
+    if !invoice_number.nil? && status != Job::STATE_INVOICED && may_invoice? then
+      invoice!
     end
   end
 

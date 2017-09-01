@@ -35,7 +35,7 @@ FactoryGirl.define do
       assignment_count 0
       item_count 2
     end
-    job_number { Faker::Lorem.sentence(3) }
+    job_number { Faker::Code.asin }
     reported_date { Faker::Time.backward(30) }
     completed_date { Faker::Time.backward(15) }
     due_date { Faker::Time.backward(10) }

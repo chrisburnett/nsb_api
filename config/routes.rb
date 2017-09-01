@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     post 'login' => 'session#create'
     get 'dashboard' => 'dashboard#index'
 
-    #root to: 'dashboard#index'
+    put 'batch_update_invoice_numbers' => 'batch_update#update_invoice_numbers'
     
   end
   
