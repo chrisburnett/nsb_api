@@ -57,6 +57,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'faker'
   gem 'mocha'
+  gem 'rails-erd'
 end
 
 group :development do
