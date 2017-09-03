@@ -19,7 +19,7 @@ FactoryGirl.define do
     name { Faker::Name.name }
     address { Faker::Address.street_address }
     is_admin false
-    username { Faker::Internet.user_name }
+    username { Faker::Internet.unique.user_name }
     password "test"
     email { Faker::Internet.safe_email }
     phone_number { Faker::PhoneNumber.cell_phone }
@@ -35,7 +35,7 @@ FactoryGirl.define do
       assignment_count 0
       item_count 2
     end
-    job_number { Faker::Code.asin }
+    job_number { Faker::Code.unique.asin }
     reported_date { Faker::Time.backward(30) }
     completed_date { Faker::Time.backward(15) }
     due_date { Faker::Time.backward(10) }
