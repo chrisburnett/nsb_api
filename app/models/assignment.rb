@@ -7,7 +7,7 @@ class Assignment < ApplicationRecord
   belongs_to :job
   belongs_to :contractor, class_name: "User"
 
-  has_many :attachments
+  has_many :attachments, dependent: :destroy
   
   validates_presence_of :job_id
 

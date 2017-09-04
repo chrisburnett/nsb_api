@@ -24,7 +24,7 @@ class Admin::JobsController < SecureAdminController
 
   def create
     @job = Job.new(safe_params.except(:client_attributes, :tenant_attributes).merge({ user_id: session[:user_id] }))
-    @job.tenant = Tenant.find_or_create_by(safe_params[:tenant_attributes])
+    @job.tenant = Tenant.find_or_create_by(safe_params[:tenant_attributes].transform_values { |v| if v == "" then nil else v end })
     @job.client = Client.find_or_create_by(safe_params[:client_attributes])
     if @job.save
       flash[:success] = "Job #{@job.id} was created."
