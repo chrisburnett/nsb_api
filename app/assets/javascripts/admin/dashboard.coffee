@@ -1,3 +1,8 @@
+$(document).on "turbolinks:before-cache", ->
+    jobs_table = $('#jobs-table').DataTable()
+    if $('#jobs-table_wrapper').length == 1
+        jobs_table.destroy()
+
 $(document).on "turbolinks:load", ->
     get_dropdown_menu_for_row = (data, type, row, meta) ->
         menu_html = [ 
