@@ -7,6 +7,8 @@ class Assignment < ApplicationRecord
   belongs_to :job
   belongs_to :contractor, class_name: "User"
 
+  has_many :attachments
+  
   validates_presence_of :job_id
 
   before_create :set_assignment_date

@@ -8,7 +8,7 @@ module Api
       api! 'Get a list of assignments for user'
       header "Authorization: Bearer", "<JWT_TOKEN>"
 
-      @@json_template = { include: { job: { include: :tenant } } }
+      @@json_template = { include: { attachments: {}, job: { include: :tenant } } }
 
       def index
         if @current_user then

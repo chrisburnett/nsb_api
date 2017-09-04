@@ -27,3 +27,5 @@ spec/examples.txt
 *.org
 /dump.rdb
 /erd.pdf
+
+/public/uploads/**/*

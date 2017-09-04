@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830183748) do
+ActiveRecord::Schema.define(version: 20170903214717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,17 @@ ActiveRecord::Schema.define(version: 20170830183748) do
     t.string "status"
     t.integer "contractor_id"
     t.string "signature"
+    t.json "attachments"
     t.index ["job_id"], name: "index_assignments_on_job_id"
     t.index ["user_id"], name: "index_assignments_on_user_id"
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "attachment"
+    t.bigint "assignment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_attachments_on_assignment_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -125,6 +134,7 @@ ActiveRecord::Schema.define(version: 20170830183748) do
   add_foreign_key "assignments", "jobs"
   add_foreign_key "assignments", "users"
   add_foreign_key "assignments", "users", column: "contractor_id"
+  add_foreign_key "attachments", "assignments"
   add_foreign_key "job_comments", "jobs"
   add_foreign_key "job_comments", "users"
   add_foreign_key "jobs", "clients"

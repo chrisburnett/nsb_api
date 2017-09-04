@@ -10,7 +10,10 @@ Rails.application.routes.draw do
       end
       
       # assignments
-      resources :assignments, only: [:index, :show, :update, :create]
+      resources :assignments, only: [:index, :show, :update, :create] do
+        post 'attachment' => 'attachments#create'
+        get 'attachment/:id' => 'attachments#show'
+      end
       
       get 'auth' => 'auth#authenticate'
       get 'user', to: 'users#show'
