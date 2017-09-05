@@ -27,7 +27,7 @@ class Api::V1::UsersController < SecureAPIController
   private
 
   def safe_params
-    params.permit(:name,:address,:password)
+    params.permit(:name,:address,:password,:registration_id)
   end
   
 end
