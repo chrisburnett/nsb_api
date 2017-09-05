@@ -43,6 +43,8 @@ gem 'redis', '~> 3.0'
 # API documentation generator
 gem 'apipie-rails'
 
+gem 'rpush'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
