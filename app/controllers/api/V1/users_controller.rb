@@ -16,6 +16,7 @@ class Api::V1::UsersController < SecureAPIController
   def update
     if @current_user then
       @current_user.update(safe_params)
+      render json: @current_user, except: :password_digest, status: :ok
     else
       fail NotAuthenticatedError
     end

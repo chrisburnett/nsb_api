@@ -26,7 +26,7 @@ class Api::V1::JobsController < SecureAPIController
   def update
     if can_edit(@current_user, @job) then
       @job.update(job_params)
-      head :ok
+      render json: @job.to_json(include: [:assignments, :items])
     else
       head :forbidden
     end

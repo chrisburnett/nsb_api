@@ -4,7 +4,7 @@ RSpec.describe 'Users API', type: :request do
 
   # initialize test data 
   let!(:users) { create_list(:user, 10) }
-  let(:user_id) { users.first.id }
+  let!(:user_id) { users.first.id }
   
   # Test suite for GET /api/v1/user unauthenticated
   describe 'GET /api/v1/user' do
@@ -32,17 +32,23 @@ RSpec.describe 'Users API', type: :request do
   end
 
   describe 'PUT /api/v1/user' do
-    let(:valid_attributes) { { name: "Bob" } }
-
+    let(:valid_attributes) { { name: "Bob", registration_id: "11111111111" } }
+    
     context 'when the record exists' do
       before { put "/api/v1/user/", params: valid_attributes, headers: authenticated_header(user_id, false) }
 
       it 'updates the record' do
-        expect(response.body).to be_empty
+        expect(response.body).not_to be_empty
       end
 
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'updates the registration ID' do
+        users.first.reload
+        expect(users.first.registration_id).to eq("11111111111")
+        expect(users.first.name).to eq("Bob")
       end
     end
   end

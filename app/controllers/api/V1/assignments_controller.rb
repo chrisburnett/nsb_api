@@ -52,6 +52,7 @@ module Api
         if @current_user then
           if can_edit? then
             @assignment.update!(assignment_params)
+            render json: @assignment.to_json(@@json_template)
           else
             head :forbidden # not allowed to edit other people's assignments
           end
