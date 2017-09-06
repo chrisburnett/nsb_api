@@ -1,6 +1,7 @@
 class Assignment < ApplicationRecord
   include AASM
 
+  @@json_template = { include: { attachments: {}, job: { include: :tenant } } }
   has_paper_trail # versioning/auditing
 
   belongs_to :user
@@ -13,6 +14,7 @@ class Assignment < ApplicationRecord
 
   before_create :set_assignment_date
   after_create :update_job_latest_assignment
+  after_save :set_state_assigned
   
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
@@ -24,10 +26,13 @@ class Assignment < ApplicationRecord
   aasm column: 'status' do
 
     after_all_events :update_job_state
-    
-    state :pending, initial: true
-    state :accepted, :rejected, :cancelled, :fulfilled
 
+    state :unassigned, initial: true
+    state :pending, :accepted, :rejected, :cancelled, :fulfilled
+
+    event :assign do
+      transitions from: :unassigned, to: :pending, after: :notify_assignment_pending
+    end
     event :accept do
       transitions from: :pending, to: :accepted
     end
@@ -89,13 +94,38 @@ class Assignment < ApplicationRecord
     self.response_date = Time.now
   end
 
-  # before updating status if this is the current assignment and it's
-  # being fulfilled, unlink it (leaving the job unassigned)
-  # def unlink_job_if_necessary
-  #   if fulfilled? &&
-  #      self.job.latest_assignment.id == self.id then
-  #     self.job.update(latest_assignment: nil)
-  #   end
-  # end
+  def set_state_assigned
+    self.assign!
+  end
 
+  # send push notifications as required we are using the Push API to
+  # send out notifications immediately. Notifications are not going to
+  # be high frequency so we don't need the separate daemon running
+  
+  def notify_assignment_pending
+    registration_id = self.contractor.registration_id
+    if registration_id then
+      title = 'New Job Assignment'
+      message = "Tap for more details."
+      data = self.as_json(@@json_template)
+      notify(title, message, registration_id, data)
+    end  
+  end
+
+  # this method actually creates and pushes the prepared notification
+  def notify(title, message, registration_id, data)
+    n = Rpush::Apns::Notification.new
+    n.app = Rpush::Apns::App.first
+    n.registration_ids = [registration_id]
+    n.notification = { 
+      title: title,
+      body: message,
+    }
+    n.data = data
+    n.save!
+
+    #fire! might not be needed if heroku workers stay awake
+    #Rpush.push
+  end
+  
 end
