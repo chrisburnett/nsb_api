@@ -14,7 +14,7 @@ class Assignment < ApplicationRecord
 
   before_create :set_assignment_date
   after_create :update_job_latest_assignment
-  after_save :set_state_assigned
+  after_save :set_state_assigned, if: :contractor_id_changed?
   
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
@@ -95,7 +95,7 @@ class Assignment < ApplicationRecord
   end
 
   def set_state_assigned
-    self.assign!
+    if self.may_assign? then self.assign! end
   end
 
   # send push notifications as required we are using the Push API to
@@ -114,8 +114,8 @@ class Assignment < ApplicationRecord
 
   # this method actually creates and pushes the prepared notification
   def notify(title, message, registration_id, data)
-    n = Rpush::Apns::Notification.new
-    n.app = Rpush::Apns::App.first
+    n = Rpush::Gcm::Notification.new
+    n.app = Rpush::Gcm::App.first
     n.registration_ids = [registration_id]
     n.notification = { 
       title: title,
@@ -124,7 +124,7 @@ class Assignment < ApplicationRecord
     n.data = data
     n.save!
 
-    #fire! might not be needed if heroku workers stay awake
+    #fire!
     #Rpush.push
   end
   
