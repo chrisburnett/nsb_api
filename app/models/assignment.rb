@@ -2,6 +2,7 @@ class Assignment < ApplicationRecord
   include AASM
 
   @@json_template = { include: { attachments: {}, job: { include: :tenant } } }
+  @FCMNotifier = FCMNotifier.new
   has_paper_trail # versioning/auditing
 
   belongs_to :user
@@ -13,8 +14,8 @@ class Assignment < ApplicationRecord
   validates_presence_of :job_id
 
   before_create :set_assignment_date
-  after_create :update_job_latest_assignment
-  after_save :set_state_assigned, if: :contractor_id_changed?
+  after_create :update_job_latest_assignment, :notify_assignment_created
+  before_save :notify_assignment_changes
   after_destroy :notify_assignment_cancelled
   
   # allow signatures to be uploaded
@@ -28,12 +29,9 @@ class Assignment < ApplicationRecord
 
     after_all_events :update_job_state
 
-    state :unassigned, initial: true
-    state :pending, :accepted, :rejected, :cancelled, :fulfilled
+    state :pending, initial: true
+    state :accepted, :rejected, :cancelled, :fulfilled
 
-    event :assign do
-      transitions from: :unassigned, to: :pending, after: :notify_assignment_pending
-    end
     event :accept do
       transitions from: :pending, to: :accepted
     end
@@ -59,8 +57,8 @@ class Assignment < ApplicationRecord
     end
   end
   
-  def active
-    id == job.latest_assignment&.id && accepted? && !job.completed?
+  def active?
+    id == job.latest_assignment&.id && (accepted? || pending?) && !job.completed?
   end
 
   def status=(status)
@@ -95,22 +93,18 @@ class Assignment < ApplicationRecord
     self.response_date = Time.now
   end
 
-  def set_state_assigned
-    if self.may_assign? then self.assign! end
-  end
-
   # send push notifications as required we are using the Push API to
   # send out notifications immediately. Notifications are not going to
   # be high frequency so we don't need the separate daemon running
   
-  def notify_assignment_pending
+  def notify_assignment_created
     registration_id = self.contractor.registration_id
     if registration_id then
       title = 'New job assignment'
       message = "Tap for more details."
       data = self.as_json(@@json_template)
-      FCMNotifier.push(title, message, registration_id, data)
-    end  
+      @FCMNotifier.push(title, message, registration_id, data)
+    end
   end
 
   def notify_assignment_cancelled
@@ -119,8 +113,24 @@ class Assignment < ApplicationRecord
       title = 'Assignment cancelled'
       message = "Tap for more details."
       data = self.as_json(@@json_template)
-      FCMNotifier.push(title, message, registration_id, data)
-    end  
+      @FCMNotifier.push(title, message, registration_id, data)
+    end
+  end
+
+  def notify_assignment_changes
+    changes = self.changes.except(:user_id, :job_id, :created_at, :updated_at, :status, :signature)
+    registration_id = self.contractor.registration_id
+
+    # only if there's a device registered, something has changed and the assignment is active
+    if registration_id && !changes.empty? && active? then
+      title = 'Assignment updated'
+      message = ''
+      changes.each do |k,v|
+        message << "#{k.capitalize} changed to: #{v[1]}"
+      end
+      data = self.as_json(@@json_template)
+      @FCMNotifier.push(title, message, registration_id, data)
+    end
   end
   
 end

@@ -1,5 +1,8 @@
 class Job < ApplicationRecord
   include AASM
+
+  @@json_template = { include: :tenant }
+  @FCMNotifier = FCMNotifier.new
   
   has_paper_trail # versioning/auditing
   
@@ -7,10 +10,15 @@ class Job < ApplicationRecord
   has_many :job_comments, dependent: :destroy
   has_many :items, inverse_of: :job, dependent: :destroy
 
+  # touch true will touch latest assignment when job changes we do
+  # this because we are often sending out latest_assignment+job to
+  # client, so consider them indivisible. Any changes to the job
+  # should be communicated to the contractor
   belongs_to :latest_assignment, class_name: "Assignment", foreign_key: :latest_assignment_id, optional: true
   has_one :contractor, through: :latest_assignment, source: :contractor
 
   belongs_to :user
+  # touch job when tenant/client changes, will in turn touch latest_assignment
   belongs_to :tenant, inverse_of: :jobs
   belongs_to :client, inverse_of: :jobs
   belongs_to :priority
@@ -27,7 +35,7 @@ class Job < ApplicationRecord
   
   mount_uploader :signature, SignatureUploader
 
-  before_save :update_invoiced_state
+  before_save :update_invoiced_state, :notify_assignments
   after_save :broadcast
 
   aasm column: 'status' do
@@ -84,10 +92,28 @@ class Job < ApplicationRecord
     end
   end
 
+  private
+
   def update_invoiced_state
     if !invoice_number.nil? && status != Job::STATE_INVOICED && may_invoice? then
       invoice!
     end
+  end
+
+  def notify_assignments
+    changes = self.changes.except(:user_id, :signature, :status, :invoice_number, :created_at, :updated_at)
+    registration_id = self.latest_assignment&.contractor&.registration_id
+    
+    if registration_id && !changes.empty? && latest_assignment.active? then
+      title = "Assignment updated"
+      message = ''
+      changes.each do |k,v|
+        message << "Job #{k} changed to: #{v[1]}"
+      end
+      data = self.as_json(@@json_template)
+      @FCMNotifier.push(title, message, registration_id, data)
+    end
+
   end
 
 end
