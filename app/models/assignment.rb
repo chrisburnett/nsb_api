@@ -15,6 +15,7 @@ class Assignment < ApplicationRecord
   before_create :set_assignment_date
   after_create :update_job_latest_assignment
   after_save :set_state_assigned, if: :contractor_id_changed?
+  after_destroy :notify_assignment_cancelled
   
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
@@ -40,7 +41,7 @@ class Assignment < ApplicationRecord
       transitions from: [:pending, :accepted], to: :rejected
     end
     event :cancel do
-      transitions from: [:pending, :accepted], to: :cancelled
+      transitions from: [:pending, :accepted], to: :cancelled, after: :notify_assignment_cancelled
     end
     event :fulfil do
       transitions from: :accepted, to: :fulfilled
@@ -105,27 +106,21 @@ class Assignment < ApplicationRecord
   def notify_assignment_pending
     registration_id = self.contractor.registration_id
     if registration_id then
-      title = 'New Job Assignment'
+      title = 'New job assignment'
       message = "Tap for more details."
       data = self.as_json(@@json_template)
-      notify(title, message, registration_id, data)
+      FCMNotifier.push(title, message, registration_id, data)
     end  
   end
 
-  # this method actually creates and pushes the prepared notification
-  def notify(title, message, registration_id, data)
-    n = Rpush::Gcm::Notification.new
-    n.app = Rpush::Gcm::App.first
-    n.registration_ids = [registration_id]
-    n.notification = { 
-      title: title,
-      body: message,
-    }
-    n.data = data
-    n.save!
-
-    #fire!
-    #Rpush.push
+  def notify_assignment_cancelled
+    registration_id = self.contractor.registration_id
+    if registration_id then
+      title = 'Assignment cancelled'
+      message = "Tap for more details."
+      data = self.as_json(@@json_template)
+      FCMNotifier.push(title, message, registration_id, data)
+    end  
   end
   
 end
