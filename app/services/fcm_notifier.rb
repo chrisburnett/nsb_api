@@ -20,5 +20,6 @@ class FCMNotifier
     }
     n.data = data
     n.save!
+    puts "[NOTIFICATION] #{title}: #{message}"
   end
 end
