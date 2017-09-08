@@ -102,7 +102,7 @@ class Assignment < ApplicationRecord
       title = 'New job assignment'
       message = "Tap for more details."
       data = self.as_json(@@json_template)
-      @FCMNotifier.push(title, message, registration_id, data)
+      FCMNotifier.push(title, message, registration_id, data)
     end
   end
 
@@ -112,7 +112,7 @@ class Assignment < ApplicationRecord
       title = 'Assignment cancelled'
       message = "Tap for more details."
       data = self.as_json(@@json_template)
-      @FCMNotifier.push(title, message, registration_id, data)
+      FCMNotifier.push(title, message, registration_id, data)
     end
   end
 
