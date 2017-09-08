@@ -1,17 +1,16 @@
 class FCMNotifier
 
-  def push(title, message, registration_id, data)
+  def self.push(*args)
     if Rails.env.production? then fcm_push(*args)
     else debug_log(*args) end
   end
 
-  def debug_log(title, message, registration_id, data)
-    binding.pry
+  def self.debug_log(title, message, registration_id, data)
     puts "[NOTIFICATION] #{title}: #{message}"
   end
   
   # this method actually creates and pushes the prepared notification
-  def fcm_push(title, message, registration_id, data)
+  def self.fcm_push(title, message, registration_id, data)
     n = Rpush::Gcm::Notification.new
     n.app = Rpush::Gcm::App.first
     n.registration_ids = [registration_id]

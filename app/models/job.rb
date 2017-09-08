@@ -2,7 +2,6 @@ class Job < ApplicationRecord
   include AASM
 
   @@json_template = { include: :tenant }
-  @FCMNotifier = FCMNotifier.new
   
   has_paper_trail # versioning/auditing
   
@@ -111,7 +110,7 @@ class Job < ApplicationRecord
         message << "Job #{k} changed to: #{v[1]}"
       end
       data = self.as_json(@@json_template)
-      @FCMNotifier.push(title, message, registration_id, data)
+      FCMNotifier.push(title, message, registration_id, data)
     end
 
   end

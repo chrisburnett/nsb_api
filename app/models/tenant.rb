@@ -21,7 +21,7 @@ class Tenant < ApplicationRecord
       changes.each do |k,v|
         message << "Tenant #{k} changed to: #{v[1]}"
       end
-      data = self.as_json(@@json_template)
+      data = self.as_json
       FCMNotifier.push(title, message, registration_id, data)
     end
   end
