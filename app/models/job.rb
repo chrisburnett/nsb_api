@@ -7,7 +7,7 @@ class Job < ApplicationRecord
   
   has_many :assignments, dependent: :destroy
   has_many :job_comments, dependent: :destroy
-  has_many :items, inverse_of: :job, dependent: :destroy
+  has_many :items, inverse_of: :job, dependent: :destroy, after_add: :notify_assignments_items_changed, after_remove: :notify_assignments_items_changed
 
   # touch true will touch latest assignment when job changes we do
   # this because we are often sending out latest_assignment+job to
@@ -113,6 +113,17 @@ class Job < ApplicationRecord
       FCMNotifier.push(title, message, registration_id, data)
     end
 
+  end
+
+  def notify_assignments_items_changed(item)
+    registration_id = self.latest_assignment&.contractor&.registration_id
+    
+    if registration_id && latest_assignment.active? then
+      title = "Assignment updated"
+      message = "Materials/labour changed: #{item.description} (#{item.quantity})"
+      data = self.as_json(@@json_template)
+      FCMNotifier.push(title, message, registration_id, data)
+    end
   end
 
 end
