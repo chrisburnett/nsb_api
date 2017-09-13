@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates_presence_of :username
   validates :username, uniqueness: true
 
+  before_create { |user| user.active = true }
+  
   def generate_auth_token
     payload = { user_id: self.id }
     Authentication::AuthToken.encode(payload)

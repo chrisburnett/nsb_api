@@ -26,7 +26,11 @@ class SecureAPIController < ActionController::Base
    # Based on the user_id inside the token payload, find the user.
   def set_current_user
     if decoded_auth_token
-      @current_user ||= User.find(decoded_auth_token[:user_id])
+      begin
+        @current_user ||= User.where(active: true).find(decoded_auth_token[:user_id])
+      rescue
+        raise NotAuthenticatedError
+      end
     end
   end
 
@@ -40,7 +44,10 @@ class SecureAPIController < ActionController::Base
   end
 
   protected
-  
+
+  def auth_token_expired?
+    decoded_auth_token && decoded_auth_token.expired?
+  end
   # return the cached decoded token, or decode if needed
   def decoded_auth_token
     @decoded_auth_token ||= Authentication::AuthToken.decode(http_auth_header_content)

@@ -31,6 +31,18 @@ RSpec.describe 'Users API', type: :request do
     end
   end
 
+  describe 'GET /api/v1/user' do
+    let(:disabled_user) { create(:user) }
+    
+    context 'when the user is inactive' do
+      it 'responds 401' do
+        disabled_user.update(active: false)
+        get '/api/v1/user', headers: authenticated_header(disabled_user.id, false)
+        expect(response).to have_http_status(401)
+      end
+    end
+  end
+  
   describe 'PUT /api/v1/user' do
     let(:valid_attributes) { { name: "Bob", registration_id: "11111111111" } }
     

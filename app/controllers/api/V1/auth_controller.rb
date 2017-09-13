@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
   error code: 401
   def authenticate
     authenticate_or_request_with_http_basic do |username, password| 
-      user = User.find_by_username(username).try(:authenticate, password)
+      user = User.where(active: true).find_by_username(username).try(:authenticate, password)
       if user
         if params[:registration_id] then
           user.update(registration_id: params[:registration_id])
