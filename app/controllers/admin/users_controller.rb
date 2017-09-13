@@ -38,7 +38,7 @@ class Admin::UsersController < SecureAdminController
   def new
     @subject = params[:admin] == "true" ? "Administrator" : "Contractor"
     @admin = params[:admin]
-    @user = User.new(is_admin: params[:admin])
+    @user = User.new(is_admin: params[:admin], active: true)
   end
 
   def create
@@ -78,7 +78,7 @@ class Admin::UsersController < SecureAdminController
   end
 
   def safe_params
-    params.require(:user).permit(:id, :name, :username, :is_admin, :password, :password_confirmation)
+    params.require(:user).permit(:id, :name, :username, :is_admin, :password, :password_confirmation, :active).delete_if {|key, value| value.blank? }
   end
   
 end
