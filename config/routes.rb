@@ -16,8 +16,10 @@ Rails.application.routes.draw do
       end
       
       get 'auth' => 'auth#authenticate'
+      
       get 'user', to: 'users#show'
       put 'user', to: 'users#update'
+      get 'logout' => 'users#logout'
     end
   end
 

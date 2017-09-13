@@ -32,7 +32,9 @@ class SecureAPIController < ActionController::Base
 
   # Check to make sure the current user was set
   def authenticate_request
-    if !@current_user
+    if auth_token_expired?
+      fail AuthenticationTimeoutError
+    elsif !@current_user
       fail NotAuthenticatedError
     end
   end
