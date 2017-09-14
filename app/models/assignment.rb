@@ -15,6 +15,7 @@ class Assignment < ApplicationRecord
   before_create :set_assignment_date
   after_create :update_job_latest_assignment, :notify_assignment_created
   before_save :notify_assignment_changes
+  after_save :broadcast
   after_destroy :notify_assignment_cancelled
   
   # allow signatures to be uploaded
@@ -73,7 +74,11 @@ class Assignment < ApplicationRecord
   end
   
   private
-
+  
+  def broadcast
+    job.broadcast
+  end
+  
   # after create
   def update_job_latest_assignment
     # if there's a currently active assignment, cancel it
