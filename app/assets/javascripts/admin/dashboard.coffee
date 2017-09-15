@@ -7,7 +7,7 @@ $(document).on "turbolinks:load", ->
     get_dropdown_menu_for_row = (data, type, row, meta) ->
         menu_html = [ 
             "<div class='btn-group'>"
-            "    <a href='"+row.edit_job_url+"' type='button' class='btn btn-xs btn-default active btn-flat'>Edit</a>"
+            "    <a href='"+row.edit_job_url+"' type='button' class='btn btn-xs btn-default active btn-flat'>View</a>"
             "    <button type='button' class='btn btn-xs btn-default active btn-flat dropdown-toggle' data-toggle='dropdown'>"
             "        <span class='caret'</class>"
             "    </button>"

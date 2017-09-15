@@ -1,8 +1,7 @@
-- if @attachments.empty? 
+- if @assignment.attachments.empty? 
   p No attachments
 - else
-  - @attachments.each_with_index do |a, i|
+  - @assignment.attachments.each_with_index do |a, i|
     p
       a href = a.attachment
         = "#{a.attachment.to_s.split('/').last}"
-

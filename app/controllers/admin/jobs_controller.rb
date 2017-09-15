@@ -20,6 +20,7 @@ class Admin::JobsController < SecureAdminController
 
   def edit
     @job = Job.find(params[:id])
+    @attachments = @job.assignments.order(created_at: :desc).map { |a| a.attachments }.flatten
   end
 
   def create

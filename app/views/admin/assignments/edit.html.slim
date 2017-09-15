@@ -1,7 +1,16 @@
 div.content.body
   = render partial: '/admin/errors', locals: { model: @assignment }
-  div.box.box-primary
-    div.box-header.with-border
-      h3.box-title
-        | Edit Assignment #{@assignment.id}
-      = render 'form'
+  div.row
+    div.col-md-8
+      div.box.box-primary
+        div.box-header.with-border
+          h3.box-title
+            | Edit Assignment #{@assignment.id}
+        = render 'form'
+    div.col-md-4
+      div.box.box-primary
+        div.box-header.with-border
+          h3.box-title
+            | Attachments
+        div.box-body
+          = render 'assignment_attachments'
