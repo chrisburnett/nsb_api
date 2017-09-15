@@ -1,7 +1,25 @@
 div.content.body
-  = render partial: '/admin/errors', locals: { model: @job  }
-  div.box.box-primary
-    div.box-header.with-border
-      h3.box-title
-        | Edit Job #{@job.id}
-    = render 'form'
+  = render partial: '/admin/errors', locals: { model: @job }
+  div.row
+    div.col-md-8
+      div.box.box-primary
+        div.box-header.with-border
+          h3.box-title
+            | Job #{@job.id}
+        = render 'form'
+    div.col-md-4
+      div.box.box-primary
+        div.box-header.with-border
+          h3.box-title
+            | Assignments
+        div.box-body
+          = render 'job_assignments'
+        div.box-footer.with-border
+          =link_to 'New', new_admin_job_assignment_url(job_id: @job.id), class: 'btn btn-sm btn-primary'
+      div.box.box-primary
+        div.box-header.with-border
+          h3.box-title
+            | Attachments
+        div.box-body
+          = render 'job_attachments'
+      

@@ -1,0 +1,7 @@
+- if @job.assignments.empty? 
+  p No assignments
+- else
+  - @job.assignments.order(created_at: :desc).each_with_index do |assignment, i|
+    p
+      a href = edit_admin_job_assignment_url(job_id: @job.id, id: assignment.id)
+        = "#{(@job.assignments.length - i)}: #{assignment.contractor.name} (#{assignment.status})"

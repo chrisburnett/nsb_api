@@ -21,7 +21,7 @@ class Admin::AssignmentsController < SecureAdminController
                                                      job_id: params[:job_id] }))
     if @assignment.save
       flash[:success] = "Assignment #{@assignment.id} was created."
-      redirect_to admin_dashboard_path
+      redirect_to edit_admin_job_path(id: params[:job_id])
     else
       render :new
     end
