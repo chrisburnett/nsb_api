@@ -62,7 +62,7 @@ class Admin::TenantsController < SecureAdminController
   end
 
   def safe_params
-    params.require(:tenant).permit(:id, :name, :address, :notes)
+    params.require(:tenant).permit(:id, :name, :address, :notes, :contact_number_1, :contact_number_2, :contact_number_3)
   end
   
 end
