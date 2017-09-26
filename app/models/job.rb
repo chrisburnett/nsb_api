@@ -34,7 +34,7 @@ class Job < ApplicationRecord
   
   mount_uploader :signature, SignatureUploader
 
-  before_save :update_invoiced_state, :notify_assignments
+  after_update :update_invoiced_state, :notify_assignments
   after_save :broadcast
 
   aasm column: 'status' do
@@ -100,7 +100,7 @@ class Job < ApplicationRecord
   end
 
   def notify_assignments
-    changes = self.changes.except(:user_id, :signature, :status, :invoice_number, :created_at, :updated_at)
+    changes = self.changes.except(:user_id, :signature, :status, :invoice_number, :created_at, :updated_at, :latest_assignment_id)
     registration_id = self.latest_assignment&.contractor&.registration_id
     
     if registration_id && !changes.empty? && latest_assignment.active? then
@@ -116,13 +116,16 @@ class Job < ApplicationRecord
   end
 
   def notify_assignments_items_changed(item)
-    registration_id = self.latest_assignment&.contractor&.registration_id
-    
-    if registration_id && latest_assignment.active? then
-      title = "Assignment updated"
-      message = "Materials/labour changed: #{item.description} (#{item.quantity})"
-      data = self.as_json(@@json_template)
-      FCMNotifier.push(title, message, registration_id, data)
+    # ignore unsaved objects created by Cocoon
+    if(!item.id.nil?)
+      registration_id = self.latest_assignment&.contractor&.registration_id
+      
+      if registration_id && latest_assignment.active? then
+        title = "Assignment updated"
+        message = "Materials/labour changed: #{item.description} (#{item.quantity})"
+        data = self.as_json(@@json_template)
+        FCMNotifier.push(title, message, registration_id, data)
+      end
     end
   end
 

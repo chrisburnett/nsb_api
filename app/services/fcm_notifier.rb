@@ -2,7 +2,9 @@ class FCMNotifier
 
   def self.push(*args)
     if Rails.env.production? then fcm_push(*args)
-    else debug_log(*args) end
+    else
+      debug_log(*args)
+    end
   end
 
   def self.debug_log(title, message, registration_id, data)

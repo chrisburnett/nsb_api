@@ -14,9 +14,9 @@ class Assignment < ApplicationRecord
 
   before_create :set_assignment_date
   after_create :update_job_latest_assignment, :notify_assignment_created
-  before_save :notify_assignment_changes
-  after_save :broadcast
+  after_update :notify_assignment_changes
   after_destroy :notify_assignment_cancelled
+  after_save :broadcast
   
   # allow signatures to be uploaded
   mount_uploader :signature, SignatureUploader 
