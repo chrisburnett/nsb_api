@@ -46,3 +46,19 @@ div.modal.fade tabindex="-1" id="invoice-modal" data-url = admin_batch_update_in
           | Close
         button.btn.btn-primary id="invoice-modal-submit-button"
           | Save changes
+
+div.modal.fade tabindex="-2" id="delete-job-modal"
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close
+          span &times;
+        h4.modal-title
+          | Confirm Job Cancellation
+      div.modal-body
+        | Are you sure you want to cancel this job?
+      div.modal-footer
+        button.btn.btn-default data-dismiss="modal"
+          | No
+        button.btn.btn-primary id="delete-job-confirm-button"
+          | Yes

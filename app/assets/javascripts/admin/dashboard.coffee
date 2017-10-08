@@ -29,10 +29,9 @@ $(document).on "turbolinks:load", ->
         if data.may_reopen == "true"
             menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=unassigned' data-method='put'>Reopen</a></li>"
             
-        menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-method='delete'>Delete job</a></li>"
+        menu_html.push "        <li><a class='delete-job-link' data-url='"+row.admin_job_url+"'>Cancel job</a></li>"
 
         menu_html.concat [
-            "        <li><a method='delete', href='#'>Delete</a></li>"
             "    </ul>"
             "</div>"
         ]
@@ -62,6 +61,8 @@ $(document).on "turbolinks:load", ->
     $('div.toolbar label input').on 'change', (event) -> jobs_table.api().ajax.reload()
     $('#invoice-button').on 'click', (event) -> invoice_modal()
     $('#invoice-modal-submit-button').on 'click', (event) -> submit_invoice_modal()
+    $('#delete-job-confirm-button').on 'click', (event) -> submit_delete_job_modal()
+
     jobs_table = $('#jobs-table').dataTable
         processing: true
         serverSide: true
@@ -115,6 +116,9 @@ $(document).on "turbolinks:load", ->
         else
             $('#invoice-button').removeClass('disabled')
 
+    $('#jobs-table').on 'draw.dt', () ->
+        $('.delete-job-link').on 'click', (event) ->
+            delete_job_modal($(event.target).data("url"))
         
     cancel_assignment = (url) ->
         $.post url,
@@ -154,4 +158,17 @@ $(document).on "turbolinks:load", ->
         }).always((data) ->
             jobs_table.api().ajax.reload()
             $('#invoice-modal').modal('hide')
+        )
+
+    delete_job_modal = (url) ->
+        $("#delete-job-modal").modal('show')
+        $("#delete-job-confirm-button").data("url", url)
+
+    submit_delete_job_modal = () ->
+        $.ajax({
+            type: "DELETE",
+            url: $("#delete-job-confirm-button").data("url")
+        }).always((data) ->
+            jobs_table.api().ajax.reload()
+            $("#delete-job-modal").modal('hide')
         )
