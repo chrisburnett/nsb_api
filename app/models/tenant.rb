@@ -3,7 +3,6 @@ class Tenant < ApplicationRecord
   has_many :jobs, inverse_of: :tenant
   has_many :assignments, through: :jobs
   
-  validates_presence_of :name
   validates_presence_of :address
 
   before_save :notify_assignments
