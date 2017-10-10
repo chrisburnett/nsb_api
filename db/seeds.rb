@@ -12,3 +12,9 @@ Priority.delete_all
 Priority.create(priority: "High")
 Priority.create(priority: "Medium")
 Priority.create(priority: "Low")
+
+Trade.delete_all
+Trade.create(name: "Joinery")
+Trade.create(name: "Electrical")
+Trade.create(name: "Plumbing")
+Trade.create(name: "Interior")

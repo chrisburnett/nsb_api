@@ -18,6 +18,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     # fields changes etc.
     @view_columns ||= {
       jobnumber: { source: "Job.job_number", cond: :like },
+      trade: { source: "Trade.name", cond: :like },
       tenant: { source: "Tenant.address", cond: :like },
       contractor: {source: "t4_r1", searchable: true, cond: filter_custom_column_condition },
       client: { source: "Client.name", cond: :like},
@@ -31,6 +32,7 @@ class JobDatatable < AjaxDatatablesRails::Base
       {
         '0': nil,
         jobnumber: job.job_number,
+        trade: job.trade.name,
         tenant: job.tenant.address,
         contractor: get_contractor_string(job),
         client: job.client.name,
@@ -79,7 +81,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     else
       jobs = Proc.new { Job }
     end
-    jobs.call.includes(:user, :tenant, :client, :contractor, ).references(:user, :tenant, :client, :contractor, :assignment).all
+    jobs.call.includes(:user, :trade, :tenant, :client, :contractor, ).references(:user, :trade,:tenant, :client, :contractor, :assignment).all
   end
 
   # required for search on custom column

@@ -21,6 +21,7 @@ class Job < ApplicationRecord
   belongs_to :tenant, inverse_of: :jobs
   belongs_to :client, inverse_of: :jobs
   belongs_to :priority
+  belongs_to :trade
   
   validates_presence_of :job_number
   

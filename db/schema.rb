@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010211750) do
+ActiveRecord::Schema.define(version: 20171010222253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,11 +87,12 @@ ActiveRecord::Schema.define(version: 20171010211750) do
     t.string "status"
     t.date "due_date"
     t.string "invoice_number"
-    t.string "trade"
+    t.bigint "trade_id"
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["job_number"], name: "index_jobs_on_job_number"
     t.index ["priority_id"], name: "index_jobs_on_priority_id"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
+    t.index ["trade_id"], name: "index_jobs_on_trade_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
@@ -172,6 +173,14 @@ ActiveRecord::Schema.define(version: 20171010211750) do
     t.string "contact_number_3"
   end
 
+  create_table "trades", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -205,5 +214,6 @@ ActiveRecord::Schema.define(version: 20171010211750) do
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "priorities"
   add_foreign_key "jobs", "tenants"
+  add_foreign_key "jobs", "trades"
   add_foreign_key "jobs", "users"
 end

@@ -26,6 +26,9 @@
     div.form-group
       = f.label :priority_id
       = f.collection_select :priority_id, Priority.all, :id, :priority, {}, class: "form-control select2 select2-hidden-accessible"
+    div.form-group
+      = f.label :trade_id
+      = f.collection_select :trade_id, Trade.all, :id, :name, {}, class: "form-control select2 select2-hidden-accessible"
     div.panel.panel-default
       div.panel-heading
         h3.panel-title

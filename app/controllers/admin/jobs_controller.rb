@@ -74,6 +74,7 @@ class Admin::JobsController < SecureAdminController
                                 :reported_date,
                                 :due_date,
                                 :notes,
+                                :trade_id,
                                 :priority_id,
                                 :status,
                                 :id,
