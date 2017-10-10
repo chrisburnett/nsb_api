@@ -1,6 +1,6 @@
 class JobDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :admin_job_url, :admin_job_assignment_url, :edit_admin_job_url, :edit_admin_job_assignment_url, :admin_job_assignments_url, :new_admin_job_assignment_url
+  def_delegators :@view, :admin_job_url, :admin_job_assignment_url, :edit_admin_job_url, :edit_admin_job_assignment_url, :admin_job_assignments_url, :new_admin_job_assignment_url, :duplicate_admin_job_url
 
   def initialize(view, params)
     @params = params
@@ -36,6 +36,7 @@ class JobDatatable < AjaxDatatablesRails::Base
         client: job.client.name,
         status: get_status_string(job),
         admin_job_url: admin_job_url(job.id),
+        duplicate_admin_job_url: duplicate_admin_job_url(job.id),
         edit_job_url: edit_admin_job_url(job.id),
         admin_assignment_url: assignment_id ? admin_job_assignment_url(job_id: job.id, id: assignment_id) : nil,
         new_assignment_url: new_admin_job_assignment_url(job_id: job.id),
@@ -43,7 +44,8 @@ class JobDatatable < AjaxDatatablesRails::Base
         may_cancel: job.latest_assignment&.may_cancel? || false,
         may_complete: job.may_complete?,
         may_reopen: job.may_reopen?,
-        may_assign: job.may_assign?
+        may_assign: job.may_assign?,
+        may_invoice: job.may_invoice?
       }
     end
     return data

@@ -23,11 +23,12 @@ $(document).on "turbolinks:load", ->
         if data.may_cancel == "true"
             menu_html.push "        <li><a href='"+row.admin_assignment_url+"' data-remote='true' data-params='assignment[status]=cancelled' data-method='put'>Cancel assignment</a></li>"
 
+        menu_html.push "        <li><a href='"+row.duplicate_admin_job_url+"'>New related job</a></li>"
         if data.may_complete == "true"
-            menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=completed' data-method='put'>Mark as completed</a></li>"
+            menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=completed' data-method='put'>Mark job completed</a></li>"
 
         if data.may_reopen == "true"
-            menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=unassigned' data-method='put'>Reopen</a></li>"
+            menu_html.push "        <li><a href='"+row.admin_job_url+"' data-remote='true' data-params='job[status]=unassigned' data-method='put'>Reopen job</a></li>"
             
         menu_html.push "        <li><a class='delete-job-link' data-url='"+row.admin_job_url+"'>Cancel job</a></li>"
 
@@ -129,17 +130,22 @@ $(document).on "turbolinks:load", ->
         selectedRows = jobs_table.DataTable().rows({selected: true})
         invoiceTable = $("#invoice-modal").find("tbody")
         invoiceTable.empty()
+        jobnumbers = []
+    
         for row in selectedRows.data()
             do (row) ->
-                newRow = $("<tr></tr>")
-                newRow.append("<td>"+row.jobnumber+"</td>")
-                if row.status == "completed"
-                    newRow.append("<td><input class='form-control' type='text'></td>")
-                else if row.status == "invoiced"
-                    newRow.append("<td>Job is already invoiced.</td>")
-                else
-                    newRow.append("<td>Job is not completed.</td>")
-                invoiceTable.append(newRow)
+                if !jobnumbers.includes(row.jobnumber)
+                    jobnumbers.push(row.jobnumber)
+                    newRow = $("<tr></tr>")
+                    newRow.append("<td>"+row.jobnumber+"</td>")
+                    
+                    if row.may_invoice == "true"
+                        newRow.append("<td><input class='form-control' type='text'></td>")
+                    else if row.status == "invoiced"
+                        newRow.append("<td>Job is already invoiced.</td>")
+                    else
+                        newRow.append("<td>Job is not completed, or is waiting for other trades.</td>")
+                    invoiceTable.append(newRow)
         $("#invoice-modal").modal('show')
 
     submit_invoice_modal = () ->

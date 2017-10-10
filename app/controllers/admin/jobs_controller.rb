@@ -18,6 +18,12 @@ class Admin::JobsController < SecureAdminController
     @job.client = Client.new
   end
 
+  def duplicate
+    @source = Job.find(params[:id])
+    @job = Job.new(@source.attributes)
+    render :new
+  end
+
   def edit
     @job = Job.find(params[:id])
     @attachments = @job.assignments.order(created_at: :desc).map { |a| a.attachments }.flatten

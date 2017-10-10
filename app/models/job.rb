@@ -23,7 +23,6 @@ class Job < ApplicationRecord
   belongs_to :priority
   
   validates_presence_of :job_number
-  validates_uniqueness_of :job_number
   
   validates_presence_of :reported_date
   validates_presence_of :tenant_id
@@ -64,7 +63,7 @@ class Job < ApplicationRecord
     # can only invoice a completed job (may be too restrictive)
     # no return from invoiced - need to create new job, can't reopen
     event :invoice do
-      transitions from: [:completed], to: :invoiced
+      transitions from: [:completed], to: :invoiced, guard: :all_related_completed
     end
     
     # allow reopening of closed jobs without requiring new job created
@@ -91,6 +90,10 @@ class Job < ApplicationRecord
     end
   end
 
+  def all_related_completed
+    Job.where(job_number: job_number).where.not(status: ["completed", "invoiced"]).length == 0
+  end
+  
   private
 
   def update_invoiced_state

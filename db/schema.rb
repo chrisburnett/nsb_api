@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009224437) do
+ActiveRecord::Schema.define(version: 20171010211750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,9 @@ ActiveRecord::Schema.define(version: 20171009224437) do
     t.string "status"
     t.date "due_date"
     t.string "invoice_number"
+    t.string "trade"
     t.index ["client_id"], name: "index_jobs_on_client_id"
+    t.index ["job_number"], name: "index_jobs_on_job_number"
     t.index ["priority_id"], name: "index_jobs_on_priority_id"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"

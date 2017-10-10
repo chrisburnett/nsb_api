@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     resources :tenants
     resources :clients
     resources :jobs, only: [:index, :update, :new, :create, :edit, :destroy] do
+      member do
+        get 'duplicate'
+      end
       resources :assignments, only: [:index, :new, :create, :update, :edit]
     end
     
