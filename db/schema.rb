@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913130403) do
+ActiveRecord::Schema.define(version: 20171009224437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170913130403) do
   create_table "assignments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "job_id"
-    t.datetime "assignment_date"
+    t.date "assignment_date"
     t.string "am_pm_visit"
     t.text "resolution"
     t.text "notes"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20170913130403) do
     t.integer "contractor_id"
     t.string "signature"
     t.json "attachments"
+    t.string "scheduled_hour"
+    t.string "scheduled_minute"
     t.index ["job_id"], name: "index_assignments_on_job_id"
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end

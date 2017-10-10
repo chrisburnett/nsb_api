@@ -44,6 +44,8 @@ class Admin::AssignmentsController < SecureAdminController
                                        :scheduled_date,
                                        :actual_date,
                                        :am_pm_visit,
+                                       :scheduled_hour,
+                                       :scheduled_minute,
                                        :job_id,
                                        :user_id,
                                        :notes,

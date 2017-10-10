@@ -16,6 +16,7 @@ class Assignment < ApplicationRecord
   after_create :update_job_latest_assignment, :notify_assignment_created
   after_update :notify_assignment_changes
   after_destroy :notify_assignment_cancelled
+  before_save :set_scheduled_time
   after_save :broadcast
   
   # allow signatures to be uploaded
@@ -87,6 +88,13 @@ class Assignment < ApplicationRecord
     end
     job.update(latest_assignment_id: self.id)
     if job.may_assign? then job.assign! end
+  end
+
+  def set_scheduled_time
+    if self.am_pm_visit != "Specific time"
+      self.scheduled_hour = nil
+      self.scheduled_minute = nil
+    end
   end
   
   def set_assignment_date

@@ -18,7 +18,10 @@
         = f.text_field :actual_date, id: "actual_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
     div.form-group  
       = f.label "Time of visit", class: "control-label"
-      = f.select :am_pm_visit, options_for_select([["AM", "am"], ["PM", "pm"]]), class: "form-control"
+      div.input-group
+        = f.select :am_pm_visit, ["Specific time", "AM", "PM"], class: "form-control"
+        = f.select :scheduled_hour, (8..18).to_a, class: "form-control"
+        = f.select :scheduled_minute, (10..50).step(10).to_a.prepend("00"), class: "form-control"
     div.form-group
       = f.label :notes
       = f.text_area :notes, rows: 3, class: "form-control"

@@ -63,7 +63,7 @@ FactoryGirl.define do
     actual_date { Faker::Time.backward(15) }
     notes { Faker::Lorem.sentence(10) }
     resolution { Faker::Lorem.sentence(10) }
-    am_pm_visit "am"
+    am_pm_visit "AM"
     status "pending"
   end
 
