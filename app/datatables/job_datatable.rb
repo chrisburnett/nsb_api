@@ -18,6 +18,7 @@ class JobDatatable < AjaxDatatablesRails::Base
     # fields changes etc.
     @view_columns ||= {
       jobnumber: { source: "Job.job_number", cond: :like },
+      reported_date: { source: "Job.reported_date" },
       trade: { source: "Trade.name", cond: :like },
       tenant: { source: "Tenant.address", cond: :like },
       contractor: {source: "t4_r1", searchable: true, cond: filter_custom_column_condition },
@@ -32,6 +33,7 @@ class JobDatatable < AjaxDatatablesRails::Base
       {
         '0': nil,
         jobnumber: job.job_number,
+        reported_date: job.reported_date.to_formatted_s(:uk), 
         trade: job.trade.name,
         tenant: job.tenant.address,
         contractor: get_contractor_string(job),

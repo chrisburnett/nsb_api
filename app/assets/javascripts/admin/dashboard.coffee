@@ -87,6 +87,7 @@ $(document).on "turbolinks:load", ->
         columns: [
           null,
           {data: 'jobnumber'}
+          {data: 'reported_date'}
           {data: 'trade'}
           {data: 'tenant'}
           {data: 'contractor'}
