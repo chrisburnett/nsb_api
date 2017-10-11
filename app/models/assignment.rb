@@ -13,7 +13,7 @@ class Assignment < ApplicationRecord
   
   validates_presence_of :job_id
 
-  before_create :set_assignment_date
+  before_create :set_assignment_date, :set_assignment_status
   after_create :update_job_latest_assignment, :notify_assignment_created
   after_update :notify_assignment_changes
   after_destroy :notify_assignment_cancelled
@@ -44,17 +44,21 @@ class Assignment < ApplicationRecord
       transitions from: [:pending, :accepted], to: :cancelled, after: :notify_assignment_cancelled
     end
     event :fulfil do
-      transitions from: :accepted, to: :fulfilled
+      transitions from: [:pending, :accepted], to: :fulfilled
     end
     
   end
 
   # on state transition
   def update_job_state
-    if job.latest_assignment&.id == id then
-      #if accepted? then job.assign!
+    # if assignment id is nil, then we are creating a from-scratch
+    # completed assignment/job, so let it pass
+    if job.latest_assignment&.id == id || id.nil? then
       if (rejected? || cancelled?) && job.may_unassign? then job.unassign!
-      elsif fulfilled? then job.review!
+      elsif fulfilled? then
+        if aasm.from_state == :pending then job.complete!
+        else job.review!
+        end
       end
     end
   end
@@ -95,6 +99,12 @@ class Assignment < ApplicationRecord
     if self.am_pm_visit != "Specific time"
       self.scheduled_hour = nil
       self.scheduled_minute = nil
+    end
+  end
+
+  def set_assignment_status
+    if !self.actual_date.nil?
+      self.fulfil
     end
   end
   

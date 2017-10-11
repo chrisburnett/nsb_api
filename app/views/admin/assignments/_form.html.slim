@@ -16,6 +16,8 @@
         div.input-group-addon
           i.fa.fa-calendar
         = f.text_field :actual_date, id: "actual_date_datepicker", class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+      small.warn
+        | Note: providing an actual date will mark this assignment as already fulfilled.
     div.form-group  
       = f.label "Time of visit", class: "control-label"
       div.input-group

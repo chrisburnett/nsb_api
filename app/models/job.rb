@@ -58,7 +58,7 @@ class Job < ApplicationRecord
     # review state occurs when the assignment is fulfilled and the job
     # needs to be reviewed to see whether further assignment required
     event :review do
-      transitions from: [:assigned, :completed], to: :review
+      transitions from: [:unassigned, :assigned, :completed], to: :review
     end
 
     # can only invoice a completed job (may be too restrictive)
