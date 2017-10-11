@@ -8,7 +8,8 @@ class Assignment < ApplicationRecord
   belongs_to :job
   belongs_to :contractor, class_name: "User"
 
-  has_many :attachments, dependent: :destroy
+  has_many :attachments, inverse_of: :assignment, dependent: :destroy
+  accepts_nested_attributes_for :attachments, allow_destroy: true
   
   validates_presence_of :job_id
 

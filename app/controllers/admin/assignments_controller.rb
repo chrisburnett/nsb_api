@@ -49,7 +49,8 @@ class Admin::AssignmentsController < SecureAdminController
                                        :job_id,
                                        :user_id,
                                        :notes,
-                                       :status)
+                                       :status,
+                                       attachments_attributes: [:id, :attachment, :_destroy])
   end
   
 end

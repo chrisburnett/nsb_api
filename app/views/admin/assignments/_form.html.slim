@@ -25,6 +25,19 @@
     div.form-group
       = f.label :notes
       = f.text_area :notes, rows: 3, class: "form-control"
+    div.panel.panel-default
+      div.panel-heading
+        h3.panel-title
+          | Attachments
+      div.panel-body
+        table.table.table-condensed id="attachments-table"
+          tbody
+            = f.fields_for :attachments do |att|
+              = render 'attachment_fields', f: att
+        .links
+          = link_to_add_association f, :attachments, "data-association-insertion-node": "#attachments-table", "data-association-insertion-method": "append", class: 'btn' do
+            i.fa.fa-plus
+            | New Attachment
     div.btn-toolbar
       =f.submit class: "btn btn-primary pull-left"
       =link_to 'Cancel', admin_dashboard_path, class: 'btn btn-default'
