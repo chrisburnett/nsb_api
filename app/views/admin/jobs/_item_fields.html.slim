@@ -1,6 +1,6 @@
 tr.nested-fields
   td
-    = f.text_field :sor_code, class: "form-control"
+    = f.text_field :sor_code, class: "form-control sor-code-autocomplete", data: { source: api_v1_sor_codes_path }
   td
     = f.text_field :description, class: "form-control"
   td

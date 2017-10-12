@@ -30,3 +30,9 @@ $(document).on "turbolinks:load", ->
             $("#job_client_attributes_notes").val(ui.item.notes)
             $("#client_name_autocomplete").val(ui.item.value)
 
+    $('#items-table').on 'cocoon:after-insert', (e, insertedItem) ->
+        sor_code_field = $(insertedItem).find(".sor-code-autocomplete")
+        sor_code_field.autocomplete
+            source: sor_code_field.data("source")
+            select: ( event, ui ) ->
+                sor_code_field.val(ui.item.sor_code)

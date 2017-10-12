@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         get 'attachment/:id' => 'attachments#show'
       end
       
+      get 'sor_codes' => 'sor_codes#index'
       get 'auth' => 'auth#authenticate'
       
       get 'user', to: 'users#show'
