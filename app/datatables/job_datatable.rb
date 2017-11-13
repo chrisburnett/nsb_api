@@ -34,7 +34,7 @@ class JobDatatable < AjaxDatatablesRails::Base
         '0': nil,
         jobnumber: job.job_number,
         reported_date: job.reported_date.to_formatted_s(:uk), 
-        trade: job.trade.name,
+        trade: job.trade ? job.trade.name : nil,
         tenant: job.tenant.address,
         contractor: get_contractor_string(job),
         client: job.client.name,
