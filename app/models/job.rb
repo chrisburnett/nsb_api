@@ -8,6 +8,7 @@ class Job < ApplicationRecord
   has_many :assignments, dependent: :destroy
   has_many :job_comments, dependent: :destroy
   has_many :items, inverse_of: :job, dependent: :destroy, after_add: :notify_assignments_items_changed, after_remove: :notify_assignments_items_changed
+  has_many :attachments, through: :assignments
 
   # touch true will touch latest assignment when job changes we do
   # this because we are often sending out latest_assignment+job to
