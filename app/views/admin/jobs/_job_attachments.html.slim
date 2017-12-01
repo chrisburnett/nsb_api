@@ -2,7 +2,11 @@
   p No attachments
 - else
   - @attachments.each_with_index do |a, i|
-    p
-      a href = a.attachment
-        = "#{a.attachment.file.filename}"
+    div.row
+      div.col-xs-8 
+        a href = a.attachment
+          = "#{a.attachment.file.filename}"
+      div.col-xs-4.text-right
+        = link_to admin_attachment_path(a.id), method: :delete, confirm: 'Delete?', class: 'link-delete', 'data-message' => 'Are you sure?', 'data-severity' => 'danger', :remote => true do
+          i.primary.fa.fa-times
 

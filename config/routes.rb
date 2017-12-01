@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resources :assignments, only: [:index, :new, :create, :update, :edit]
     end
     
+    resources :attachments, only: [:destroy]
     get 'login' => 'session#index'
     get 'logout' => 'session#destroy'
     post 'login' => 'session#create'

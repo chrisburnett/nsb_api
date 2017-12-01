@@ -36,3 +36,5 @@ $(document).on "turbolinks:load", ->
             source: sor_code_field.data("source")
             select: ( event, ui ) ->
                 sor_code_field.val(ui.item.sor_code)
+
+    $('.link-delete').bind('ajax:success', () -> $(this).closest('.row').hide())

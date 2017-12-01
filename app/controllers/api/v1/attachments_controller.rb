@@ -24,6 +24,19 @@ class Api::V1::AttachmentsController < SecureAPIController
     end
   end
 
+  def destroy
+    if @current_user then
+      if can_destroy_attachment? then
+        attachment = Attachment.find(params[:id])
+        attachment.destroy
+      else
+        head :forbidden
+      end
+    else
+      fail NotAuthenticatedError
+    end
+  end
+
   private
 
   def set_assignment
@@ -32,6 +45,10 @@ class Api::V1::AttachmentsController < SecureAPIController
   
   def can_create_attachment?
     @assignment.contractor_id == @current_user.id || @assignment.user_id == @current_user.id
+  end
+
+  def can_destroy_attachment?
+    can_create_attachment?
   end
 
   def safe_params
