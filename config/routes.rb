@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :assignments, only: [:index, :show, :update, :create] do
         post 'attachment' => 'attachments#create'
         get 'attachment/:id' => 'attachments#show'
+        delete 'attachment/:id' => 'attachments#destroy'
       end
       
       get 'sor_codes' => 'sor_codes#index'
