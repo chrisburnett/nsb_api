@@ -8,7 +8,7 @@ end
 # AASM for job/assignment state machine
 gem 'aasm'
 # file uploads
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 # auth tokens
 gem 'jwt'
 # postgres
@@ -45,7 +45,7 @@ gem 'apipie-rails'
 
 gem 'rpush' 
 gem 'net-http-persistent', '< 3' # v3.0.0 breaks Rpush
-
+gem 'fog-aws'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -72,10 +72,6 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
-end
-
-group :production do
-  gem 'fog-aws'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

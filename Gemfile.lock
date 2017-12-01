@@ -274,7 +274,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass
   byebug
-  carrierwave (~> 1.0)
+  carrierwave
   cocoon
   coffee-rails
   database_cleaner
