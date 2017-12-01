@@ -4,4 +4,4 @@
   - @assignment.attachments.each_with_index do |a, i|
     p
       a href = a.attachment
-        = "#{a.attachment.to_s.split('/').last}"
+        = "#{a.attachment.file.filename}"
