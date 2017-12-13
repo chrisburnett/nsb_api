@@ -9,6 +9,7 @@ class Admin::JobsController < SecureAdminController
     respond_to do |format|
       format.html
       format.json { render json: JobDatatable.new(view_context, params) }
+      format.csv { send_data Job.all.to_csv }
     end
   end
 

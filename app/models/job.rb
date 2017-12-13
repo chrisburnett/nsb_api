@@ -1,3 +1,5 @@
+require 'csv'
+
 class Job < ApplicationRecord
   include AASM
 
@@ -130,6 +132,18 @@ class Job < ApplicationRecord
         message = "Materials/labour changed: #{item.description} (#{item.quantity})"
         data = self.as_json(@@json_template)
         FCMNotifier.push(title, message, registration_id, data)
+      end
+    end
+  end
+
+  def self.to_csv
+    attributes = %w{job_number trade client_id client_name tenant_id tenant_name tenant_address user_id user_name priority status invoice_number due_date reported_date completed_date reported_fault job_notes latest_assignment_contractor_id latest_assignment_contractor_name latest_assignment_date_assigned latest_assignment_date_scheduled latest_assignment_date_actual latest_assignment_scheduled_hour latest_assignment_scheduled_minute latest_assignment_resolution latest_assignment_notes}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      # possibly requiring large number of joins
+      all.each do |job|
+        csv << [job.job_number, job.trade&.name, job.client.id, job.client.name, job.tenant.id, job.tenant.name, job.tenant.address, job.user.id, job.user.name, job.priority.priority, job.status, job.invoice_number, job.due_date, job.reported_date, job.completed_date, job.reported_fault, job.notes, job.latest_assignment.contractor.id, job.latest_assignment.contractor.name, job.latest_assignment.assignment_date, job.latest_assignment.scheduled_date, job.latest_assignment.actual_date, job.latest_assignment.scheduled_hour, job.latest_assignment.scheduled_minute, job.latest_assignment.resolution, job.latest_assignment.notes]
       end
     end
   end
