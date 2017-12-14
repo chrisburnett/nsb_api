@@ -62,6 +62,8 @@ $(document).on "turbolinks:load", ->
     $('div.toolbar label input').on 'change', (event) -> jobs_table.api().ajax.reload()
     $('#invoice-button').on 'click', (event) -> invoice_modal()
     $('#invoice-modal-submit-button').on 'click', (event) -> submit_invoice_modal()
+    $('#export-button').on 'click', (event) -> export_modal()
+    $('#export-modal-submit-button').on 'click', (event) -> export_modal_submit()
     $('#delete-job-confirm-button').on 'click', (event) -> submit_delete_job_modal()
 
     jobs_table = $('#jobs-table').dataTable
@@ -168,6 +170,27 @@ $(document).on "turbolinks:load", ->
             $('#invoice-modal').modal('hide')
         )
 
+    export_modal = () ->
+        $("#export-modal").modal('show')
+
+    export_modal_submit = () ->
+        start_date = $('#export-modal').find('start_date_datepicker').val()
+        end_date = $('#export-modal').find('end_date_datepicker').val()
+        
+        $.ajax({
+            type: "GET",
+            url: $('#export-modal').data('url')
+            success: (data) ->
+                a = document.createElement('a')
+                a.href = 'data:text/csv;charset=utf-8,' + encodeURI(data)
+                a.download = 'jobs.csv'
+                a.click()
+                window.URL.revokeObjectURL(a.href)
+                
+        }).always((data) ->
+            $('#export-modal').modal('hide')
+        )
+    
     delete_job_modal = (url) ->
         $("#delete-job-modal").modal('show')
         $("#delete-job-confirm-button").data("url", url)

@@ -21,10 +21,13 @@ div.box
     div.row-fluid
       div.col-xs-5
         a.btn.btn-primary href = new_admin_job_path
-          | New Job
+          | New Job 
         span &nbsp;
         a.btn.btn-default.disabled id="invoice-button" 
           | Add Invoice Numbers
+        span &nbsp;
+        a.btn.btn-secondary id="export-button" 
+          | Export CSV
       div.col-xs-7
         div.toolbar
 
@@ -48,6 +51,34 @@ div.modal.fade tabindex="-1" id="invoice-modal" data-url = admin_batch_update_in
           | Close
         button.btn.btn-primary id="invoice-modal-submit-button"
           | Save changes
+
+div.modal.fade tabindex="-3" id="export-modal" data-url = admin_jobs_url(format: :csv)
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close
+          span &times;
+        h4.modal-title
+          | Export CSV
+      div.modal-body
+        div.box-body.with-border
+          div.form-group
+            = label_tag "Start date"
+            div.input-group.date
+              div.input-group-addon
+                i.fa.fa-calendar
+              = text_field_tag "start_date_datepicker", nil, class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+          div.form-group
+            = label_tag "End date"
+            div.input-group.date
+              div.input-group-addon
+                i.fa.fa-calendar
+              = text_field_tag "end_date_datepicker", nil, class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+      div.modal-footer
+        button.btn.btn-primary id="export-modal-submit-button"
+          | Export
+        button.btn.btn-default data-dismiss="modal"
+          | Cancel
 
 div.modal.fade tabindex="-2" id="delete-job-modal"
   div.modal-dialog
