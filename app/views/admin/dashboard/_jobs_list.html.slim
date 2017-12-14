@@ -62,18 +62,19 @@ div.modal.fade tabindex="-3" id="export-modal" data-url = admin_jobs_url(format:
           | Export CSV
       div.modal-body
         div.box-body.with-border
+          p Select a start and end date to export jobs reported between those dates.
           div.form-group
             = label_tag "Start date"
             div.input-group.date
               div.input-group-addon
                 i.fa.fa-calendar
-              = text_field_tag "start_date_datepicker", nil, class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+              = text_field_tag "start_date_datepicker", 1.month.ago.strftime("%d/%m/%Y"), class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
           div.form-group
             = label_tag "End date"
             div.input-group.date
               div.input-group-addon
                 i.fa.fa-calendar
-              = text_field_tag "end_date_datepicker", nil, class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
+              = text_field_tag "end_date_datepicker", Date.today.strftime("%d/%m/%Y"), class: "form-control pull-right", "data-provide":"datepicker", "data-date-format":"dd/mm/yyyy"
       div.modal-footer
         button.btn.btn-primary id="export-modal-submit-button"
           | Export

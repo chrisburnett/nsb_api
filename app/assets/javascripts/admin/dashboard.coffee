@@ -171,18 +171,20 @@ $(document).on "turbolinks:load", ->
         )
 
     export_modal = () ->
+        $("#start_date_datepicker").datepicker("option", "defaultDate", "-1m")
+        $("#end_date_datepicker").datepicker("option", "defaultDate", 0)
         $("#export-modal").modal('show')
 
     export_modal_submit = () ->
-        start_date = $('#export-modal').find('start_date_datepicker').val()
-        end_date = $('#export-modal').find('end_date_datepicker').val()
-        
+        start_date = $('#start_date_datepicker').datepicker("getDate").toISOString() || ""
+        end_date = $('#end_date_datepicker').datepicker("getDate").toISOString() || ""
         $.ajax({
             type: "GET",
-            url: $('#export-modal').data('url')
+            url: $('#export-modal').data('url') + "?start=" + start_date + "&end=" + end_date
             success: (data) ->
                 a = document.createElement('a')
                 a.href = 'data:text/csv;charset=utf-8,' + encodeURI(data)
+                document.body.appendChild(a) # needed to work in Firefox
                 a.download = 'jobs.csv'
                 a.click()
                 window.URL.revokeObjectURL(a.href)
